@@ -1,3 +1,3 @@
-cd ../../
-docker run --rm -i -v $PWD:/work -w /work/packaging/windows-setup amake/innosetup installer.iss
-cd packaging/windows-setup
+#!/usr/bin/env sh
+echo "Build the Windows installer on Windows with build.bat and Inno Setup 7." >&2
+exit 1

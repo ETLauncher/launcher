@@ -2,17 +2,23 @@
 
 Fork of ATLauncher 3.4.41.4 Beta. The original GPLv3 license and upstream attribution are retained.
 
+## Download and install
+
+Download **ETLauncher-setup-3.4.41.4.exe** from the [latest release](https://github.com/ETLauncher/launcher/releases/latest). It installs ETLauncher for the current Windows user, creates Start menu and optional desktop shortcuts, and includes Java 17. The standalone EXE and JAR are also available for users who already have Java installed.
+
 ## Changes
 
 - ETLauncher name, supplied icon, orange interface accents and splash screen.
 - Offline accounts with the standard Minecraft `OfflinePlayer:<name>` UUID.
-- Ely.by public OAuth client `et`, authorization code with PKCE, token refresh, Ely.by skin and session support through authlib-injector.
+- Ely.by sign in through its Minecraft authentication API, including optional 2FA. Only the access token and client token are saved; the password is not stored. Ely.by skin and session support uses authlib-injector.
 - Russian selected by default and a bundled Russian translation. Some uncommon messages may still appear in English; automated translations should be reviewed by a native speaker.
 - Upstream launcher binary self-updates are disabled so the fork is not replaced.
 
-## Ely.by setup
+## Ely.by sign in
 
-Register **`http://127.0.0.1:28563/callback`** as a redirect URI for public client `et` in Ely.by. The launcher listens on that address for the OAuth callback. If a different loopback URI was registered, start the launcher with `-Detlauncher.ely.redirectUri=http://127.0.0.1:<port>/<path>` as a JVM argument. The client must have the `account_info`, `offline_access` and `minecraft_server_session` scopes available. No client secret is used or stored.
+Click **Войти через Ely.by** and enter your Ely.by username or e-mail and password. If two-factor authentication is enabled, enter the current code too. ETLauncher sends these credentials directly to `https://authserver.ely.by/auth/authenticate` over HTTPS and does not save the password. Later sessions use the token refresh endpoint.
+
+The public OAuth client ID `et` remains in the source. As of 26 September 2026, Ely.by accepts its PKCE authorization request at the validation API, but the Ely.by browser application omits the PKCE parameters when it calls that API. The browser then shows `Invalid request (null required)`. The launcher uses Ely.by's documented Minecraft authentication API until their browser flow is fixed.
 
 The first Ely.by game launch downloads authlib-injector from its official distribution endpoint and verifies the SHA-256 value published there. Internet access is required for that first download and for Ely.by sign in. Offline accounts can play single player or join servers that allow offline accounts; they do not provide Microsoft or Ely.by authentication.
 
@@ -25,3 +31,11 @@ With JDK 17 installed:
 ```
 
 The runnable JAR appears under `build/libs`, and the Windows launcher under `build/launch4j`. The Windows EXE requires a Java runtime on the user's machine. Run `java -jar ETLauncher-3.4.41.4.jar` to use the JAR. Both support `--version`.
+
+To build the Windows installer, install [Inno Setup 7](https://jrsoftware.org/isdl.php), set `JAVA_HOME` to JDK 17, and run:
+
+```powershell
+.\packaging\windows-setup\build.bat -IsccPath "C:\Program Files\Inno Setup 7\ISCC.exe"
+```
+
+The installer appears in `dist/ETLauncher-setup-3.4.41.4.exe` and bundles a Java runtime built with `jlink`. It does not download anything during installation.

@@ -2,6 +2,10 @@
 
 Fork of ATLauncher 3.4.41.4 Beta. The original GPLv3 license and upstream attribution are retained.
 
+## Download and install
+
+Download **ETLauncher-setup-3.4.41.4.exe** from the [latest release](https://github.com/ETLauncher/launcher/releases/latest). It installs ETLauncher for the current Windows user, creates Start menu and optional desktop shortcuts, and includes Java 17. The standalone EXE and JAR are also available for users who already have Java installed.
+
 ## Changes
 
 - ETLauncher name, supplied icon, orange interface accents and splash screen.
@@ -27,3 +31,11 @@ With JDK 17 installed:
 ```
 
 The runnable JAR appears under `build/libs`, and the Windows launcher under `build/launch4j`. The Windows EXE requires a Java runtime on the user's machine. Run `java -jar ETLauncher-3.4.41.4.jar` to use the JAR. Both support `--version`.
+
+To build the Windows installer, install [Inno Setup 7](https://jrsoftware.org/isdl.php), set `JAVA_HOME` to JDK 17, and run:
+
+```powershell
+.\packaging\windows-setup\build.bat -IsccPath "C:\Program Files\Inno Setup 7\ISCC.exe"
+```
+
+The installer appears in `dist/ETLauncher-setup-3.4.41.4.exe` and bundles a Java runtime built with `jlink`. It does not download anything during installation.
