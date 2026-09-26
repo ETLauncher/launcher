@@ -12,6 +12,7 @@ Download **ETLauncher-setup-3.4.41.4.exe** from the [latest release](https://git
 - Offline accounts with the standard Minecraft `OfflinePlayer:<name>` UUID.
 - Ely.by sign in through its Minecraft authentication API, including optional 2FA. Only the access token and client token are saved; the password is not stored. Ely.by skin and session support uses authlib-injector.
 - Russian selected by default and a bundled Russian translation. Some uncommon messages may still appear in English; automated translations should be reviewed by a native speaker.
+- The **Releases** tab loads published release descriptions from this repository on GitHub.
 - Upstream launcher binary self-updates are disabled so the fork is not replaced.
 
 ## Ely.by sign in

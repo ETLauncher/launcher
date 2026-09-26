@@ -39,7 +39,7 @@ public class NewsViewModel implements INewsViewModel {
     }
 
     /**
-     * Takes a list of news items from GraphQL query and transforms into HTML.
+     * Combines ETLauncher release descriptions into HTML for the releases tab.
      *
      * @return An optional value containing the HTML for displaying on the News Panel
      */

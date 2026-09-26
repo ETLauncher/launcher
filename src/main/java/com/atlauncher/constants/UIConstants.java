@@ -55,7 +55,7 @@ public class UIConstants {
     public static final String getInitialTabName(int initialTab) {
         switch (initialTab) {
             case UIConstants.LAUNCHER_NEWS_TAB:
-                return "News";
+                return "Releases";
             case UIConstants.LAUNCHER_CREATE_PACK_TAB:
                 return "Create Pack";
             case UIConstants.LAUNCHER_PACKS_TAB:

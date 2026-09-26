@@ -75,7 +75,7 @@ public class NewsTab extends HierarchyPanel implements Tab {
         NEWS_MENU = new ContextMenu();
         createNewsPane();
 
-        JScrollPane scrollPane = new JScrollPane(new LoadingPanel(GetText.tr("Loading news...")),
+        JScrollPane scrollPane = new JScrollPane(new LoadingPanel("Loading releases..."),
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
@@ -129,7 +129,9 @@ public class NewsTab extends HierarchyPanel implements Tab {
                 this.setFocusable(false);
                 this.addHyperlinkListener(e -> {
                     if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                        OS.openWebBrowser(e.getURL());
+                        if (e.getURL() != null && "https".equals(e.getURL().getProtocol())) {
+                            OS.openWebBrowser(e.getURL());
+                        }
                     }
                 });
                 this.addMouseListener(new MouseAdapter() {
@@ -148,12 +150,12 @@ public class NewsTab extends HierarchyPanel implements Tab {
 
     @Override
     public String getTitle() {
-        return GetText.tr("News");
+        return "Releases";
     }
 
     @Override
     public String getAnalyticsScreenViewName() {
-        return "News";
+        return "Releases";
     }
 
     private final class ContextMenu extends JPopupMenu {

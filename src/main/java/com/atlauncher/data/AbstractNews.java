@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 
 import com.atlauncher.App;
 import com.atlauncher.graphql.GetNewsQuery.GeneralNew;
+import com.atlauncher.utils.Markdown;
 
 /**
  * Because there are two types of news in ATLauncher, but are used for the same purpose, this is a combing class.
@@ -57,5 +58,22 @@ public class AbstractNews {
         source = networkNews;
         htmlEntry = "<h2>" + networkNews.title() + " (" + formatter.format(networkNews.createdAt()) + ")</h2>" + "<p>"
             + networkNews.content() + "</p>";
+    }
+
+    /** Render a published ETLauncher GitHub release in the releases tab. */
+    public AbstractNews(String title, String description, String url, String publishedAt) {
+        source = url;
+        String safeTitle = escapeHtml(title);
+        String safeDate = escapeHtml(publishedAt.length() >= 10 ? publishedAt.substring(0, 10) : publishedAt);
+        String safeUrl = escapeHtml(url);
+        htmlEntry = "<h2><a href=\"" + safeUrl + "\">" + safeTitle + "</a> (" + safeDate + ")</h2>"
+                + Markdown.render(description == null || description.trim().isEmpty()
+                        ? "No release notes provided." : description)
+                + "<p><a href=\"" + safeUrl + "\">View release on GitHub</a></p>";
+    }
+
+    private static String escapeHtml(String value) {
+        return value.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+                .replace("\"", "&quot;").replace("'", "&#39;");
     }
 }
