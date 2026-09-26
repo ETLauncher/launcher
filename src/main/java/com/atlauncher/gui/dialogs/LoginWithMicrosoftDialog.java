@@ -328,7 +328,7 @@ public final class LoginWithMicrosoftDialog extends JDialog {
     private void addAccount(OauthTokenResponse oauthTokenResponse, XboxLiveAuthResponse xstsAuthResponse,
         LoginResponse loginResponse, Profile profile) throws Exception {
         if (account != null || AccountManager.isAccountByName(loginResponse.username)) {
-            MicrosoftAccount existingAccount = AccountManager.getAccountByName(loginResponse.username);
+            MicrosoftAccount existingAccount = AccountManager.getMicrosoftAccountByName(loginResponse.username);
 
             if (existingAccount == null) {
                 return;

@@ -34,7 +34,7 @@ import org.mini2Dx.gettext.GetText;
 import com.atlauncher.App;
 import com.atlauncher.FileSystem;
 import com.atlauncher.data.ConsoleState;
-import com.atlauncher.data.MicrosoftAccount;
+import com.atlauncher.data.AbstractAccount;
 import com.atlauncher.evnt.listener.RelocalizationListener;
 import com.atlauncher.evnt.manager.ConsoleStateManager;
 import com.atlauncher.evnt.manager.RelocalizationManager;
@@ -49,7 +49,7 @@ import com.atlauncher.utils.Pair;
 import io.reactivex.rxjava3.core.Observable;
 
 public class LauncherBottomBar extends BottomBar implements RelocalizationListener {
-    private final Observable<Pair<List<MicrosoftAccount>, Optional<MicrosoftAccount>>> accountState = Observable
+    private final Observable<Pair<List<AbstractAccount>, Optional<AbstractAccount>>> accountState = Observable
             .combineLatest(
                     AccountManager.getAccountsObservable(),
                     AccountManager.getSelectedAccountObservable(),
@@ -58,7 +58,7 @@ public class LauncherBottomBar extends BottomBar implements RelocalizationListen
     private JButton toggleConsole;
     private JButton openFolder;
     private JButton checkForUpdates;
-    private JComboBox<MicrosoftAccount> username;
+    private JComboBox<AbstractAccount> username;
 
     public LauncherBottomBar() {
         JPanel leftSide = new JPanel();
@@ -116,7 +116,7 @@ public class LauncherBottomBar extends BottomBar implements RelocalizationListen
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 if (!dontSave) {
                     Analytics.trackEvent(AnalyticsEvent.simpleEvent("switch_account"));
-                    AccountManager.switchAccount((MicrosoftAccount) username.getSelectedItem());
+                    AccountManager.switchAccount((AbstractAccount) username.getSelectedItem());
                 }
             }
         });
@@ -148,22 +148,22 @@ public class LauncherBottomBar extends BottomBar implements RelocalizationListen
         username.setName("accountSelector");
         username.setRenderer(new AccountsDropDownRenderer());
 
-        for (MicrosoftAccount account : AccountManager.getAccounts()) {
+        for (AbstractAccount account : AccountManager.getAccounts()) {
             username.addItem(account);
         }
 
-        MicrosoftAccount active = AccountManager.getSelectedAccount();
+        AbstractAccount active = AccountManager.getSelectedAccount();
 
         if (active != null) {
             username.setSelectedItem(active);
         }
     }
 
-    private void reloadAccounts(List<MicrosoftAccount> accounts, Optional<MicrosoftAccount> selectedAccount) {
+    private void reloadAccounts(List<AbstractAccount> accounts, Optional<AbstractAccount> selectedAccount) {
         dontSave = true;
         username.removeAllItems();
 
-        for (MicrosoftAccount account : accounts) {
+        for (AbstractAccount account : accounts) {
             username.addItem(account);
         }
 

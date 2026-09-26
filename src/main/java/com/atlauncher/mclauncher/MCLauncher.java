@@ -35,7 +35,8 @@ import com.atlauncher.FileSystem;
 import com.atlauncher.constants.Constants;
 import com.atlauncher.data.DisableableMod;
 import com.atlauncher.data.Instance;
-import com.atlauncher.data.MicrosoftAccount;
+import com.atlauncher.data.AbstractAccount;
+import com.atlauncher.data.ElyByAccount;
 import com.atlauncher.data.QuickPlayOption;
 import com.atlauncher.data.json.QuickPlay;
 import com.atlauncher.data.minecraft.Library;
@@ -52,13 +53,13 @@ public class MCLauncher {
     public static final List<String> IGNORED_ARGUMENTS = Arrays.asList("--clientId", "${clientid}", "--xuid",
         "${auth_xuid}");
 
-    public static Process launch(MicrosoftAccount account, Instance instance, Path nativesTempDir,
+    public static Process launch(AbstractAccount account, Instance instance, Path nativesTempDir,
         Path lwjglNativesTempDir,
         String wrapperCommand, String username) throws Exception {
         return launch(account, instance, null, nativesTempDir.toFile(), lwjglNativesTempDir, wrapperCommand, username);
     }
 
-    private static Process launch(MicrosoftAccount account, Instance instance, String props, File nativesDir,
+    private static Process launch(AbstractAccount account, Instance instance, String props, File nativesDir,
         Path lwjglNativesTempDir, String wrapperCommand, String username) throws Exception {
         List<String> arguments = getArguments(account, instance, props, nativesDir.getAbsolutePath(),
             lwjglNativesTempDir, username);
@@ -162,8 +163,8 @@ public class MCLauncher {
         return wrapArgs;
     }
 
-    private static List<String> getArguments(MicrosoftAccount account, Instance instance, String props,
-        String nativesDir, Path lwjglNativesTempDir, String username) {
+    private static List<String> getArguments(AbstractAccount account, Instance instance, String props,
+        String nativesDir, Path lwjglNativesTempDir, String username) throws Exception {
         StringBuilder cpb = new StringBuilder();
         boolean hasCustomJarMods = false;
 
@@ -288,6 +289,45 @@ public class MCLauncher {
             path += "w";
         }
         arguments.add(path);
+
+        if (account instanceof ElyByAccount) {
+            // Ely.by sessions need the matching session and skin endpoints in the game.
+            Path agent = FileSystem.LIBRARIES.resolve("authlib-injector/authlib-injector.jar");
+            if (!Files.exists(agent) || Files.size(agent) == 0) {
+                Files.createDirectories(agent.getParent());
+                Path temporary = agent.resolveSibling("authlib-injector.jar.part");
+                java.net.URLConnection metadataConnection = new java.net.URL(
+                    "https://authlib-injector.yushi.moe/artifact/latest.json").openConnection();
+                metadataConnection.setConnectTimeout(15000);
+                metadataConnection.setReadTimeout(30000);
+                com.google.gson.JsonObject metadata;
+                try (java.io.InputStream input = metadataConnection.getInputStream();
+                    java.io.InputStreamReader reader = new java.io.InputStreamReader(input,
+                        java.nio.charset.StandardCharsets.UTF_8)) {
+                    metadata = new com.google.gson.JsonParser().parse(reader).getAsJsonObject();
+                }
+                String url = metadata.get("download_url").getAsString();
+                if (!url.startsWith("https://authlib-injector.yushi.moe/artifact/")) {
+                    throw new java.io.IOException("Unexpected authlib-injector download URL");
+                }
+                String expectedHash = metadata.getAsJsonObject("checksums").get("sha256").getAsString();
+                java.net.URLConnection connection = new java.net.URL(url).openConnection();
+                connection.setConnectTimeout(15000);
+                connection.setReadTimeout(30000);
+                try (java.io.InputStream input = connection.getInputStream()) {
+                    Files.copy(input, temporary, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+                }
+                byte[] hash = java.security.MessageDigest.getInstance("SHA-256").digest(Files.readAllBytes(temporary));
+                StringBuilder actualHash = new StringBuilder();
+                for (byte b : hash) actualHash.append(String.format("%02x", b & 0xff));
+                if (!expectedHash.equalsIgnoreCase(actualHash.toString())) {
+                    Files.deleteIfExists(temporary);
+                    throw new java.io.IOException("authlib-injector SHA-256 mismatch");
+                }
+                Files.move(temporary, agent, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+            }
+            arguments.add("-javaagent:" + agent.toAbsolutePath() + "=ely.by");
+        }
 
         if (OS.getMaximumRam() != 0 && maximumMemory < instance.getMemory()) {
             if ((OS.getMaximumRam() / 2) < instance.getMemory()) {
@@ -463,7 +503,7 @@ public class MCLauncher {
         return arguments;
     }
 
-    private static String replaceArgument(String incomingArgument, Instance instance, MicrosoftAccount account,
+    private static String replaceArgument(String incomingArgument, Instance instance, AbstractAccount account,
         String props, String nativesDir, String classpath, String username) {
         String argument = incomingArgument;
 
@@ -490,7 +530,7 @@ public class MCLauncher {
         return argument;
     }
 
-    private static String censorArguments(List<String> arguments, MicrosoftAccount account, String props,
+    private static String censorArguments(List<String> arguments, AbstractAccount account, String props,
         String username) {
         String argsString = arguments.toString();
 
@@ -506,8 +546,12 @@ public class MCLauncher {
         if (props != null) {
             argsString = argsString.replace(props, "REDACTED");
         }
-        argsString = argsString.replace(account.getAccessToken(), "REDACTED");
-        argsString = argsString.replace(account.getSessionToken(), "REDACTED");
+        if (account.getAccessToken() != null && account.getAccessToken().length() > 8) {
+            argsString = argsString.replace(account.getAccessToken(), "REDACTED");
+        }
+        if (account.getSessionToken() != null && account.getSessionToken().length() > 8) {
+            argsString = argsString.replace(account.getSessionToken(), "REDACTED");
+        }
 
         return argsString;
     }

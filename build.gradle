@@ -136,6 +136,7 @@ test {
 }
 
 tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
     // compile with JDK 17
     javaCompiler = javaToolchains.compilerFor {
         languageVersion = JavaLanguageVersion.of(17)
@@ -179,7 +180,7 @@ jar {
             'SplashScreen-Image': '/assets/image/splash-screen.png',
             'Implementation-Title': project.name,
             'Implementation-Version': archiveVersion,
-            'Implementation-Vender': 'ATLauncher',
+            'Implementation-Vender': 'ETLauncher',
             'Main-Class': 'com.atlauncher.App',
             'Multi-Release': 'true'
         )
@@ -258,7 +259,7 @@ shadowJar {
 
 macAppBundle {
     mainClassName = 'com.atlauncher.App'
-    appName = 'ATLauncher'
+    appName = 'ETLauncher'
     appStyle = 'universalJavaApplicationStub'
     runtimeConfigurationName = 'shadow'
     jarTask = 'shadowJar'
@@ -273,7 +274,7 @@ macAppBundle {
 }
 
 copyToResourcesJava {
-    rename("ATLauncher-${project.version}.jar", "ATLauncher.jar")
+    rename("ETLauncher-${project.version}.jar", "ETLauncher.jar")
 }
 
 def currentYear() {
@@ -283,7 +284,7 @@ def currentYear() {
 }
 
 launch4j {
-    outfile = "ATLauncher-${project.version}.exe"
+    outfile = "ETLauncher-${project.version}.exe"
     jreMinVersion = "${project.targetCompatibility.toString()}"
     mainClassName = 'com.atlauncher.App'
     icon = "${projectDir}/src/main/resources/assets/image/icon.ico"
@@ -312,6 +313,13 @@ task copyArtifacts(type: Copy) {
     from file(project.tasks.jar.getArchivePath().getPath().replace('.jar', '.exe').replace('libs', 'launch4j'))
     from file(project.tasks.jar.getArchivePath().getPath().replace('.jar', '.zip').replace('libs', 'distributions'))
     into "${projectDir}/dist"
+    doLast {
+        copy {
+            from file(project.tasks.jar.getArchivePath().getPath().replace('.jar', '.exe').replace('libs', 'launch4j'))
+            into "${projectDir}/dist"
+            rename { 'ETLauncher.exe' }
+        }
+    }
 }
 
 task downloadNewerUniversalJavaApplicationStub(type: Download) {
@@ -361,7 +369,7 @@ task generateThirdPartyLibraries {
 }
 
 copyArtifacts.finalizedBy {
-    println 'ATLauncher has been built. Distribution files are located in the dist directory.'
+    println 'ETLauncher has been built. Distribution files are located in the dist directory.'
 }
 
 clean.doFirst {

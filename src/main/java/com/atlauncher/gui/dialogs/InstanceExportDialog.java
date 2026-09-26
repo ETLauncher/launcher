@@ -49,7 +49,7 @@ import com.atlauncher.App;
 import com.atlauncher.constants.UIConstants;
 import com.atlauncher.data.Instance;
 import com.atlauncher.data.InstanceExportFormat;
-import com.atlauncher.data.MicrosoftAccount;
+import com.atlauncher.data.AbstractAccount;
 import com.atlauncher.gui.components.JLabelWithHover;
 import com.atlauncher.managers.AccountManager;
 import com.atlauncher.utils.ComboItem;
@@ -142,7 +142,7 @@ public class InstanceExportDialog extends JDialog {
         gbc.insets = UIConstants.LABEL_INSETS;
         gbc.anchor = GridBagConstraints.BASELINE_LEADING;
         final JTextField author = new JTextField(30);
-        final MicrosoftAccount selectedAccount = AccountManager.getSelectedAccount();
+        final AbstractAccount selectedAccount = AccountManager.getSelectedAccount();
         author.setText(Optional.ofNullable(instance.launcher.lastExportAuthor)
             .orElse(selectedAccount == null ? "" : selectedAccount.minecraftUsername));
         topPanel.add(author, gbc);

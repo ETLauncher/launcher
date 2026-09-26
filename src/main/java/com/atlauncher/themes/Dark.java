@@ -31,7 +31,7 @@ public class Dark extends ATLauncherLaf {
 
     @Override
     public String getDescription() {
-        return "Dark theme of ATLauncher";
+        return "Dark theme of ETLauncher";
     }
 
     @Override

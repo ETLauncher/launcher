@@ -789,7 +789,7 @@ public class Instance extends MinecraftVersion implements ModManagement {
     }
 
     public boolean launch(boolean offline) {
-        final MicrosoftAccount account = launcher.account == null ? AccountManager.getSelectedAccount()
+        final AbstractAccount account = launcher.account == null ? AccountManager.getSelectedAccount()
             : AccountManager.getAccountByName(launcher.account);
 
         if (account == null) {
@@ -807,7 +807,7 @@ public class Instance extends MinecraftVersion implements ModManagement {
         }
 
         // if Microsoft account must login again, then make sure to do that
-        if (!offline && account.mustLogin) {
+        if (!offline && account.mustLoginAgain()) {
             if (!account.ensureAccountIsLoggedIn()) {
                 LogManager.info("You must login to your account before continuing.");
                 return false;

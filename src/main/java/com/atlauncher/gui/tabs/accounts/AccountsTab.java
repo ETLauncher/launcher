@@ -32,21 +32,28 @@ import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.event.HyperlinkEvent;
 
 import org.mini2Dx.gettext.GetText;
 
 import com.atlauncher.App;
 import com.atlauncher.builders.HTMLBuilder;
-import com.atlauncher.data.MicrosoftAccount;
+import com.atlauncher.data.AbstractAccount;
+import com.atlauncher.data.ElyByAccount;
+import com.atlauncher.data.OfflineAccount;
 import com.atlauncher.gui.dialogs.LoginWithMicrosoftDialog;
 import com.atlauncher.gui.dialogs.ProgressDialog;
 import com.atlauncher.gui.panels.HierarchyPanel;
 import com.atlauncher.gui.tabs.Tab;
 import com.atlauncher.managers.AccountManager;
 import com.atlauncher.managers.DialogManager;
+import com.atlauncher.managers.LogManager;
+import com.atlauncher.utils.ElyByAuthAPI;
 import com.atlauncher.utils.ComboItem;
 import com.atlauncher.utils.OS;
 import com.atlauncher.utils.SkinUtils;
@@ -63,6 +70,8 @@ public class AccountsTab extends HierarchyPanel implements Tab {
     private JComboBox<ComboItem<String>> accountsComboBox;
     private JButton deleteButton;
     private JButton loginWithMicrosoftButton;
+    private JButton offlineButton;
+    private JButton elyByButton;
     private JMenuItem refreshAccessTokenMenuItem;
     private JMenuItem updateSkin;
     private JMenuItem changeSkin;
@@ -78,17 +87,9 @@ public class AccountsTab extends HierarchyPanel implements Tab {
         infoPanel.setLayout(new BorderLayout());
         infoPanel.setBorder(BorderFactory.createEmptyBorder(60, 250, 0, 250));
 
-        JEditorPane infoTextPane = new JEditorPane("text/html", new HTMLBuilder().center().text(GetText.tr(
-                "In order to login and use ATLauncher modpacks, " +
-                    "you must authenticate with your existing " +
-                    "Minecraft/Mojang account. You must own and have paid " +
-                    "for the Minecraft Java edition " +
-                    "(not the Windows 10 edition) and use the same " +
-                    "login here.<br><br>If you don't have an existing " +
-                    "account, you can get one " +
-                    "<a href=\"https://atl.pw/create-account\">by buying " +
-                    "Minecraft here</a>. ATLauncher doesn't work with cracked" +
-                    " accounts."))
+        JEditorPane infoTextPane = new JEditorPane("text/html", new HTMLBuilder().center()
+            .text("ETLauncher: выберите Microsoft, Ely.by или оффлайн аккаунт. "
+                + "Оффлайн аккаунт работает в одиночной игре и на серверах, которые его допускают.")
             .build());
         infoTextPane.setEditable(false);
         infoTextPane.setFocusable(false);
@@ -168,6 +169,83 @@ public class AccountsTab extends HierarchyPanel implements Tab {
         });
         buttons.add(deleteButton);
         buttons.add(loginWithMicrosoftButton);
+        offlineButton = new JButton("Оффлайн");
+        offlineButton.addActionListener(e -> {
+            String name = DialogManager.okDialog().setTitle("Оффлайн аккаунт")
+                .setContent("Введите имя игрока (3–16 латинских букв, цифр или _):")
+                .showInput("");
+            if (name == null) return;
+            try {
+                OfflineAccount account = new OfflineAccount(name.trim());
+                if (AccountManager.isAccountByName(account.username)) {
+                    throw new IllegalArgumentException("Аккаунт с таким именем уже существует");
+                }
+                AccountManager.addAccount(account);
+                viewModel.pushNewAccounts();
+            } catch (IllegalArgumentException ex) {
+                DialogManager.okDialog().setTitle("Ошибка")
+                    .setContent(ex.getMessage()).setType(DialogManager.ERROR).show();
+            }
+        });
+        buttons.add(offlineButton);
+
+        elyByButton = new JButton("Войти через Ely.by");
+        elyByButton.addActionListener(e -> {
+            JTextField usernameField = new JTextField(20);
+            JPasswordField passwordField = new JPasswordField(20);
+            JTextField totpField = new JTextField(8);
+            JPanel fields = new JPanel(new GridBagLayout());
+            GridBagConstraints fieldConstraints = new GridBagConstraints();
+            fieldConstraints.insets = new Insets(4, 4, 4, 4);
+            fieldConstraints.anchor = GridBagConstraints.WEST;
+            fieldConstraints.gridx = 0;
+            fieldConstraints.gridy = 0;
+            fields.add(new JLabel("Логин или e-mail Ely.by:"), fieldConstraints);
+            fieldConstraints.gridx = 1;
+            fields.add(usernameField, fieldConstraints);
+            fieldConstraints.gridx = 0;
+            fieldConstraints.gridy = 1;
+            fields.add(new JLabel("Пароль:"), fieldConstraints);
+            fieldConstraints.gridx = 1;
+            fields.add(passwordField, fieldConstraints);
+            fieldConstraints.gridx = 0;
+            fieldConstraints.gridy = 2;
+            fields.add(new JLabel("Код 2FA (если включён):"), fieldConstraints);
+            fieldConstraints.gridx = 1;
+            fields.add(totpField, fieldConstraints);
+            if (JOptionPane.showConfirmDialog(this, fields, "Вход через Ely.by",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE) != JOptionPane.OK_OPTION) return;
+            String login = usernameField.getText().trim();
+            char[] passwordChars = passwordField.getPassword();
+            String password = new String(passwordChars);
+            java.util.Arrays.fill(passwordChars, '\0');
+            passwordField.setText("");
+            String totp = totpField.getText().trim();
+            if (login.isEmpty() || password.isEmpty()) {
+                DialogManager.okDialog().setTitle("Ely.by")
+                    .setContent("Введите логин и пароль Ely.by.").setType(DialogManager.ERROR).show();
+                return;
+            }
+            ProgressDialog<ElyByAccount> dialog = new ProgressDialog<>("Вход через Ely.by", 0,
+                "Проверка аккаунта Ely.by", "Вход через Ely.by отменён");
+            final String[] error = new String[1];
+            dialog.addThread(new Thread(() -> {
+                try { dialog.setReturnValue(ElyByAuthAPI.loginWithPassword(login, password, totp)); }
+                catch (Exception ex) { error[0] = ex.getMessage(); }
+                finally { dialog.close(); }
+            }));
+            dialog.start();
+            ElyByAccount account = dialog.getReturnValue();
+            if (account != null) {
+                AccountManager.addAccount(account);
+                viewModel.pushNewAccounts();
+            } else {
+                DialogManager.okDialog().setTitle("Ely.by")
+                    .setContent("Не удалось войти в Ely.by: " + (error[0] == null ? "проверьте соединение." : error[0]))
+                    .setType(DialogManager.ERROR).show();
+            }
+        });
+        buttons.add(elyByButton);
         bottomPanel.add(buttons, gbc);
 
         rightPanel.add(bottomPanel, BorderLayout.CENTER);
@@ -180,7 +258,7 @@ public class AccountsTab extends HierarchyPanel implements Tab {
 
             // TODO Have this done via listener
             // To describe, userSkin icon should be reactive, not active.
-            MicrosoftAccount account = viewModel.getSelectedAccount();
+            AbstractAccount account = viewModel.getSelectedAccount();
             if (account != null) {
                 userSkin.setIcon(account.getMinecraftSkin());
             }
@@ -193,7 +271,7 @@ public class AccountsTab extends HierarchyPanel implements Tab {
 
             // TODO Have this done via listener
             // To describe, userSkin icon should be reactive, not active.
-            MicrosoftAccount account = viewModel.getSelectedAccount();
+            AbstractAccount account = viewModel.getSelectedAccount();
             if (account != null) {
                 userSkin.setIcon(account.getMinecraftSkin());
             }
@@ -235,7 +313,7 @@ public class AccountsTab extends HierarchyPanel implements Tab {
      * Refresh the access token, and react to result
      */
     private void refreshAccessToken() {
-        MicrosoftAccount account = viewModel.getSelectedAccount();
+        AbstractAccount account = viewModel.getSelectedAccount();
         if (account == null) {
             return;
         }
@@ -271,8 +349,10 @@ public class AccountsTab extends HierarchyPanel implements Tab {
                 .setType(DialogManager.ERROR)
                 .show();
 
-            LoginWithMicrosoftDialog loginWithMicrosoftDialog = new LoginWithMicrosoftDialog(account);
-            loginWithMicrosoftDialog.setVisible(true);
+            if (account instanceof com.atlauncher.data.MicrosoftAccount) {
+                LoginWithMicrosoftDialog loginWithMicrosoftDialog = new LoginWithMicrosoftDialog((com.atlauncher.data.MicrosoftAccount) account);
+                loginWithMicrosoftDialog.setVisible(true);
+            }
         }
     }
 
@@ -289,7 +369,8 @@ public class AccountsTab extends HierarchyPanel implements Tab {
             } else {
                 deleteButton.setVisible(true);
                 loginWithMicrosoftButton.setVisible(true);
-                refreshAccessTokenMenuItem.setVisible(true);
+                refreshAccessTokenMenuItem.setVisible(!(account instanceof com.atlauncher.data.OfflineAccount));
+                changeSkin.setVisible(account.supportsSkinUpload());
 
                 deleteButton.setText(GetText.tr("Delete"));
                 userSkin.setIcon(account.getMinecraftSkin());
@@ -326,6 +407,8 @@ public class AccountsTab extends HierarchyPanel implements Tab {
         accountsComboBox = null;
         deleteButton = null;
         loginWithMicrosoftButton = null;
+        offlineButton = null;
+        elyByButton = null;
         refreshAccessTokenMenuItem = null;
         updateSkin = null;
         changeSkin = null;

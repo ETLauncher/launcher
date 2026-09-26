@@ -37,7 +37,10 @@ import org.mini2Dx.gettext.GetText;
 import com.atlauncher.App;
 import com.atlauncher.FileSystem;
 import com.atlauncher.Gsons;
+import com.atlauncher.data.AbstractAccount;
 import com.atlauncher.data.MicrosoftAccount;
+import com.atlauncher.data.ElyByAccount;
+import com.atlauncher.data.OfflineAccount;
 import com.google.gson.JsonIOException;
 import com.google.gson.reflect.TypeToken;
 
@@ -45,36 +48,36 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.subjects.BehaviorSubject;
 
 public class AccountManager {
-    private static final Type microsoftAccountListType = new TypeToken<List<MicrosoftAccount>>() {
+    private static final Type accountListType = new TypeToken<List<AbstractAccount>>() {
     }.getType();
 
-    private static final BehaviorSubject<List<MicrosoftAccount>> ACCOUNTS = BehaviorSubject
+    private static final BehaviorSubject<List<AbstractAccount>> ACCOUNTS = BehaviorSubject
         .createDefault(Collections.emptyList());
 
     /**
      * Account using the Launcher
      */
-    private static final BehaviorSubject<Optional<MicrosoftAccount>> SELECTED_ACCOUNT = BehaviorSubject
+    private static final BehaviorSubject<Optional<AbstractAccount>> SELECTED_ACCOUNT = BehaviorSubject
         .createDefault(Optional.empty());
 
-    public static Observable<List<MicrosoftAccount>> getAccountsObservable() {
+    public static Observable<List<AbstractAccount>> getAccountsObservable() {
         return ACCOUNTS;
     }
 
-    public static Observable<Optional<MicrosoftAccount>> getSelectedAccountObservable() {
+    public static Observable<Optional<AbstractAccount>> getSelectedAccountObservable() {
         return SELECTED_ACCOUNT;
     }
 
     @Nonnull
-    public static List<MicrosoftAccount> getAccounts() {
+    public static List<AbstractAccount> getAccounts() {
         return Optional.ofNullable(ACCOUNTS.getValue()).orElse(Collections.emptyList());
     }
 
     @Nullable
-    public static MicrosoftAccount getSelectedAccount() {
-        MicrosoftAccount selectedAccount = SELECTED_ACCOUNT.getValue().orElse(null);
+    public static AbstractAccount getSelectedAccount() {
+        AbstractAccount selectedAccount = SELECTED_ACCOUNT.getValue().orElse(null);
 
-        if (isAcceptedMicrosoftAccount(selectedAccount) && getAccounts().contains(selectedAccount)) {
+        if (isAcceptedAccount(selectedAccount) && getAccounts().contains(selectedAccount)) {
             return selectedAccount;
         }
 
@@ -88,15 +91,24 @@ public class AccountManager {
         PerformanceManager.start();
         LogManager.debug("Loading accounts");
 
-        ArrayList<MicrosoftAccount> newAccounts = new ArrayList<>();
+        ArrayList<AbstractAccount> newAccounts = new ArrayList<>();
 
         if (Files.exists(FileSystem.ACCOUNTS)) {
             try (InputStreamReader fileReader = new InputStreamReader(
                 Files.newInputStream(FileSystem.ACCOUNTS), StandardCharsets.UTF_8)) {
-                List<MicrosoftAccount> accounts = Gsons.DEFAULT.fromJson(fileReader, microsoftAccountListType);
+                List<AbstractAccount> accounts;
+                com.google.gson.JsonElement data = new com.google.gson.JsonParser().parse(fileReader);
+                if (data.isJsonArray() && data.getAsJsonArray().size() > 0
+                    && !data.getAsJsonArray().get(0).getAsJsonObject().has("internalType")) {
+                    // Migration: the original accounts.json is a plain MicrosoftAccount list.
+                    java.lang.reflect.Type legacy = new TypeToken<List<MicrosoftAccount>>() {}.getType();
+                    accounts = new ArrayList<>(Gsons.DEFAULT.fromJson(data, legacy));
+                } else {
+                    accounts = Gsons.DEFAULT.fromJson(data, accountListType);
+                }
 
                 if (accounts != null) {
-                    newAccounts.addAll(accounts.stream().filter(AccountManager::isAcceptedMicrosoftAccount)
+                    newAccounts.addAll(accounts.stream().filter(AccountManager::isAcceptedAccount)
                         .collect(Collectors.toList()));
                 }
             } catch (Exception e) {
@@ -106,7 +118,7 @@ public class AccountManager {
 
         ACCOUNTS.onNext(immutableAccounts(newAccounts));
 
-        for (MicrosoftAccount account : newAccounts) {
+        for (AbstractAccount account : newAccounts) {
             if (account.username.equalsIgnoreCase(App.settings.lastAccount)) {
                 SELECTED_ACCOUNT.onNext(Optional.of(account));
             }
@@ -124,24 +136,24 @@ public class AccountManager {
         saveAccounts(ACCOUNTS.getValue());
     }
 
-    private static void saveAccounts(List<MicrosoftAccount> accounts) {
+    private static void saveAccounts(List<AbstractAccount> accounts) {
         try (OutputStreamWriter fileWriter = new OutputStreamWriter(
             Files.newOutputStream(FileSystem.ACCOUNTS), StandardCharsets.UTF_8)) {
-            Gsons.DEFAULT.toJson(accounts, microsoftAccountListType, fileWriter);
+            Gsons.DEFAULT.toJson(accounts, accountListType, fileWriter);
         } catch (JsonIOException | IOException e) {
             LogManager.logStackTrace(e);
         }
     }
 
-    public static void addAccount(MicrosoftAccount account) {
-        if (!isAcceptedMicrosoftAccount(account)) {
-            LogManager.warn("Refusing to add unsupported Microsoft account " + account);
+    public static void addAccount(AbstractAccount account) {
+        if (!isAcceptedAccount(account)) {
+            LogManager.warn("Refusing to add unsupported account " + account);
             return;
         }
 
-        LogManager.info("Added Microsoft Account " + account);
+        LogManager.info("Added account " + account);
 
-        List<MicrosoftAccount> accounts = new ArrayList<>(getAccounts());
+        List<AbstractAccount> accounts = new ArrayList<>(getAccounts());
         accounts.add(account);
         ACCOUNTS.onNext(immutableAccounts(accounts));
 
@@ -162,8 +174,8 @@ public class AccountManager {
         saveAccounts();
     }
 
-    public static void removeAccount(MicrosoftAccount account) {
-        List<MicrosoftAccount> accounts = new ArrayList<>(getAccounts());
+    public static void removeAccount(AbstractAccount account) {
+        List<AbstractAccount> accounts = new ArrayList<>(getAccounts());
         if (SELECTED_ACCOUNT.getValue().orElse(null) == account) {
             if (accounts.size() == 1) {
                 // if this was the only account, don't set an account
@@ -183,13 +195,13 @@ public class AccountManager {
      *
      * @param account Account to switch to
      */
-    public static void switchAccount(@Nullable MicrosoftAccount account) {
+    public static void switchAccount(@Nullable AbstractAccount account) {
         if (account == null) {
             LogManager.info("Logging out of account");
             SELECTED_ACCOUNT.onNext(Optional.empty());
             App.settings.lastAccount = null;
-        } else if (!isAcceptedMicrosoftAccount(account) || !getAccounts().contains(account)) {
-            LogManager.warn("Refusing to switch to unsupported Microsoft account " + account);
+        } else if (!isAcceptedAccount(account) || !getAccounts().contains(account)) {
+            LogManager.warn("Refusing to switch to unsupported account " + account);
             return;
         } else {
             LogManager.info("Changed account to " + account);
@@ -206,10 +218,19 @@ public class AccountManager {
      * @param username Username of the Account to find
      * @return Account if the Account is found from the username
      */
-    public static MicrosoftAccount getAccountByName(String username) {
-        for (MicrosoftAccount account : getAccounts()) {
-            if (account.username.equalsIgnoreCase(username)) {
+    public static AbstractAccount getAccountByName(String username) {
+        for (AbstractAccount account : getAccounts()) {
+            if (account.username.equalsIgnoreCase(username) || account.minecraftUsername.equalsIgnoreCase(username)) {
                 return account;
+            }
+        }
+        return null;
+    }
+
+    public static MicrosoftAccount getMicrosoftAccountByName(String username) {
+        for (AbstractAccount account : getAccounts()) {
+            if (account instanceof MicrosoftAccount && account.username.equalsIgnoreCase(username)) {
+                return (MicrosoftAccount) account;
             }
         }
         return null;
@@ -222,21 +243,28 @@ public class AccountManager {
      * @return true if found, false if not
      */
     public static boolean isAccountByName(String username) {
-        for (MicrosoftAccount account : getAccounts()) {
-            if (account.username.equalsIgnoreCase(username)) {
+        for (AbstractAccount account : getAccounts()) {
+            if (account.username.equalsIgnoreCase(username) || account.minecraftUsername.equalsIgnoreCase(username)) {
                 return true;
             }
         }
         return false;
     }
 
-    private static boolean isAcceptedMicrosoftAccount(MicrosoftAccount account) {
-        return account != null && account.getClass() == MicrosoftAccount.class && account.accessToken != null
-            && account.oauthToken != null && account.oauthToken.accessToken != null
-            && account.oauthToken.refreshToken != null;
+    private static boolean isAcceptedAccount(AbstractAccount account) {
+        if (account == null || account.username == null || account.minecraftUsername == null || account.uuid == null)
+            return false;
+        if (account.getClass() == MicrosoftAccount.class) {
+            MicrosoftAccount msa = (MicrosoftAccount) account;
+            return msa.accessToken != null && msa.oauthToken != null
+                && msa.oauthToken.accessToken != null && msa.oauthToken.refreshToken != null;
+        }
+        if (account.getClass() == ElyByAccount.class)
+            return ((ElyByAccount) account).accessToken != null;
+        return account.getClass() == OfflineAccount.class;
     }
 
-    private static List<MicrosoftAccount> immutableAccounts(List<MicrosoftAccount> accounts) {
+    private static List<AbstractAccount> immutableAccounts(List<AbstractAccount> accounts) {
         return Collections.unmodifiableList(new ArrayList<>(accounts));
     }
 }

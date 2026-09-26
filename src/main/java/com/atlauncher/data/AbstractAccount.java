@@ -95,6 +95,15 @@ public abstract class AbstractAccount implements Serializable {
 
     public abstract String getSkinUrl();
 
+    /** Validate or refresh credentials before starting an online game. */
+    public boolean ensureAccessTokenValid() { return true; }
+
+    public boolean mustLoginAgain() { return false; }
+
+    public boolean ensureAccountIsLoggedIn() { return true; }
+
+    public boolean supportsSkinUpload() { return false; }
+
     public void updateUsername() {
         final ProgressDialog<Boolean> dialog = new ProgressDialog<>(GetText.tr("Checking For Username Change"), 0,
             GetText.tr("Checking Username Change For {0}", this.minecraftUsername),

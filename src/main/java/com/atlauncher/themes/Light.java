@@ -32,7 +32,7 @@ public class Light extends ATLauncherLaf {
 
     @Override
     public String getDescription() {
-        return "Light theme of ATLauncher";
+        return "Light theme of ETLauncher";
     }
 
     @Override

@@ -34,7 +34,7 @@ import com.atlauncher.App;
 import com.atlauncher.Data;
 import com.atlauncher.FileSystem;
 import com.atlauncher.Gsons;
-import com.atlauncher.data.MicrosoftAccount;
+import com.atlauncher.data.AbstractAccount;
 import com.atlauncher.data.Pack;
 import com.atlauncher.data.PackUsers;
 import com.atlauncher.exceptions.InvalidPack;
@@ -130,7 +130,7 @@ public class PackManager {
     }
 
     public static void setPackVisbility(Pack pack, boolean collapsed) {
-        MicrosoftAccount selectedAccount = AccountManager.getSelectedAccount();
+        AbstractAccount selectedAccount = AccountManager.getSelectedAccount();
 
         if (pack != null && selectedAccount != null) {
             if (collapsed) {

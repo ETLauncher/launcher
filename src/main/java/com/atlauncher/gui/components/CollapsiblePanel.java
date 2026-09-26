@@ -44,7 +44,7 @@ import javax.swing.border.TitledBorder;
 
 import com.atlauncher.App;
 import com.atlauncher.data.Instance;
-import com.atlauncher.data.MicrosoftAccount;
+import com.atlauncher.data.AbstractAccount;
 import com.atlauncher.data.Pack;
 import com.atlauncher.data.Server;
 import com.atlauncher.evnt.listener.RelocalizationListener;
@@ -108,7 +108,7 @@ public class CollapsiblePanel extends JPanel implements ThemeListener, Relocaliz
         collapsed = false;
         commonConstructor();
 
-        MicrosoftAccount selectedAccount = AccountManager.getSelectedAccount();
+        AbstractAccount selectedAccount = AccountManager.getSelectedAccount();
         if (selectedAccount != null) {
             if (selectedAccount.collapsedPacks.contains(pack.getName())) {
                 setCollapsed(true);
@@ -142,7 +142,7 @@ public class CollapsiblePanel extends JPanel implements ThemeListener, Relocaliz
         collapsed = false;
         commonConstructor();
 
-        MicrosoftAccount selectedAccount = AccountManager.getSelectedAccount();
+        AbstractAccount selectedAccount = AccountManager.getSelectedAccount();
         if (selectedAccount != null) {
             if (selectedAccount.collapsedInstances.contains(instance.launcher.name)) {
                 setCollapsed(true);
@@ -158,7 +158,7 @@ public class CollapsiblePanel extends JPanel implements ThemeListener, Relocaliz
         collapsed = false;
         commonConstructor();
 
-        MicrosoftAccount selectedAccount = AccountManager.getSelectedAccount();
+        AbstractAccount selectedAccount = AccountManager.getSelectedAccount();
         if (selectedAccount != null) {
             if (selectedAccount.collapsedServers.contains(server.name)) {
                 setCollapsed(true);

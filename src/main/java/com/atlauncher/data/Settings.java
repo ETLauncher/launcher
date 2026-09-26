@@ -69,7 +69,7 @@ public class Settings {
     public Point launcherPosition = null;
 
     // General
-    public String language = "English";
+    public String language = new java.util.Locale("ru", "RU").getDisplayName();
     public String theme = Constants.DEFAULT_THEME_CLASS;
     public String dateFormat = Constants.DATE_FORMATS[0];
     public String instanceTitleFormat = Constants.INSTANCE_TITLE_FORMATS[0];

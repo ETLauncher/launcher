@@ -41,12 +41,15 @@ public class AccountTypeAdapter implements JsonSerializer<AbstractAccount>, Json
     @Override
     public AbstractAccount deserialize(JsonElement json, Type type, JsonDeserializationContext context)
             throws JsonParseException {
-        Type actualType;
-        try {
-            actualType = Class.forName(json.getAsJsonObject().get("internalType").getAsString());
-        } catch (ClassNotFoundException e) {
-            throw new JsonParseException(e);
+        if (!json.isJsonObject() || !json.getAsJsonObject().has("internalType")) {
+            throw new JsonParseException("Missing account type");
         }
+        String name = json.getAsJsonObject().get("internalType").getAsString();
+        Type actualType;
+        if (MicrosoftAccount.class.getName().equals(name)) actualType = MicrosoftAccount.class;
+        else if (OfflineAccount.class.getName().equals(name)) actualType = OfflineAccount.class;
+        else if (ElyByAccount.class.getName().equals(name)) actualType = ElyByAccount.class;
+        else throw new JsonParseException("Unsupported account type: " + name);
 
         return context.deserialize(json, actualType);
     }

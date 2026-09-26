@@ -1,9 +1,9 @@
-#define MyAppName "ATLauncher"
-#define MyAppURL "https://atlauncher.com"
-#define MyAppVersion "1.3.0.0"
+#define MyAppName "ETLauncher"
+#define MyAppURL "https://github.com/ATLauncher/ATLauncher"
+#define MyAppVersion "3.4.41.4"
 
 [Setup]
-AppId={{2F5FDA11-45A5-4CC3-8E51-5E11E2481697}
+AppId={{80917471-61C1-4278-8987-BB7E38B87B09}
 AppName={#MyAppName}
 AppVerName={#MyAppName}
 AppPublisher={#MyAppName}
@@ -39,7 +39,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "7za.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall
-Source: "{tmp}\{#MyAppName}.exe"; DestDir: "{app}"; Flags: external ignoreversion
+Source: "..\..\dist\ETLauncher.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{tmp}\jre.zip"; DestDir: "{tmp}"; Flags: external deleteafterinstall
 
 [Languages]
@@ -141,24 +141,6 @@ var
 begin
   if CurPageID = wpReady then begin
     try
-      // The launcher download must complete
-      repeat
-        DownloadPage.Clear;
-        DownloadPage.Add('https://download.nodecdn.net/containers/atl/ATLauncher.exe', '{#MyAppName}.exe', '');
-        DownloadPage.Show;
-        try
-          DownloadPage.Download;
-          Result := True;
-          Retry := False;
-        except
-          Answer := SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_RETRYCANCEL, IDRETRY);
-          Retry := (Answer = IDRETRY);
-          Result := (Answer <> IDCANCEL);
-        end;
-      until not Retry;
-
-      if not Result then Exit;
-
       // Now do the download for the JRE, but make it optional and okay if it fails
       repeat
         DownloadPage.Clear;

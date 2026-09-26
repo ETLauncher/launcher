@@ -286,6 +286,7 @@ public final class MicrosoftAccount extends AbstractAccount {
         return "XBL3.0 x=" + xstsAuth.displayClaims.xui.get(0).uhs + ";" + xstsAuth.token;
     }
 
+    @Override
     public boolean ensureAccountIsLoggedIn() {
         boolean hasCancelled = false;
         while (mustLogin) {
@@ -315,6 +316,7 @@ public final class MicrosoftAccount extends AbstractAccount {
         return !hasCancelled;
     }
 
+    @Override
     public boolean ensureAccessTokenValid() {
         if (!ensureAccountIsLoggedIn()) {
             return false;
@@ -334,4 +336,10 @@ public final class MicrosoftAccount extends AbstractAccount {
 
         return false;
     }
+
+    @Override
+    public boolean mustLoginAgain() { return mustLogin; }
+
+    @Override
+    public boolean supportsSkinUpload() { return true; }
 }

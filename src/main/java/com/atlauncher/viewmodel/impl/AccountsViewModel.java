@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
-import com.atlauncher.data.MicrosoftAccount;
+import com.atlauncher.data.AbstractAccount;
 import com.atlauncher.gui.dialogs.ChangeSkinDialog;
 import com.atlauncher.managers.AccountManager;
 import com.atlauncher.network.Analytics;
@@ -36,7 +36,7 @@ public class AccountsViewModel implements IAccountsViewModel {
         return AccountManager.getAccounts().size();
     }
 
-    private List<MicrosoftAccount> accounts() {
+    private List<AbstractAccount> accounts() {
         return AccountManager.getAccounts();
     }
 
@@ -59,11 +59,11 @@ public class AccountsViewModel implements IAccountsViewModel {
                         .collect(Collectors.toList()));
     }
 
-    private Consumer<MicrosoftAccount> selected;
+    private Consumer<AbstractAccount> selected;
     private int selectedAccountIndex = -1;
 
     @Override
-    public void onAccountSelected(Consumer<MicrosoftAccount> onAccountSelected) {
+    public void onAccountSelected(Consumer<AbstractAccount> onAccountSelected) {
         selected = onAccountSelected;
     }
 
@@ -79,7 +79,7 @@ public class AccountsViewModel implements IAccountsViewModel {
 
     @Nullable
     @Override
-    public MicrosoftAccount getSelectedAccount() {
+    public AbstractAccount getSelectedAccount() {
         return accounts().get(selectedAccountIndex);
     }
 
@@ -92,16 +92,18 @@ public class AccountsViewModel implements IAccountsViewModel {
     public boolean refreshAccessToken() {
         Analytics.trackEvent(AnalyticsEvent.simpleEvent("account_refresh_access_token"));
 
-        MicrosoftAccount account = getSelectedAccount();
+        AbstractAccount account = getSelectedAccount();
         if (account == null) {
             return false;
         }
 
-        boolean success = account
-                .refreshAccessToken(true);
-
-        if (!success) {
-            account.mustLogin = true;
+        boolean success;
+        if (account instanceof com.atlauncher.data.MicrosoftAccount) {
+            success = ((com.atlauncher.data.MicrosoftAccount) account).refreshAccessToken(true);
+        } else if (account instanceof com.atlauncher.data.ElyByAccount) {
+            success = ((com.atlauncher.data.ElyByAccount) account).refreshNow();
+        } else {
+            success = true;
         }
 
         AccountManager.saveAccounts();
@@ -111,7 +113,7 @@ public class AccountsViewModel implements IAccountsViewModel {
 
     @Override
     public void updateUsername() {
-        MicrosoftAccount account = getSelectedAccount();
+        AbstractAccount account = getSelectedAccount();
         if (account != null) {
             Analytics.trackEvent(AnalyticsEvent.simpleEvent("account_update_username"));
             account.updateUsername();
@@ -122,17 +124,19 @@ public class AccountsViewModel implements IAccountsViewModel {
 
     @Override
     public void changeSkin() {
-        MicrosoftAccount account = getSelectedAccount();
+        AbstractAccount account = getSelectedAccount();
 
         if (account != null) {
-            ChangeSkinDialog changeSkinDialog = new ChangeSkinDialog(account);
-            changeSkinDialog.setVisible(true);
+            if (account instanceof com.atlauncher.data.MicrosoftAccount) {
+                ChangeSkinDialog changeSkinDialog = new ChangeSkinDialog((com.atlauncher.data.MicrosoftAccount) account);
+                changeSkinDialog.setVisible(true);
+            }
         }
     }
 
     @Override
     public void updateSkin() {
-        MicrosoftAccount account = getSelectedAccount();
+        AbstractAccount account = getSelectedAccount();
         if (account != null) {
             Analytics.trackEvent(AnalyticsEvent.simpleEvent("account_update_skin"));
             account.updateSkin();
@@ -141,7 +145,7 @@ public class AccountsViewModel implements IAccountsViewModel {
 
     @Override
     public void deleteAccount() {
-        MicrosoftAccount account = getSelectedAccount();
+        AbstractAccount account = getSelectedAccount();
         if (account != null) {
             Analytics.trackEvent(AnalyticsEvent.simpleEvent("account_delete"));
             AccountManager.removeAccount(account);

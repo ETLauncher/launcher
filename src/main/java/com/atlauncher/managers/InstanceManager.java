@@ -31,7 +31,7 @@ import java.util.UUID;
 import com.atlauncher.FileSystem;
 import com.atlauncher.Gsons;
 import com.atlauncher.data.Instance;
-import com.atlauncher.data.MicrosoftAccount;
+import com.atlauncher.data.AbstractAccount;
 import com.atlauncher.data.Pack;
 import com.atlauncher.exceptions.InvalidPack;
 import com.atlauncher.utils.CurseForgeApi;
@@ -184,7 +184,7 @@ public class InstanceManager {
     }
 
     public static void setInstanceVisbility(Instance instance, boolean collapsed) {
-        MicrosoftAccount selectedAccount = AccountManager.getSelectedAccount();
+        AbstractAccount selectedAccount = AccountManager.getSelectedAccount();
 
         if (selectedAccount != null) {
             if (collapsed) {

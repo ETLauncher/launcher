@@ -127,12 +127,12 @@ public class ATLauncherLaf extends FlatLaf {
 
     @Override
     public String getName() {
-        return "ATLauncher";
+        return "ETLauncher";
     }
 
     @Override
     public String getDescription() {
-        return "Default theme of ATLauncher";
+        return "Default theme of ETLauncher";
     }
 
     @Override

@@ -196,7 +196,7 @@ public class App {
      * <p/>
      * --no-launcher-update
      */
-    public static boolean noLauncherUpdate = false;
+    public static boolean noLauncherUpdate = true;
 
     /**
      * This will tell the launcher to not show the console. You can open the console through the tray menu or the main
@@ -1170,7 +1170,8 @@ public class App {
             LogManager.warn("Allowing all ssl certs. This is insecure and should only be used for development.");
         }
 
-        noLauncherUpdate = options.has("no-launcher-update");
+        // This fork must never replace itself with an upstream ATLauncher binary.
+        noLauncherUpdate = true;
         if (noLauncherUpdate) {
             LogManager.debug("Not updating the launcher!");
         }

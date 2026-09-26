@@ -1,0 +1,2972 @@
+msgid ""
+msgstr ""
+"Language: ru_RU\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+
+msgid "Using Out Of Date Java"
+msgstr "Устаревшая версия Java"
+
+msgid ""
+"You're running an out of date version of Java.<br/><br/>The launcher "
+"requires at least Java {0} to run.<br/><br/>The launcher can install this "
+"automatically for you, otherwise the launcher will exit.<br/><br/>Do you "
+"want to install it now?"
+msgstr ""
+"You're running an out of date version of Java.<br/><br/>The launcher "
+"requires at least Java {0} to run.<br/><br/>The launcher can install this "
+"automatically for you, otherwise the launcher will exit.<br/><br/>Do you "
+"want to install it now?"
+
+msgid ""
+"You're running an out of date version of Java.<br/><br/>In the future the "
+"launcher will no longer work without updating this.<br/><br/>This process is"
+" automatic and doesn't affect any Java installs outside of the "
+"launcher.<br/><br/>Do you want to do it now?"
+msgstr ""
+"You're running an out of date version of Java.<br/><br/>In the future the "
+"launcher will no longer work without updating this.<br/><br/>This process is"
+" automatic and doesn't affect any Java installs outside of the "
+"launcher.<br/><br/>Do you want to do it now?"
+
+msgid "Let Launcher Manage Java"
+msgstr "Let Launcher управляет Java"
+
+msgid ""
+"You're currently using a version of Java not managed by the "
+"launcher.<br/><br/>Letting the launcher manage it's own version of Java is "
+"better for support and ease of use.<br/><br/>This process is automatic and "
+"doesn't affect any Java installs outside of the launcher.<br/><br/>Do you "
+"want to let the launcher manage it's own version of Java?"
+msgstr ""
+"You're currently using a version of Java not managed by the "
+"launcher.<br/><br/>Letting the launcher manage it's own version of Java is "
+"better for support and ease of use.<br/><br/>This process is automatic and "
+"doesn't affect any Java installs outside of the launcher.<br/><br/>Do you "
+"want to let the launcher manage it's own version of Java?"
+
+msgid "Downloading Java Update"
+msgstr "Скачать Java Update"
+
+msgid "Failed To Update Bundled JRE"
+msgstr "Не удалось обновить Bundled JRE"
+
+msgid ""
+"There was an issue updating the bundled JRE. Please try again later and if "
+"the issue persists, please contact ATLauncher support via Discord."
+msgstr ""
+"Была проблема с обновлением пакета JRE. Пожалуйста, попробуйте еще раз "
+"позже, и если проблема сохраняется, пожалуйста, свяжитесь с поддержкой "
+"ATLauncher через Discord."
+
+msgid ""
+"You're running an out of date version of Java and the launcher will no "
+"longer open.<br/><br/>If you see this message after updating Java, please "
+"make sure you updated to<br/>at least Java {0} and uninstalled any older "
+"versions of Java from your system.<br/><br/>The launcher will now exit."
+msgstr ""
+"You're running an out of date version of Java and the launcher will no "
+"longer open.<br/><br/>If you see this message after updating Java, please "
+"make sure you updated to<br/>at least Java {0} and uninstalled any older "
+"versions of Java from your system.<br/><br/>The launcher will now exit."
+
+msgid ""
+"You're running an out of date version of Java.<br/><br/><font "
+"color=\"red\"><b>Soon the launcher will no longer open without updating "
+"Java.</b></font><br/><br/>If you see this message after updating Java, "
+"please make sure you updated to<br/>at least Java {0} and uninstalled any "
+"older versions of Java from your system.<br/><br/>Do you want to update Java"
+" now?"
+msgstr ""
+"You're running an out of date version of Java.<br/><br/><font "
+"color=\"red\"><b>Soon the launcher will no longer open without updating "
+"Java.</b></font><br/><br/>If you see this message after updating Java, "
+"please make sure you updated to<br/>at least Java {0} and uninstalled any "
+"older versions of Java from your system.<br/><br/>Do you want to update Java"
+" now?"
+
+msgid "Don't remind me again"
+msgstr "Не напоминайте мне снова"
+
+msgid "ATLauncher installed within OneDrive"
+msgstr "ATLauncher установлен в OneDrive"
+
+msgid ""
+"We have detected that you're running ATLauncher from within "
+"OneDrive.<br/><br/>This can cause serious issues and you should move the "
+"folder outside of OneDrive.<br/><br/>Do you want to close the launcher and "
+"do this now?"
+msgstr ""
+"We have detected that you're running ATLauncher from within "
+"OneDrive.<br/><br/>This can cause serious issues and you should move the "
+"folder outside of OneDrive.<br/><br/>Do you want to close the launcher and "
+"do this now?"
+
+msgid "ATLauncher installed within Program Files"
+msgstr "ATLauncher установлен в файлах программы"
+
+msgid ""
+"We have detected that you're running ATLauncher from within Program "
+"Files.<br/><br/>This can cause serious issues and you should move the folder"
+" outside of Program Files.<br/><br/>Do you want to close the launcher and do"
+" this now?"
+msgstr ""
+"We have detected that you're running ATLauncher from within Program "
+"Files.<br/><br/>This can cause serious issues and you should move the folder"
+" outside of Program Files.<br/><br/>Do you want to close the launcher and do"
+" this now?"
+
+msgid "ATLauncher cannot write files"
+msgstr "ATLauncher не умеет писать файлы"
+
+msgid ""
+"We have detected that ATLauncher cannot write files in it's current "
+"location.<br/><br/>We cannot continue to run, you must move this folder "
+"somewhere else with write access.<br/><br/>Try moving to a folder in your "
+"Desktop or another drive.<br/><br/>You can also try running ATLauncher as "
+"administrator, but this is not recommended."
+msgstr ""
+"We have detected that ATLauncher cannot write files in it's current "
+"location.<br/><br/>We cannot continue to run, you must move this folder "
+"somewhere else with write access.<br/><br/>Try moving to a folder in your "
+"Desktop or another drive.<br/><br/>You can also try running ATLauncher as "
+"administrator, but this is not recommended."
+
+msgid "Checking For Username Change"
+msgstr "Проверка имени игрока"
+
+msgid "Checking Username Change For {0}"
+msgstr "Проверка имени игрока {0}"
+
+msgid "No Changes"
+msgstr "Нет изменений"
+
+msgid "Your username hasn't changed."
+msgstr "Ваше имя игрока не изменилось."
+
+msgid "Username Updated"
+msgstr "Имя игрока обновлено"
+
+msgid "Your username has been updated."
+msgstr "Ваше имя игрока обновлено."
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid ""
+"Error checking for username change. Check the error logs and try again "
+"later."
+msgstr ""
+"Проверка ошибок на изменение имени пользователя. Проверьте логи ошибок и "
+"попробуйте позже."
+
+msgid "Downloading Skin"
+msgstr "Скачивание скина"
+
+msgid "Downloading Skin For {0}"
+msgstr "Скачивание скина игрока {0}"
+
+msgid "Error downloading skin. Please try again later!"
+msgstr "Не удалось скачать скин. Повторите попытку позже."
+
+msgid "Checking For Update On {0}"
+msgstr "Проверка обновлений {0}"
+
+msgid "Getting Files From {0}"
+msgstr "Getting Files From {0}"
+
+msgid ""
+"An instance already exists with that name.<br/><br/>Rename it and try again."
+msgstr ""
+"С таким названием уже существует пример.<br/><br/> Переименуйте и попробуйте"
+" еще раз."
+
+msgid "Instance name is invalid. It must contain at least 1 letter or number."
+msgstr "Имя недействительно. Он должен содержать не менее 1 буквы или номера."
+
+msgid ""
+"A server already exists with that name.<br/><br/>Rename it and try again."
+msgstr ""
+"Сервер уже существует с таким именем.<br/><br/> Переименуйте и попробуйте "
+"еще раз."
+
+msgid "Server name is invalid. It must contain at least 1 letter or number."
+msgstr ""
+"Имя сервера недействительно. Он должен содержать не менее 1 буквы или "
+"номера."
+
+msgid "Starting Update Process"
+msgstr "Начало процесса обновления"
+
+msgid "Starting Reinstall Process"
+msgstr "Запуск процесса реинсталляции"
+
+msgid "Starting Install Process"
+msgstr "Запуск процесса установки"
+
+msgid "{0} {1} Not Updated"
+msgstr "{0} {1} Не обновляется"
+
+msgid ""
+"{0} {1} wasn't updated.<br/><br/>Check error logs for more information."
+msgstr ""
+"{0} {1} не был обновлен.<br/><br/> Проверьте журналы ошибок для получения "
+"дополнительной информации."
+
+msgid "{0} {1} Not Reinstalled"
+msgstr "{0} {1} Не переустанавливается"
+
+msgid ""
+"{0} {1} wasn't reinstalled.<br/><br/>Check error logs for more information."
+msgstr ""
+"{0} {1} не был переустановлен.<br/><br/> Проверьте журналы ошибок для "
+"получения дополнительной информации."
+
+msgid "{0} {1} Not Installed"
+msgstr "{0} {1} Не установлен"
+
+msgid ""
+"{0} {1} wasn't installed.<br/><br/>Check error logs for more information."
+msgstr ""
+"{0} {1} не был установлен.<br/><br/> Проверьте журналы ошибок для получения "
+"дополнительной информации."
+
+msgid "{0} {1} Installed"
+msgstr "{0} {1} Установлено"
+
+msgid "{0} Updated"
+msgstr "{0} Обновлено"
+
+msgid "Instance {0} has been updated to version {1}."
+msgstr "Инстанция {0} была обновлена до версии {1}."
+
+msgid "{0} {1} has been reinstalled."
+msgstr "{0} {1} был восстановлен."
+
+msgid ""
+"{0} {1} server has been installed.<br/><br/>Find it in the servers tab."
+msgstr "{0} {1} сервер установлен.<br/><br/> Найдите его на вкладке сервера."
+
+msgid "{0} {1} has been installed.<br/><br/>Find it in the instances tab."
+msgstr "{0} {1} Установлено.<br/><br/> Найдите его на вкладке «Иногда»."
+
+msgid "Removing {0} {1}"
+msgstr "Удаление {0} {1}"
+
+msgid "Adding {0} {1}"
+msgstr "Добавить {0} {1}"
+
+msgid "Installing {0} {1}"
+msgstr "Установка {0} {1}"
+
+msgid "Updating {0}"
+msgstr "Обновление {0}"
+
+msgid "Reinstalling {0} Server"
+msgstr "Переустановка {0} сервер"
+
+msgid "Reinstalling {0}"
+msgstr "Переустановка {0}"
+
+msgid "Installing {0} Server"
+msgstr "Установка {0} сервер"
+
+msgid "Installing {0}"
+msgstr "Установка {0}"
+
+msgid "Save Mods?"
+msgstr "Спасти модов?"
+
+msgid ""
+"Since this update changes the Minecraft version, your custom mods may no "
+"longer work.<br/><br/>The mods installed will be removed since you've not "
+"checked the \"Save Mods\" checkbox.<br/><br/>Do you want to save your mods?"
+msgstr ""
+"Since this update changes the Minecraft version, your custom mods may no "
+"longer work.<br/><br/>The mods installed will be removed since you've not "
+"checked the \"Save Mods\" checkbox.<br/><br/>Do you want to save your mods?"
+
+msgid "No Description"
+msgstr "Нет описания"
+
+msgid "Downloading Minecraft"
+msgstr "Скачать Minecraft"
+
+msgid "Downloading Libraries"
+msgstr "Скачать библиотеки"
+
+msgid "Missing Libraries Found"
+msgstr "Найдены пропавшие библиотеки"
+
+msgid ""
+"This instance cannot be started due to missing libraries that cannot be "
+"downloaded.<br/><br/>Please reinstall the instance to create those libraries"
+" and be able to start this instance again."
+msgstr ""
+"This instance cannot be started due to missing libraries that cannot be "
+"downloaded.<br/><br/>Please reinstall the instance to create those libraries"
+" and be able to start this instance again."
+
+msgid "Downloading Java Runtime {0}"
+msgstr "Скачать Java Runtime {0}"
+
+msgid "Organising Resources"
+msgstr "Организация ресурсов"
+
+msgid "Downloading Resources"
+msgstr "Скачать Ресурсы"
+
+msgid "Organising Libraries"
+msgstr "Организация библиотек"
+
+msgid "Extracting Legacy LWJGL"
+msgstr "Обсуждение Legacy LWJGL"
+
+msgid "Creating custom minecraft.jar"
+msgstr "Разработчик Minecraft.jar"
+
+msgid "Scanning mods for Fractureiser"
+msgstr "Моды сканирования для Fractureiser"
+
+msgid "No Account Selected"
+msgstr "Аккаунт не выбран"
+
+msgid "Cannot play instance as you have no account selected."
+msgstr "Выберите аккаунт перед запуском сборки."
+
+msgid "Offline Player Name"
+msgstr "Имя игрока оффлайн"
+
+msgid "Choose your offline player name:"
+msgstr "Выберите имя игрока для оффлайн запуска:"
+
+msgid "Insufficient Ram"
+msgstr "Недостаточный рам"
+
+msgid ""
+"This pack has set a minimum amount of ram needed to <b>{0}</b> "
+"MB.<br/><br/>Do you want to continue loading the instance anyway?"
+msgstr ""
+"Этот пакет установил минимальное количество барана, необходимое для "
+"<b>{0}</b> MB.<br/><br/> Вы все равно хотите продолжить загрузку экземпляра?"
+
+msgid "Insufficent Permgen"
+msgstr "Достаточный пермген"
+
+msgid ""
+"This pack has set a minimum amount of permgen to <b>{0}</b> MB.<br/><br/>Do "
+"you want to continue loading the instance anyway?"
+msgstr ""
+"В этом пакете установлено минимальное количество пермгена <b>{0}</b> "
+"MB.<br/><br/> Вы все равно хотите продолжить загрузку экземпляра?"
+
+msgid "Preparing For Launch"
+msgstr "Подготовка к запуску"
+
+msgid "Logging Into Minecraft"
+msgstr "Вход в Minecraft"
+
+msgid "Error Logging In"
+msgstr "Ошибка входа"
+
+msgid "Couldn't login with Microsoft account"
+msgstr "Не удалось войти в аккаунт"
+
+msgid "Error executing command"
+msgstr "Ошибка выполнения команды"
+
+msgid "Check the console for details"
+msgstr "Проверьте консоль для деталей"
+
+msgid "Backing Up {0}"
+msgstr "Обратная связь {0}"
+
+msgid "Backup is complete"
+msgstr "Резервное копирование завершено"
+
+msgid "Enter a new name for this cloned instance."
+msgstr "Введите новое название для этого клонированного экземпляра."
+
+msgid "Cloning Instance"
+msgstr "Инстанция клонирования"
+
+msgid "Cloning Instance. Please wait..."
+msgstr "Инстанция клонирования. Пожалуйста, подождите..."
+
+msgid "Cloned Instance Successfully"
+msgstr "Клонирование успешно"
+
+msgid ""
+"An error occurred while cloning the instance.<br/><br/>Please check the "
+"console and try again."
+msgstr ""
+"Ошибка произошла при клонировании экземпляра.<br/><br/> Проверьте консоль и "
+"попробуйте еще раз."
+
+msgid "Changing Description"
+msgstr "Изменение описания"
+
+msgid "{0} Installed"
+msgstr "{0} Установлено"
+
+msgid "{0} {1} has been installed."
+msgstr "{0} {1} был установлен."
+
+msgid "{0} Not Installed"
+msgstr "{0} Не установлен"
+
+msgid "{0} has not been installed. Check the console for more information."
+msgstr ""
+"{0} не установлена. Проверьте консоль для получения дополнительной "
+"информации."
+
+msgid "Checking For {0} Versions"
+msgstr "Проверка {0} Версии"
+
+msgid "No Versions Available For {0}"
+msgstr "Версии не доступны для {0}"
+
+msgid "{0} has not been installed/updated as there are no versions available."
+msgstr "{0} не была установлена/обновлена, поскольку версии отсутствуют."
+
+msgid "Select {0} Version To Install"
+msgstr "Выберите {0} Версия для установки"
+
+msgid "Changing {0} Version"
+msgstr "Изменение {0} Версия"
+
+msgid "{0} Removed"
+msgstr "{0} Снято"
+
+msgid "{0} has been removed from this instance."
+msgstr "{0} была исключена из этого списка."
+
+msgid "{0} Not Removed"
+msgstr "{0} Not Removed"
+
+msgid "{0} has not been removed. Check the console for more information."
+msgstr ""
+"{0} не удаляется. Проверьте консоль для получения дополнительной информации."
+
+msgid "Scanning New Mods"
+msgstr "Сканирование новых модов"
+
+msgid "Mod Not Available"
+msgstr "Мод недоступен"
+
+msgid ""
+"We were unable to download this mod.<br/>This is likely due to the author of"
+" the mod disabling third party clients from downloading it.<br/><br/>You'll "
+"be prompted shortly to download the mod manually through your browser to "
+"your downloads folder.<br/>Once you've downloaded the file that was opened "
+"in your browser to your downloads folder, we can continue with installing "
+"the mod.<br/><br/>This process is unfortunate, but we don't have any choice "
+"in this matter and has to be done this way."
+msgstr ""
+"We were unable to download this mod.<br/>This is likely due to the author of"
+" the mod disabling third party clients from downloading it.<br/><br/>You'll "
+"be prompted shortly to download the mod manually through your browser to "
+"your downloads folder.<br/>Once you've downloaded the file that was opened "
+"in your browser to your downloads folder, we can continue with installing "
+"the mod.<br/><br/>This process is unfortunate, but we don't have any choice "
+"in this matter and has to be done this way."
+
+msgid "Downloading"
+msgstr "Скачивание"
+
+msgid "Browser opened to download file {0}"
+msgstr "Браузер открывается для загрузки файла {0}"
+
+msgid "Please save this file to the following location"
+msgstr "Пожалуйста, сохраните этот файл в следующем месте"
+
+msgid "Open Folder"
+msgstr "Открыть папку"
+
+msgid "I've Downloaded This File"
+msgstr "Я загрузил этот файл"
+
+msgid "Installing"
+msgstr "Установка"
+
+msgid "Ok"
+msgstr "Хорошо"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Reinstalling"
+msgstr "переустановка"
+
+msgid "Skip Mod (Pack May Break)"
+msgstr "Skip Mod (песня «Pack May Break»)"
+
+msgid ""
+"Account doesn't have an Xbox account.<br/><br/>Please create one by logging "
+"into minecraft.net before trying to login again."
+msgstr ""
+"Аккаунт не имеет учетной записи Xbox.<br/><br/> Пожалуйста, создайте его, "
+"войдя в Minecraft. Интернет, прежде чем пытаться войти снова."
+
+msgid "Child accounts cannot login without being part of a family."
+msgstr ""
+"Детские учетные записи не могут войти в систему, не будучи частью семьи."
+
+msgid "Account is from a country where Xbox Live is banned/not available."
+msgstr "Аккаунт находится в стране, где Xbox Live запрещен или недоступен."
+
+msgid "You Must Login Again"
+msgstr "Вы должны снова войти"
+
+msgid "You must login again in order to continue."
+msgstr "Вы должны войти снова, чтобы продолжить."
+
+msgid "Getting Login Code From Microsoft"
+msgstr "Получение кода входа от Microsoft"
+
+msgid "About Your Crash"
+msgstr "О вашей аварии"
+
+msgid ""
+"Minecraft has crashed due to insufficent memory being "
+"allocated.<br/><br/>Please go to the settings tab and increase the maximum "
+"memory option and then try launching the instance again."
+msgstr ""
+"Minecraft has crashed due to insufficent memory being "
+"allocated.<br/><br/>Please go to the settings tab and increase the maximum "
+"memory option and then try launching the instance again."
+
+msgid ""
+"Minecraft has crashed due to an incompatability with Forge and your version "
+"of Java.<br/><br/>Please reinstall the instance to automatically fix the "
+"problem, and then try launching the instance again."
+msgstr ""
+"Minecraft has crashed due to an incompatability with Forge and your version "
+"of Java.<br/><br/>Please reinstall the instance to automatically fix the "
+"problem, and then try launching the instance again."
+
+msgid ""
+"Minecraft has crashed due to not being compatible with your Java "
+"version.<br/><br/>Most modded Minecraft is only compatible with Java 8, so "
+"you must install Java 8 on your computer."
+msgstr ""
+"Minecraft has crashed due to not being compatible with your Java "
+"version.<br/><br/>Most modded Minecraft is only compatible with Java 8, so "
+"you must install Java 8 on your computer."
+
+msgid "Download Java 8"
+msgstr "Скачать Java 8"
+
+msgid ""
+"Minecraft has crashed due to not being compatible with your Java "
+"version.<br/><br/>This version of Minecraft requires Java {0} or "
+"newer.<br/><br/>Make sure you've selected the correct Java version in this "
+"instances<br/>settings or not disabled the \"Use Java Provided By "
+"Minecraft\" setting.<br/><br/>If it's still not working, you may be using a "
+"mod that requires Java {0},<br/>but Minecraft only requires Java 8, so you "
+"can go into the instances<br/>settings and in the \"Java\" tab, change the "
+"\"Runtime Overide\"<br/>option to one that is Java {0} or newer."
+msgstr ""
+"Minecraft has crashed due to not being compatible with your Java "
+"version.<br/><br/>This version of Minecraft requires Java {0} or "
+"newer.<br/><br/>Make sure you've selected the correct Java version in this "
+"instances<br/>settings or not disabled the \"Use Java Provided By "
+"Minecraft\" setting.<br/><br/>If it's still not working, you may be using a "
+"mod that requires Java {0},<br/>but Minecraft only requires Java 8, so you "
+"can go into the instances<br/>settings and in the \"Java\" tab, change the "
+"\"Runtime Overide\"<br/>option to one that is Java {0} or newer."
+
+msgid "Disabled"
+msgstr "инвалид"
+
+msgid "Single Player"
+msgstr "Одиночный игрок"
+
+msgid "Multiplayer"
+msgstr "многопользовательский"
+
+msgid "Minecraft Realm"
+msgstr "Minecraft Realm"
+
+msgid "Server Is Vulnerable"
+msgstr "Сервер уязвим"
+
+msgid ""
+"This server is currently vulnerable to the Log4Shell exploit.<br/><br/>For "
+"your safety, and of those on your server, please delete and recreate this "
+"server.<br/><br/>Do you still want to launch the server (not recommended)?"
+msgstr ""
+"This server is currently vulnerable to the Log4Shell exploit.<br/><br/>For "
+"your safety, and of those on your server, please delete and recreate this "
+"server.<br/><br/>Do you still want to launch the server (not recommended)?"
+
+msgid "Cannot Launch Server"
+msgstr "Невозможно запустить сервер"
+
+msgid ""
+"We cannot launch this server for you. Please use \"Open Folder\" and run the"
+" server manually.<br/><br/>If unsure how to do so, please contact the packs "
+"support pages for more further help."
+msgstr ""
+"Мы не можем запустить этот сервер для вас. Пожалуйста, используйте «Открытая"
+" папка» и запустите сервер вручную.<br/><br/> Если вы не знаете, как это "
+"сделать, пожалуйста, свяжитесь со страницами поддержки пакетов для получения"
+" дополнительной помощи."
+
+msgid "Failed To Launch Server"
+msgstr "Не удалось запустить сервер"
+
+msgid ""
+"The server couldn't be launched as we don't know how to launch "
+"it.<br/><br/>Please open the server folder and run the {0} file manually."
+msgstr ""
+"The server couldn't be launched as we don't know how to launch "
+"it.<br/><br/>Please open the server folder and run the {0} file manually."
+
+msgid "The server has been launched."
+msgstr "Сервер был запущен."
+
+msgid "Error making backup"
+msgstr "Ошибка резервного копирования"
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "View"
+msgstr "Посмотреть"
+
+msgid "Reinstall"
+msgstr "реинсталлировать"
+
+msgid "Remove"
+msgstr "Убрать"
+
+msgid "Update"
+msgstr "Обновить"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Export"
+msgstr "экспорт"
+
+msgid "Add Mods"
+msgstr "Добавить моды"
+
+msgid "Edit Mods"
+msgstr "Редактировать моды"
+
+msgid "Servers"
+msgstr "Серверы"
+
+msgid "Open Website"
+msgstr "Открытый сайт"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Open Resources"
+msgstr "Открытые ресурсы"
+
+msgid "Open instance.json"
+msgstr "Open instance.json"
+
+msgid "Play Online"
+msgstr "Играть онлайн"
+
+msgid "Play Offline"
+msgstr "Играть оффлайн"
+
+msgid "Play"
+msgstr "Играть"
+
+msgid "Normal Backup"
+msgstr "Обычная резервная копия"
+
+msgid "Normal + Mods Backup"
+msgstr "Обычные + Моды резервного копирования"
+
+msgid "Full Backup"
+msgstr "Полное резервирование"
+
+msgid "Backup"
+msgstr "Резервное копирование"
+
+msgid "Discord"
+msgstr "раздор"
+
+msgid "Support"
+msgstr "Поддержка"
+
+msgid "Website"
+msgstr "Сайт"
+
+msgid "Wiki"
+msgstr "Вики"
+
+msgid "Source"
+msgstr "Источник"
+
+msgid "Get Help"
+msgstr "Получить помощь"
+
+msgid "Clone"
+msgstr "клон"
+
+msgid "Rename"
+msgstr "переименование"
+
+msgid "Change Description"
+msgstr "Изменить описание"
+
+msgid "Change Image"
+msgstr "Изменить изображение"
+
+msgid "Add {0}"
+msgstr "Добавить {0}"
+
+msgid "Change {0} Version"
+msgstr "Изменение {0} Версия"
+
+msgid "Remove {0}"
+msgstr "Удалить {0}"
+
+msgid "Edit Instance"
+msgstr "Изменить сборку"
+
+msgid "Reminder"
+msgstr "Напоминание"
+
+msgid "You may not distribute ANY resources."
+msgstr "Вы не можете распространять какие-либо ресурсы."
+
+msgid "Cannot update pack as you have no account selected."
+msgstr "Не можете обновить пакет, так как у вас нет выбранной учетной записи."
+
+msgid "Delete Instance"
+msgstr "Удалить сборку"
+
+msgid "Are you sure you want to delete the instance \"{0}\"?"
+msgstr "Вы уверены, что хотите удалить экземпляр \"{0}\"?"
+
+msgid "Deleting Instance"
+msgstr "Удаление указания"
+
+msgid "Deleting Instance. Please wait..."
+msgstr "Исключить инстанцию. Пожалуйста, подождите..."
+
+msgid "Deleted Instance Successfully"
+msgstr "Удаленное вещество успешно"
+
+msgid "Instance Corrupt"
+msgstr "Коррумпированная инстанция"
+
+msgid ""
+"Cannot play instance as it's corrupted. Please reinstall, update or delete "
+"it."
+msgstr ""
+"Нельзя играть в инстанцию, так как она повреждена. Пожалуйста, "
+"переустановите, обновите или удалите его."
+
+msgid "Cannot launch instance due to your Java version"
+msgstr "Не можете запустить экземпляр из-за версии Java"
+
+msgid ""
+"There was an issue launching this instance.<br/><br/>This version of the "
+"pack requires a Java version which you are not using.<br/><br/>Please "
+"install that version of Java and try again.<br/><br/>Java version needed: "
+"{0}"
+msgstr ""
+"There was an issue launching this instance.<br/><br/>This version of the "
+"pack requires a Java version which you are not using.<br/><br/>Please "
+"install that version of Java and try again.<br/><br/>Java version needed: "
+"{0}"
+
+msgid "Update Available"
+msgstr "Обновление доступно"
+
+msgid ""
+"An update is available for this instance.<br/><br/>Do you want to update "
+"now?"
+msgstr ""
+"Обновление доступно для этого случая.<br/><br/> Хотите обновить сейчас?"
+
+msgid "Ignore This Update"
+msgstr "Игнорируйте это обновление"
+
+msgid "Don't Remind Me Again"
+msgstr "Не напоминайте мне снова"
+
+msgid "Create Support Pack"
+msgstr "Создайте пакет поддержки"
+
+msgid "Choose location to save support pack"
+msgstr "Выберите место для сохранения пакета поддержки"
+
+msgid "Support pack created"
+msgstr "Создан пакет поддержки"
+
+msgid "Nothing To Show"
+msgstr "Нечего показывать"
+
+msgid "Create Pack"
+msgstr "Создать пакет"
+
+msgid "Download Pack"
+msgstr "Скачать Pack"
+
+msgid "Create Server"
+msgstr "Создать сервер"
+
+msgid "Download Server"
+msgstr "Скачать Server"
+
+msgid "Install"
+msgstr "Установить"
+
+msgid "View Mods"
+msgstr "Посмотреть Моды"
+
+msgid "Cannot create instance as you have no account selected."
+msgstr ""
+"Не можете создать экземпляр, поскольку у вас нет выбранной учетной записи."
+
+msgid "Are you sure you want to create a server?"
+msgstr "Вы уверены, что хотите создать сервер?"
+
+msgid ""
+"Creating a server won't allow you play Minecraft, it's for letting others "
+"play together.<br/><br/>If you just want to play Minecraft, you don't want "
+"to create a server, and instead will want to create an "
+"instance.<br/><br/>Are you sure you want to create a server?"
+msgstr ""
+"Creating a server won't allow you play Minecraft, it's for letting others "
+"play together.<br/><br/>If you just want to play Minecraft, you don't want "
+"to create a server, and instead will want to create an "
+"instance.<br/><br/>Are you sure you want to create a server?"
+
+msgid "Cannot create server as you have no account selected."
+msgstr "Не можете создать сервер, так как у вас нет выбранной учетной записи."
+
+msgid "New Instance"
+msgstr "Новая сила"
+
+msgid "Launch"
+msgstr "Запустить"
+
+msgid "Launch & Close"
+msgstr "Запуск и закрытие"
+
+msgid "Launch With GUI"
+msgstr "Запуск с GUI"
+
+msgid "Launch With GUI & Close"
+msgstr "Скачать GUI & Close"
+
+msgid "Add Plugins"
+msgstr "Добавить плагины"
+
+msgid "Edit Plugins"
+msgstr "Редактировать плагины"
+
+msgid "Delete Server"
+msgstr "Удалить сервер"
+
+msgid "Are you sure you want to delete this server?"
+msgstr "Вы уверены, что хотите удалить этот сервер?"
+
+msgid "Deleting Server"
+msgstr "Удалить сервер"
+
+msgid "Deleting Server. Please wait..."
+msgstr "Удаление сервера. Пожалуйста, подождите..."
+
+msgid "Deleted Server Successfully"
+msgstr "Удаленный сервер успешно"
+
+msgid "Visit Modpack Discord?"
+msgstr "Посетить Modpack Discord?"
+
+msgid ""
+"Would you like to open the Discord server for the last instance that "
+"crashed?"
+msgstr "Хотели бы вы открыть сервер Discord для последней аварии?"
+
+msgid "Clear"
+msgstr "Чисто."
+
+msgid "Copy Log"
+msgstr "Копировать журнал"
+
+msgid "Upload Log"
+msgstr "Скачать Log"
+
+msgid "Kill Minecraft"
+msgstr "Убить Minecraft"
+
+msgid "Uploading Logs"
+msgstr "Скачать Logs"
+
+msgid ""
+"Are you sure you want to kill the Minecraft process?<br/><br/>Doing so can "
+"cause corruption of your saves."
+msgstr ""
+"Are you sure you want to kill the Minecraft process?<br/><br/>Doing so can "
+"cause corruption of your saves."
+
+msgid "Checking For Updates"
+msgstr "Проверка обновлений"
+
+msgid "Hide Console"
+msgstr "Скрыть консоль"
+
+msgid "Show Console"
+msgstr "Показать консоль"
+
+msgid "Check For Updates"
+msgstr "Проверить обновления"
+
+msgid "Open On {0}"
+msgstr "Открыто {0}"
+
+msgid "Open GitHub"
+msgstr "Открыть GitHub"
+
+msgid "Open Discord"
+msgstr "Открытая рознь"
+
+msgid "Open Mastodon"
+msgstr "Открытый мастодонт"
+
+msgid "Open Facebook"
+msgstr "Открыть Facebook"
+
+msgid "Open Twitter"
+msgstr "Открыть Twitter"
+
+msgid "Open Instagram"
+msgstr "Открыть Instagram"
+
+msgid "Open Patreon"
+msgstr "Открыть Patreon"
+
+msgid "Open Twitch"
+msgstr "Открытый Twitch"
+
+msgid "Open Reddit"
+msgstr "Открыть Reddit"
+
+msgid "Open YouTube"
+msgstr "Открыть YouTube"
+
+msgid "Open TikTok"
+msgstr "Открыть TikTok"
+
+msgid "Open Pinterest"
+msgstr "Открытый Pinterest"
+
+msgid "Open BlueSky"
+msgstr "Открыть BlueSky"
+
+msgid "Open Issues"
+msgstr "Открытые вопросы"
+
+msgid "Open Source Url"
+msgstr "Open Source Url"
+
+msgid "Open Wiki"
+msgstr "Открыть Wiki"
+
+msgid "Donate ({0})"
+msgstr "Donate ({0})"
+
+msgid "Enable"
+msgstr "допускать"
+
+msgid "Disable"
+msgstr "инвалид"
+
+msgid "Show In File Explorer"
+msgstr "Показать в File Explorer"
+
+msgid "Reinstall From {0}"
+msgstr "Восстановить из {0}"
+
+msgid "Check For Updates On {0}"
+msgstr "Проверьте наличие обновлений {0}"
+
+msgid "No Updates Found"
+msgstr "Обновлений не найдено"
+
+msgid "No updates were found."
+msgstr "Никаких обновлений обнаружено не было."
+
+msgid "Install {0}"
+msgstr "Установите {0}"
+
+msgid "Before installing {0} mods, you should install {1} first!"
+msgstr "Перед установкой модов {0} сначала установите {1}!"
+
+msgid "Adding Mods For {0}"
+msgstr "Добавление модов для {0}"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Getting {0} Information"
+msgstr "Получить {0} Информация"
+
+msgid "Error Getting {0} Information"
+msgstr "Ошибка {0} Информация"
+
+msgid ""
+"There was an error getting {0} information from {1}. Please try again later."
+msgstr ""
+"Была допущена ошибка получения {0} информации от {1}. Пожалуйста, попробуйте"
+" еще раз позже."
+
+msgid "Getting Mod Information"
+msgstr "Получение модной информации"
+
+msgid "Error Getting Mod Information"
+msgstr "Ошибка получения модной информации"
+
+msgid ""
+"There was an error getting mod information from Modrinth. Please try again "
+"later."
+msgstr ""
+"Была допущена ошибка в получении информации о моде от Modrinth. Пожалуйста, "
+"попробуйте еще раз позже."
+
+msgid "Plugins"
+msgstr "Плагины"
+
+msgid "Mods"
+msgstr "Моды"
+
+msgid "Data Packs"
+msgstr "Пакеты данных"
+
+msgid "Resource Packs"
+msgstr "Ресурсные пакеты"
+
+msgid "Shaders"
+msgstr "Шейдеры"
+
+msgid "Worlds"
+msgstr "Миры"
+
+msgid "Popularity"
+msgstr "популярность"
+
+msgid "Last Updated"
+msgstr "Последнее обновление"
+
+msgid "Total Downloads"
+msgstr "Total Downloads скачать"
+
+msgid "Relevance"
+msgstr "актуальность"
+
+msgid "Newest"
+msgstr "новейший"
+
+msgid "All Categories"
+msgstr "Все категории"
+
+msgid "Open All In Browser"
+msgstr "Откройте все в браузере"
+
+msgid "Skip Remaining"
+msgstr "Skip остается"
+
+msgid "Cancel Install"
+msgstr "Отменить установку"
+
+msgid "Browser Download Mods"
+msgstr "Browser скачать мод"
+
+msgid ""
+"In order to continue downloading this modpack, you must manually download "
+"the following mods.<br/>Simply click the Open button to open them in your "
+"browser, or alternatively you can copy the url to your clipboard to open in "
+"another browser.<br/><br/>Please download all files to <b>{0}</b> in order "
+"for the launcher to detect them."
+msgstr ""
+"In order to continue downloading this modpack, you must manually download "
+"the following mods.<br/>Simply click the Open button to open them in your "
+"browser, or alternatively you can copy the url to your clipboard to open in "
+"another browser.<br/><br/>Please download all files to <b>{0}</b> in order "
+"for the launcher to detect them."
+
+msgid "Are You Sure?"
+msgstr "Ты уверена?"
+
+msgid ""
+"Skipping the remaining downloads may cause issues launching the "
+"modpack.<br/><br/>Are you sure you want to do this?"
+msgstr ""
+"Пропуск оставшихся загрузок может вызвать проблемы с запуском "
+"модуля.<br/><br/> Ты уверен, что хочешь это сделать?"
+
+msgid "Download Complete"
+msgstr "Скачать полностью"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Copy Link"
+msgstr "Копировать ссылку"
+
+msgid "Changing Skin"
+msgstr "Смена кожи"
+
+msgid "Skin File"
+msgstr "Файл кожи"
+
+msgid "Browse"
+msgstr "Обзор"
+
+msgid "Select skin file"
+msgstr "Выберите файл skin"
+
+msgid ""
+"The skin you chose is invalid. Please make sure you selected the right file "
+"and try again.<br/><br/>All skins must be 64x64 or 64x32 pixels."
+msgstr ""
+"Кожа, которую вы выбрали, недействительна. Пожалуйста, убедитесь, что вы "
+"выбрали правильный файл и попробуйте снова.<br/><br/> Все скины должны быть "
+"64x64 или 64x32 пикселей."
+
+msgid "Skin Type"
+msgstr "Тип кожи"
+
+msgid "Upload"
+msgstr "Загрузить"
+
+msgid "Updating Skin"
+msgstr "Обновление кожи"
+
+msgid ""
+"There was an error updating your skin.<br/><br/>Please check the logs and "
+"try again."
+msgstr ""
+"Произошла ошибка обновления вашей кожи.<br/><br/> Пожалуйста, проверьте "
+"журналы и попробуйте еще раз."
+
+msgid "Create Minecraft Profile"
+msgstr "Профиль Minecraft"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Create"
+msgstr "Создать"
+
+msgid "Creating Minecraft Profile"
+msgstr "Создание профиля Minecraft"
+
+msgid ""
+"Invalid profile name, it must contain only alphanumeric characters and "
+"underscore, and be 3 to 16 characters long."
+msgstr ""
+"Недействительное имя профиля, оно должно содержать только буквенно-цифровые "
+"символы и подчеркивать, и быть длиной от 3 до 16 символов."
+
+msgid "Username is not available, please try another one."
+msgstr "Имя пользователя недоступно, пожалуйста, попробуйте другое."
+
+msgid ""
+"An error occurred creating your profile.<br/><br/>Please check the console "
+"and try again."
+msgstr ""
+"Произошла ошибка при создании профиля.<br/><br/> Проверьте консоль и "
+"попробуйте еще раз."
+
+msgid "View Mod"
+msgstr "Смотреть мод"
+
+msgid "View File"
+msgstr "Просмотреть файл"
+
+msgid "The below mods need to be installed"
+msgstr "Модули ниже должны быть установлены"
+
+msgid "Version To Install"
+msgstr "Версия для установки"
+
+msgid "Loading"
+msgstr "Загрузка"
+
+msgid "No files found"
+msgstr "Никаких файлов не найдено"
+
+msgid ""
+"No files found for this mod. CurseForge may be down or having "
+"issues.<br/>Please wait and try again in a few minutes."
+msgstr ""
+"Никаких файлов для этого мода не найдено. CurseForge может быть запущен или "
+"иметь проблемы.<br/> Пожалуйста, подождите и попробуйте снова через "
+"несколько минут."
+
+msgid "The version currently installed is {0}"
+msgstr "Версия, установленная в настоящее время, {0}"
+
+msgid "Editing Mods For {0}"
+msgstr "Редактирование модов для {0}"
+
+msgid "Enabled Mods"
+msgstr "Включенные моды"
+
+msgid "Disabled Mods"
+msgstr "Моды для инвалидов"
+
+msgid "Add Mod"
+msgstr "Добавить мод"
+
+msgid "Mod"
+msgstr "Мод"
+
+msgid "Type of Mod"
+msgstr "Тип мода"
+
+msgid "Copying Mods"
+msgstr "Копирование модов"
+
+msgid "Add As Mod?"
+msgstr "Добавить мод?"
+
+msgid ""
+"Adding as Inside Minecraft.jar is usually not what you want and will likely "
+"cause issues.<br/><br/>If you're adding mods this is usually not correct. Do"
+" you want to add this as a mod instead?"
+msgstr ""
+"Adding as Inside Minecraft.jar is usually not what you want and will likely "
+"cause issues.<br/><br/>If you're adding mods this is usually not correct. Do"
+" you want to add this as a mod instead?"
+
+msgid "Browse Mods"
+msgstr "Browse Mods"
+
+msgid "Enable Selected"
+msgstr "Возможность выбора"
+
+msgid "Disable Selected"
+msgstr "Выбранный инвалид"
+
+msgid "Remove Selected"
+msgstr "Удалить выбранный"
+
+msgid "Refresh Metadata"
+msgstr "Обновление метаданных"
+
+msgid "Checking For Updates Complete"
+msgstr "Проверка обновлений завершена"
+
+msgid "The selected mods have been checked for updates."
+msgstr "Выбранные моды были проверены на наличие обновлений."
+
+msgid "Delete Selected Mods?"
+msgstr "Удалить избранные моды?"
+
+msgid ""
+"This will delete the selected mods from the instance.<br/><br/>Are you sure "
+"you want to do this?"
+msgstr ""
+"Это удалит выбранные моды из экземпляра.<br/><br/> Ты уверен, что хочешь это"
+" сделать?"
+
+msgid "Refreshing Metadata"
+msgstr "Обновление метаданных"
+
+msgid "Select"
+msgstr "Выбрать"
+
+msgid "Select file/s"
+msgstr "Выберите файл /"
+
+msgid "Import Instance"
+msgstr "Импортировать сборку"
+
+msgid ""
+"Select a zip/mrpack file to import it.<br/>We currently support CurseForge, "
+"Modrinth and MultiMC exported files/urls, as well as CurseForge.com links."
+msgstr ""
+"Выберите файл zip/mrpack для его импорта.<br/> В настоящее время мы "
+"поддерживаем экспортированные файлы / URL-адреса CurseForge, Modrinth и "
+"MultiMC, а также ссылки CurseForge.com."
+
+msgid "URL"
+msgstr "URL"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Import"
+msgstr "импорт"
+
+msgid "Failed To Import Instance"
+msgstr "Не удалось импортировать"
+
+msgid ""
+"An error occured when trying to import an instance.<br/><br/>Check the "
+"console for more information."
+msgstr ""
+"Ошибка произошла при попытке импортировать экземпляр.<br/><br/> Проверьте "
+"консоль для получения дополнительной информации."
+
+msgid "Export {0}"
+msgstr "Экспорт {0}"
+
+msgid "Name"
+msgstr "Название"
+
+msgid "The name of the instance"
+msgstr "Название экземпляра"
+
+msgid "Version"
+msgstr "Версия"
+
+msgid "The version of this instance"
+msgstr "Версия этого примера"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Your name"
+msgstr "Твое имя"
+
+msgid "Format"
+msgstr "Формат"
+
+msgid "Which format to export this instance as"
+msgstr "Какой формат экспортировать данный экземпляр"
+
+msgid "Save To"
+msgstr "Сохранить"
+
+msgid "Select the folder you wish to export the instance to"
+msgstr "Выберите папку, которую вы хотите экспортировать в"
+
+msgid "Select export directory"
+msgstr "Выберите экспортный каталог"
+
+msgid "Directory"
+msgstr "Директория"
+
+msgid "Reset"
+msgstr "сброс"
+
+msgid "Folders To Export"
+msgstr "Складки для экспорта"
+
+msgid "Select the folders you wish to include for this export"
+msgstr "Выберите папки, которые вы хотите включить для этого экспорта"
+
+msgid "Exporting Instance"
+msgstr "Экспортирующая сила"
+
+msgid "Exporting Instance. Please wait..."
+msgstr "Экспортируемость. Пожалуйста, подождите..."
+
+msgid "Exported Instance Successfully"
+msgstr "Экспортируемые товары успешно"
+
+msgid "Failed to export instance. Check the console for details"
+msgstr "Не удалось экспортировать экземпляр. Проверьте консоль для деталей"
+
+msgid "Show All"
+msgstr "Показать все"
+
+msgid "Updating"
+msgstr "Обновление"
+
+msgid " (Current Version: {0})"
+msgstr "(текущая версия: {0})"
+
+msgid "Save Mods"
+msgstr "Сохранить моды"
+
+msgid ""
+"Since this update changes the Minecraft version, your custom mods may no "
+"longer work.<br/><br/>Checking this box will keep your custom mods, "
+"otherwise they'll be removed."
+msgstr ""
+"Since this update changes the Minecraft version, your custom mods may no "
+"longer work.<br/><br/>Checking this box will keep your custom mods, "
+"otherwise they'll be removed."
+
+msgid "Getting Versions"
+msgstr "Получение версий"
+
+msgid "Failed to get project files from CurseForge."
+msgstr "Не удалось получить файлы проекта от CurseForge."
+
+msgid "No Server Files Available"
+msgstr "Серверные файлы недоступны"
+
+msgid ""
+"No server files are available for this pack, so a server cannot be created."
+msgstr ""
+"Для этого пакета нет серверных файлов, поэтому сервер не может быть создан."
+
+msgid "No Files Available"
+msgstr "Файлы не доступны"
+
+msgid ""
+"No files are available for this pack, so it cannot be "
+"installed.<br/>CurseForge may be down or having issues. Please wait and try "
+"again in a few minutes."
+msgstr ""
+"Для этого пакета нет файлов, поэтому он не может быть установлен.<br/> "
+"CurseForge может быть запущен или иметь проблемы. Пожалуйста, подождите и "
+"попробуйте снова через несколько минут."
+
+msgid "Getting Modpack Details"
+msgstr "Скачать Modpack Details"
+
+msgid "Getting Modpack Versions"
+msgstr "Получение версий Modpack"
+
+msgid "Failed to get slug for modpack from Technic."
+msgstr "Не удалось получить слизняк для модпакета от Technic."
+
+msgid "Failed to get information for modpack from Technic."
+msgstr "Не удалось получить информацию о модпаке от Technic."
+
+msgid "Getting Modpack Builds"
+msgstr "Скачать Modpack Builds"
+
+msgid "Failed to get modpack builds from Technic."
+msgstr "Не удалось получить сборки модпака от Technic."
+
+msgid "Downloading Pack Manifest"
+msgstr "Скачать Pack Manifest"
+
+msgid "{0} Version"
+msgstr "{0} Version"
+
+msgid "Loader Version"
+msgstr "Версия Loader"
+
+msgid "Getting Loader Versions"
+msgstr "Получение версий Loader"
+
+msgid "No Versions Found"
+msgstr "Версии не найдены"
+
+msgid "Enable commands"
+msgstr "Включить команды"
+
+msgid "This allows you to turn launch/exit commands on or off."
+msgstr "Это позволяет включать или выключать команды запуска / выхода."
+
+msgid "Use Launcher Default"
+msgstr "Использование Launcher Default"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "No"
+msgstr "Нет"
+
+msgid "Pre-launch command"
+msgstr "Предпусковое командование"
+
+msgid ""
+"This command will be run before the instance launches. The game will not run"
+" until the command has finished."
+msgstr ""
+"Эта команда будет запущена до запуска экземпляра. Игра не будет работать, "
+"пока команда не закончится."
+
+msgid "Post-exit command"
+msgstr "Командование после выхода"
+
+msgid ""
+"This command will be run after the instance exits. It will run even if the "
+"instance is killed or if it crashes and exits."
+msgstr ""
+"Эта команда будет запущена после выхода экземпляра. Он будет работать, даже "
+"если экземпляр убит или если он падает и выходит."
+
+msgid "Wrapper command"
+msgstr "Командование по обертке"
+
+msgid ""
+"Wrapper command allow launcher using an extra wrapper program (like 'prime-run' on Linux)\n"
+"Use %command% to substitute launch command\n"
+"%\"command\"% to substitute launch as a whole string (like 'bash -c' on Linux)"
+msgstr ""
+"Команда Wrapper позволяет запуску с помощью дополнительной программы обертки (например, «prime-run» на Linux)\n"
+"Используйте %command% для замены команды запуска\n"
+"% «командный» % для замены запуска в виде целой строки (например, «bash-c» в Linux)"
+
+msgid ""
+"Commands will be run in the directory of the instance that is "
+"launched/exited."
+msgstr ""
+"Команды будут выполняться в каталоге экземпляра, который "
+"запускается/выходит."
+
+msgid "The following variables are available for each command"
+msgstr "Следующие переменные доступны для каждой команды."
+
+msgid "The name of the instance's root directory"
+msgstr "Название корневой директории экземпляра"
+
+msgid "The absolute path to the instance directory"
+msgstr "Абсолютный путь к каталогу экземпляров"
+
+msgid "Alias for"
+msgstr "Алиса для"
+
+msgid "The absolute path to the java executable used for launch"
+msgstr "Абсолютный путь к исполняемому Java, используемому для запуска"
+
+msgid "The JVM parameters used for launch"
+msgstr "Параметры JVM, используемые для запуска"
+
+msgid "Account Override"
+msgstr "Отмена аккаунта"
+
+msgid ""
+"Which account to use when launching this instance. Use Launcher Default will"
+" use whichever account is selected in the launcher."
+msgstr ""
+"Какой аккаунт использовать при запуске данного экземпляра. Использование "
+"Launcher Default будет использовать любую учетную запись, выбранную в "
+"пусковой установке."
+
+msgid "Quick Play Type"
+msgstr "Типы Quick Play"
+
+msgid "Select the type of the Quick Play feature, default to disabled."
+msgstr "Выберите тип функции Quick Play, отключенной по умолчанию."
+
+msgid "Server address"
+msgstr "Адрес сервера"
+
+msgid ""
+"The server address that is used to connect to Minecraft server in "
+"multiplayer after launching the game."
+msgstr ""
+"Адрес сервера, который используется для подключения к серверу Minecraft в "
+"многопользовательском режиме после запуска игры."
+
+msgid "Single Player World"
+msgstr "Single Player World"
+
+msgid "Select the single player world to load after launching the game."
+msgstr "Выберите одиночный мир для загрузки после запуска игры."
+
+msgid "Type the id of the realm to join after launching the game."
+msgstr ""
+"Введите идентификатор области, чтобы присоединиться после запуска игры."
+
+msgid "Invalid Input"
+msgstr "Недействительный вход"
+
+msgid "You don't have any single player worlds yet on this instance."
+msgstr "У вас пока нет ни одного игрового мира в этом случае."
+
+msgid "The server address is empty."
+msgstr "Адрес сервера пустой."
+
+msgid "The entered server address is invalid."
+msgstr "Введенный адрес сервера является недействительным."
+
+msgid "The realm id is empty."
+msgstr "Ид царства пуст."
+
+msgid "Maximum Memory/Ram"
+msgstr "Максимальная память/Ram"
+
+msgid "The maximum amount of memory/ram to allocate when starting Minecraft."
+msgstr ""
+"Максимальное количество памяти, которое можно выделить при запуске "
+"Minecraft."
+
+msgid "PermGen Size"
+msgstr "Размер PermGen"
+
+msgid "The PermGen Size for java to use when launching Minecraft in MB."
+msgstr ""
+"Размер PermGen для Java будет использоваться при запуске Minecraft в MB."
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+msgid ""
+"Setting PermGen size above {0}MB is not recommended and can cause issues. "
+"Are you sure you want to do this?"
+msgstr ""
+"Установка размера PermGen выше {0}MB не рекомендуется и может вызвать "
+"проблемы. Ты уверен, что хочешь это сделать?"
+
+msgid "Java Path"
+msgstr "Путь к Java"
+
+msgid ""
+"This version of Minecraft provides a specific version of Java to be used "
+"with it, so you cannot set a custom Java path.<br/><br/>In order to manually"
+" set a path, you must disable this option (highly not recommended)."
+msgstr ""
+"This version of Minecraft provides a specific version of Java to be used "
+"with it, so you cannot set a custom Java path.<br/><br/>In order to manually"
+" set a path, you must disable this option (highly not recommended)."
+
+msgid ""
+"This setting allows you to specify where your Java Path is.<br/><br/>This "
+"should be left as default, but if you know what you're doing, just "
+"set<br/>this to the path where the bin folder is for the version of Java you"
+" want to use.<br/><br/>If you mess up, click the Reset button to go back to "
+"the default"
+msgstr ""
+"This setting allows you to specify where your Java Path is.<br/><br/>This "
+"should be left as default, but if you know what you're doing, just "
+"set<br/>this to the path where the bin folder is for the version of Java you"
+" want to use.<br/><br/>If you mess up, click the Reset button to go back to "
+"the default"
+
+msgid "Select path to Java install"
+msgstr "Выберите путь для установки Java"
+
+msgid "Java Parameters"
+msgstr "Параметры Java"
+
+msgid "Extra Java command line paramaters can be added here."
+msgstr "Дополнительные параметры командной строки Java можно добавить здесь."
+
+msgid "Runtime Override"
+msgstr "Runtime Override"
+
+msgid ""
+"This allows you to override which runtime is used to launch this "
+"instance.<br/><br/>Runtimes are provided by Mojang and used to launch the "
+"game and generally correspond to a particular Java "
+"version.<br/><br/>Changing this is usually not required or recommended."
+msgstr ""
+"This allows you to override which runtime is used to launch this "
+"instance.<br/><br/>Runtimes are provided by Mojang and used to launch the "
+"game and generally correspond to a particular Java "
+"version.<br/><br/>Changing this is usually not required or recommended."
+
+msgid "Use Default (Recommended)"
+msgstr "По умолчанию (рекомендуется)"
+
+msgid "Use System Java"
+msgstr "Используйте Java System"
+
+msgid "Use Java Provided By Minecraft"
+msgstr "Использование Java от Minecraft"
+
+msgid ""
+"This allows you to enable/disable using the version of Java provided by the "
+"version of Minecraft you're running.<br/><br/>It's highly recommended to not"
+" disable this, unless you know what you're doing."
+msgstr ""
+"This allows you to enable/disable using the version of Java provided by the "
+"version of Minecraft you're running.<br/><br/>It's highly recommended to not"
+" disable this, unless you know what you're doing."
+
+msgid ""
+"Unchecking this is not recommended and may cause Minecraft to no longer run."
+" Are you sure you want to do this?"
+msgstr ""
+"Отключение этого не рекомендуется и может привести к тому, что Minecraft "
+"больше не будет работать. Ты уверен, что хочешь это сделать?"
+
+msgid "Disable Legacy Launching"
+msgstr "Скачать Disable Legacy"
+
+msgid ""
+"This allows you to disable legacy launching for Minecraft < "
+"1.6.<br/><br/>It's highly recommended to not disable this, unless you're "
+"having issues launching older Minecraft versions."
+msgstr ""
+"This allows you to disable legacy launching for Minecraft < "
+"1.6.<br/><br/>It's highly recommended to not disable this, unless you're "
+"having issues launching older Minecraft versions."
+
+msgid "Use System GLFW"
+msgstr "Используйте систему GLFW"
+
+msgid "Use the systems install for GLFW native library."
+msgstr "Используйте систему установки для родной библиотеки GLFW."
+
+msgid "Use System OpenAL"
+msgstr "Используйте систему OpenAL"
+
+msgid "Use the systems install for OpenAL native library."
+msgstr "Используйте систему установки для собственной библиотеки OpenAL."
+
+msgid "Help"
+msgstr "Помощь"
+
+msgid ""
+"The Java Path you set is incorrect.<br/><br/>Please verify it points to the "
+"folder where the bin folder is and try again."
+msgstr ""
+"Назначенный вами путь Java неверен.<br/><br/> Пожалуйста, убедитесь, что он "
+"указывает на папку, где находится папка bin, и попробуйте еще раз."
+
+msgid ""
+"The entered Java Parameters were incorrect.<br/><br/>Please remove any "
+"references to Xmx or XX:PermSize."
+msgstr ""
+"Введенные параметры Java неверны.<br/><br/> Пожалуйста, удалите любые ссылки"
+" на Xmx или XX:PermSize."
+
+msgid "{0} Settings"
+msgstr "{0} Настройки"
+
+msgid "General"
+msgstr "Общие"
+
+msgid "Java/Minecraft"
+msgstr "Java/Minecraft"
+
+msgid "Commands"
+msgstr "командование"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Login with Microsoft"
+msgstr "Войти в Microsoft"
+
+msgid "Login with Browser"
+msgstr "Логин с браузером"
+
+msgid "OR"
+msgstr "или"
+
+msgid "Copy Code"
+msgstr "Код копирования"
+
+msgid "Open Link & Copy Code"
+msgstr "Открытая ссылка и код копирования"
+
+msgid "Fetching Login Code..."
+msgstr "Поиск кода входа..."
+
+msgid ""
+"Failed to fetch login code from Microsoft. Please use the button above to "
+"login with your browser."
+msgstr ""
+"Не удалось получить код входа из Microsoft. Пожалуйста, используйте кнопку "
+"выше для входа в систему с вашим браузером."
+
+msgid ""
+"Scan the above QR code or visit <a "
+"href=\"https://www.microsoft.com/link\">https://www.microsoft.com/link</a> "
+"in a web browser and enter the code <b>{0}</b>."
+msgstr ""
+"Сканируйте указанный выше QR-код или посетите <a "
+"href=\"https://www.microsoft.com/link\">https://www.microsoft.com/link</a> в"
+" веб-браузере и введите код <b>{0}</b>."
+
+msgid "Error logging in. Check console for more information"
+msgstr ""
+"Ошибка входа. Проверьте консоль для получения дополнительной информации"
+
+msgid "Code is missing"
+msgstr "Код отсутствует"
+
+msgid "Login complete. You can now close this window and go back to {0}"
+msgstr "Логин завершен. Теперь вы можете закрыть это окно и вернуться в {0}"
+
+msgid "Incorrect account"
+msgstr "Неправильный счет"
+
+msgid "Logged into incorrect account. Please login again on the Accounts tab."
+msgstr ""
+"Зарегистрировано в неправильном аккаунте. Пожалуйста, войдите снова на "
+"вкладку «Учетные записи»."
+
+msgid "Error logging into Xbox Live"
+msgstr "Ошибка входа в Xbox Live"
+
+msgid "Minecraft Has Not Been Purchased"
+msgstr "Minecraft не был куплен"
+
+msgid ""
+"This account doesn't have a valid purchase of Minecraft.<br/><br/>Please "
+"make sure you've bought the Java edition of Minecraft and then try "
+"again.<br/><br/>If you have Xbox Game Pass, you need to login through the "
+"Minecraft launcher<br/>at least once and launch the game once in order to "
+"create your username."
+msgstr ""
+"This account doesn't have a valid purchase of Minecraft.<br/><br/>Please "
+"make sure you've bought the Java edition of Minecraft and then try "
+"again.<br/><br/>If you have Xbox Game Pass, you need to login through the "
+"Minecraft launcher<br/>at least once and launch the game once in order to "
+"create your username."
+
+msgid "Overrides Included"
+msgstr "Overrids включает в себя"
+
+msgid ""
+"Your exported instance contains mods not on Modrinth and were included in "
+"the overrides folder. If you're uploading this to Modrinth, you will need to"
+" make sure you have permissions to distribute the below mods, else your "
+"modpack will get denied on Modrinth."
+msgstr ""
+"Ваш экспортный экземпляр содержит моды не на Modrinth и был включен в папку "
+"Overrides. Если вы загружаете это в Modrinth, вам нужно будет убедиться, что"
+" у вас есть разрешения на распространение нижеперечисленных модов, иначе "
+"вашему модпаку будет отказано в Modrinth."
+
+msgid "Copy"
+msgstr "Копия"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "View Plugin"
+msgstr "Посмотреть плагин"
+
+msgid "File To Install"
+msgstr "Файл для установки"
+
+msgid "Select Mods To Install"
+msgstr "Выберите моды для установки"
+
+msgid "Required Mods"
+msgstr "Требуемые моды"
+
+msgid "Optional Mods"
+msgstr "Факультативные моды"
+
+msgid "Select Recommended"
+msgstr "Выберите рекомендуемый"
+
+msgid "Select All"
+msgstr "Выберите все"
+
+msgid "Clear All"
+msgstr "Все чисто"
+
+msgid "{0}<br/><br/>Are you sure that you want to enable this mod?"
+msgstr "{0}<br/><br/>Are you sure that you want to enable this mod?"
+
+msgid "Tasks Done"
+msgstr "Задания выполнены"
+
+msgid "Renaming Instance"
+msgstr "Переименовывать инстанцию"
+
+msgid "Instance Name"
+msgstr "Название сборки"
+
+msgid ""
+"There is already an instance called {0}.<br/><br/>Rename it and try again."
+msgstr ""
+"Уже есть пример, называемый {0}.<br/><br/> Переименуйте и попробуйте еще "
+"раз."
+
+msgid "The name {0} is invalid. It must contain at least 1 letter or number."
+msgstr "The name {0} is invalid. It must contain at least 1 letter or number."
+
+msgid ""
+"An error occurred renaming the instance.<br/><br/>Please check the console "
+"and try again."
+msgstr ""
+"Произошла ошибка переименования экземпляра.<br/><br/> Проверьте консоль и "
+"попробуйте еще раз."
+
+msgid "{0} Setup"
+msgstr "{0} Настройка"
+
+msgid "Setting up {0}"
+msgstr "Настройка {0}"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Enable Anonymous Analytics"
+msgstr "Включить Anonymous Analytics"
+
+msgid ""
+"The Launcher sends back anonymous analytics to our own servers in a non "
+"identifying way in order to track what people do and don't use in the "
+"launcher. This helps determine what new features we implement in the future."
+" All analytics are anonymous and contain no user/instance information in it "
+"at all. If you don't want to send anonymous analytics, you can disable this "
+"option."
+msgstr ""
+"Launcher отправляет анонимную аналитику на наши собственные серверы "
+"неидентифицирующим способом, чтобы отслеживать, что люди делают и не "
+"используют в пусковой установке. Это помогает определить, какие новые "
+"функции мы реализуем в будущем. Вся аналитика является анонимной и не "
+"содержит никакой информации о пользователе или организации. Если вы не "
+"хотите отправлять анонимную аналитику, вы можете отключить эту опцию."
+
+msgid "Open Privacy Policy"
+msgstr "Открытая политика конфиденциальности"
+
+msgid "Mods in {0}"
+msgstr "Моды в {0}"
+
+msgid "Adding Mods"
+msgstr "Добавление модов"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Invalid File"
+msgstr "Недействительный файл"
+
+msgid "Skipping file {0}. Only zip, jar and litemod files can be added."
+msgstr "Пропуск файла {0} Можно добавлять только zip, jar и litemod файлы."
+
+msgid "{0} Console"
+msgstr "{0} Консоль"
+
+msgid "Loading..."
+msgstr "Загрузка..."
+
+msgid "No mods found. Remove your search query and try again."
+msgstr "Моды не найдены. Удалите свой поисковый запрос и попробуйте снова."
+
+msgid "No mods found."
+msgstr "Моды не найдены."
+
+msgid ""
+"There are no packs to display.<br/><br/>Try removing your search query and "
+"try again."
+msgstr ""
+"Пакеты для отображения отсутствуют.<br/><br/> Попробуйте удалить свой "
+"поисковый запрос и попробуйте снова."
+
+msgid "Featured"
+msgstr "характерный"
+
+msgid "Looking Up Pack On {0}"
+msgstr "Looking Up Pack On {0}"
+
+msgid "Cancelling Looking Up Pack On {0}"
+msgstr "Cancelling Looking Up Pack On {0}"
+
+msgid "Pack Not Found"
+msgstr "Пакет не найден"
+
+msgid ""
+"A pack with that id/slug was not found. Please check the id/slug/url and try"
+" again."
+msgstr ""
+"Пачка с этим id/slug не была найдена. Пожалуйста, проверьте id/slug/url и "
+"попробуйте еще раз."
+
+msgid "Most Popular"
+msgstr "Самый популярный"
+
+msgid "Most Installed"
+msgstr "Большинство установленных"
+
+msgid "Recently Updated"
+msgstr "Недавно обновленный"
+
+msgid "Downloads"
+msgstr "Загрузки"
+
+msgid "Follows"
+msgstr "Следовать"
+
+msgid "Updated"
+msgstr "Обновлено"
+
+msgid "Searching For Packs..."
+msgstr "В поисках пакетов..."
+
+msgid "Loading {0} Packs..."
+msgstr "Загрузка {0} Пакеты..."
+
+msgid ""
+"To find a pack, search for one at the top.<br/><br/>Alternatively choose a "
+"modpack platform on the left hand side."
+msgstr ""
+"Чтобы найти пакет, найдите его в верхней части.<br/><br/> В качестве "
+"альтернативы выберите платформу с модпаком на левой стороне."
+
+msgid ""
+"There are no packs to display.<br/><br/>Try another search query or choose a"
+" platform on the left hand side."
+msgstr ""
+"Пакеты для отображения отсутствуют.<br/><br/> Попробуйте другой поисковый "
+"запрос или выберите платформу с левой стороны."
+
+msgid "Force quit"
+msgstr "Сила уходит"
+
+msgid "About"
+msgstr "О программе"
+
+msgid "Contributors"
+msgstr "Вкладчики"
+
+msgid "Are you sure you want to delete this account?"
+msgstr "Вы уверены, что хотите удалить этот аккаунт?"
+
+msgid "Sign In with Microsoft"
+msgstr "Войти через Microsoft"
+
+msgid "Change Skin"
+msgstr "Изменить скин"
+
+msgid "Reload Skin"
+msgstr "Обновить скин"
+
+msgid "Update Username"
+msgstr "Обновить имя игрока"
+
+msgid "Refresh Access Token"
+msgstr "Обновить токен доступа"
+
+msgid "Refreshing Access Token For {0}"
+msgstr "Обновление токена для {0}"
+
+msgid "Access Token Refreshed"
+msgstr "Токен обновлён"
+
+msgid "Access token refreshed successfully"
+msgstr "Токен доступа обновлён"
+
+msgid "Failed To Refresh Access Token"
+msgstr "Не удалось обновить токен"
+
+msgid "Failed to refresh accessToken. Please login again."
+msgstr "Не удалось обновить токен. Войдите снова."
+
+msgid "Add An Account"
+msgstr "Добавить аккаунт"
+
+msgid "Accounts"
+msgstr "Аккаунты"
+
+msgid "Releases"
+msgstr "выпуски"
+
+msgid "Experiments"
+msgstr "эксперименты"
+
+msgid "Snapshots"
+msgstr "Снимки"
+
+msgid "Betas"
+msgstr "Бетас"
+
+msgid "Alphas"
+msgstr "Альфа"
+
+msgid "None"
+msgstr "Никто"
+
+msgid "Create Instance"
+msgstr "Создать сборку"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Minecraft Version"
+msgstr "Minecraft версия"
+
+msgid "Filter"
+msgstr "фильтр"
+
+msgid "Loader"
+msgstr "погрузчик"
+
+msgid "Select Loader First"
+msgstr "Выберите загрузчик First"
+
+msgid ""
+"{0} is a loader for servers that allow you to install and run "
+"plugins.<br/>You can't run mods with the {0} loader and can only be used on "
+"servers."
+msgstr ""
+"{0} является загрузчиком для серверов, которые позволяют устанавливать и "
+"запускать плагины.<br/> Вы не можете запускать моды с помощью загрузчика {0}"
+" и может использоваться только на серверах."
+
+msgid "Released"
+msgstr "освобожденный"
+
+msgid ""
+"There are no instances to display.<br/><br/>Install one from the Packs tab."
+msgstr ""
+"Нет никаких примеров для отображения.<br/><br/> Установите один из вкладки "
+"Пакеты."
+
+msgid "Instances"
+msgstr "Сборки"
+
+msgid "Loading news..."
+msgstr "Загрузка новостей..."
+
+msgid "News"
+msgstr "Новости"
+
+msgid "Minecraft:"
+msgstr "Minecraft:"
+
+msgid "Category:"
+msgstr "Категория:"
+
+msgid "Sort:"
+msgstr "Сорт:"
+
+msgid "Add Manually"
+msgstr "Добавить вручную"
+
+msgid "Add Pack By ID/Slug/URL"
+msgstr "Добавить пакет ID/Slug/URL"
+
+msgid "Enter an ID/slug/url for a pack to add manually:"
+msgstr "Введите ID/slug/url для пакета, чтобы добавить вручную:"
+
+msgid "All Versions"
+msgstr "Все версии"
+
+msgid "Packs"
+msgstr "Модпаки"
+
+msgid ""
+"There are no servers to display.<br/><br/>Install one from the Packs tab."
+msgstr ""
+"Нет серверов для отображения.<br/><br/> Установите один из вкладки Пакеты."
+
+msgid "Backup Mode"
+msgstr "Режим резервного копирования"
+
+msgid ""
+"When backing up an instance, what should get backed up? Mainly used for when"
+" doing automated backups."
+msgstr ""
+"При резервном копировании экземпляра, что должно быть резервным? В основном "
+"используется при выполнении автоматических резервных копий."
+
+msgid "Backup saves, configs and options only"
+msgstr "Резервные сохранения, конфигурации и только опции"
+
+msgid "Backup saves, mods, configs and options only"
+msgstr "Экономия резервных копий, модов, конфигураций и только опций"
+
+msgid "Backup everything in the instance folder"
+msgstr "Резервное копирование всего в папке экземпляра"
+
+msgid "Backups Folder"
+msgstr "Резервная папка"
+
+msgid ""
+"This setting allows you to change the Backups folder that the launcher uses "
+"to store instance backups. By default this is the backups folder where the "
+"launcher is installed."
+msgstr ""
+"Эта настройка позволяет изменить папку «Резервные копии», которую пусковая "
+"установка использует для хранения резервных копий экземпляров. По умолчанию "
+"это папка резервных копий, где установлена пусковая установка."
+
+msgid "Enable Automatic Backup After Launch"
+msgstr "Автоматическое резервное копирование после запуска"
+
+msgid "If a backup should run after launching an instance."
+msgstr "Если резервная копия должна работать после запуска экземпляра."
+
+msgid ""
+"The Backups Path you set is incorrect.<br/><br/>Please verify it points to a"
+" folder and try again."
+msgstr ""
+"Путь резервного копирования, который вы установили, неверен.<br/><br/> "
+"Пожалуйста, убедитесь, что он указывает на папку и попробуйте еще раз."
+
+msgid "Downloads folder path change pending"
+msgstr "Downloads folder path change pending"
+
+msgid "Checking downloads folder path"
+msgstr "Проверка пути загрузки папки"
+
+msgid "Invalid!"
+msgstr "Недействительно!"
+
+msgid "Backups"
+msgstr "Резервные копии"
+
+msgid "Value"
+msgstr "ценность"
+
+msgid ""
+"This page allows you to manage environment variables for your Minecraft "
+"instances.<br/>Double-click a variable name or value in the table below to "
+"edit it."
+msgstr ""
+"This page allows you to manage environment variables for your Minecraft "
+"instances.<br/>Double-click a variable name or value in the table below to "
+"edit it."
+
+msgid "Environment Variable Name"
+msgstr "Переменное название окружающей среды"
+
+msgid "Environment Variable Name:"
+msgstr "Переменное название среды:"
+
+msgid "Environment Variable Value"
+msgstr "Переменная ценность окружающей среды"
+
+msgid "Environment Variable Value:"
+msgstr "Переменная ценность окружающей среды:"
+
+msgid "Duplicate Variable"
+msgstr "Двойная переменная"
+
+msgid ""
+"A variable with this name already exists. You can edit the existing value by"
+" double clicking the value."
+msgstr ""
+"Переменная с таким названием уже существует. Вы можете отредактировать "
+"существующее значение, дважды щелкнув значение."
+
+msgid "Clear all environment variables?"
+msgstr "Очистить все переменные среды?"
+
+msgid "Confirm"
+msgstr "Подтвердите"
+
+msgid "Environment Variables"
+msgstr "Переменные среды"
+
+msgid "This specifies the language used by the Launcher."
+msgstr "Это указывает на язык, используемый Launcher."
+
+msgid "Help Translate"
+msgstr "Помогите перевести"
+
+msgid "Theme"
+msgstr "Тема"
+
+msgid "This sets the theme that the launcher will use."
+msgstr "Это задает тему, которую будет использовать пусковая установка."
+
+msgid "Date Format"
+msgstr "Формат даты"
+
+msgid "This controls the format that dates are displayed in the launcher."
+msgstr ""
+"Это контролирует формат, в котором даты отображаются в пусковой установке."
+
+msgid "Instance Title Format"
+msgstr "Формат названия инстанций"
+
+msgid "This controls the format that instances titles are shown as."
+msgstr "Это управляет форматом, в котором отображаются заголовки экземпляров."
+
+msgid "Pack Name"
+msgstr "Имя на упаковке"
+
+msgid "Pack Version"
+msgstr "Версия пакета"
+
+msgid "Default Tab"
+msgstr "По умолчанию Tab"
+
+msgid "Which tab to have selected by default when opening the launcher."
+msgstr "Какую вкладку выбрать по умолчанию при открытии пусковой установки."
+
+msgid "Tools"
+msgstr "Инструменты"
+
+msgid "Default Instance Sort"
+msgstr "Сортировка инстанций по умолчанию"
+
+msgid "Default sorting of instances under the Instances tab."
+msgstr "Сортировка по умолчанию экземпляров под вкладкой «Инстанции»."
+
+msgid "Downloads Folder"
+msgstr "Скачать Folder"
+
+msgid ""
+"This setting allows you to change the Downloads folder that the launcher "
+"looks in when downloading browser mods."
+msgstr ""
+"Эта настройка позволяет изменить папку Downloads, в которую смотрит пусковая"
+" установка при загрузке модов браузера."
+
+msgid "Keep Launcher Open"
+msgstr "Держите Launcher открытым"
+
+msgid ""
+"This determines if ATLauncher should stay open or exit after Minecraft has "
+"exited"
+msgstr ""
+"Это определяет, должен ли ATLauncher оставаться открытым или выходить после "
+"выхода Minecraft."
+
+msgid "Enable Console"
+msgstr "Включить консоль"
+
+msgid "If you want the console to be visible when opening the Launcher."
+msgstr "Если вы хотите, чтобы консоль была видна при открытии Launcher."
+
+msgid "Enable Tray Menu"
+msgstr "Скачать меню Tray"
+
+msgid ""
+"The Tray Menu is a little icon that shows in your system taskbar which "
+"allows you to perform different functions to do various things with the "
+"launcher such as hiding or showing the console, killing Minecraft or closing"
+" ATLauncher."
+msgstr ""
+"Меню Tray - это небольшая иконка, которая отображается на панели задач "
+"системы, которая позволяет вам выполнять различные функции, чтобы делать "
+"различные вещи с пусковой установкой, такие как скрытие или показ консоли, "
+"убийство Minecraft или закрытие ATLauncher."
+
+msgid "Enable Feral Gamemode"
+msgstr "Скачать Feral Gamemode"
+
+msgid "This will enable Feral Gamemode for packs launched."
+msgstr "Это позволит запустить Feral Gamemode для пакетов."
+
+msgid ""
+"This will enable Feral Gamemode for packs launched (disabled because "
+"gamemoderun not found in PATH, please install Feral Gamemode or add it to "
+"your PATH)."
+msgstr ""
+"Это позволит Feral Gamemode для запуска пакетов (отключен, потому что "
+"Gamemoderun не найден в PATH, пожалуйста, установите Feral Gamemode или "
+"добавьте его в свой PATH)."
+
+msgid "Disable Custom Fonts?"
+msgstr "Инвалидные пользовательские шрифты?"
+
+msgid ""
+"This will disable custom fonts used by themes. If your system has issues "
+"with font display not looking right, you can disable this to switch to a "
+"default compatible font."
+msgstr ""
+"Это отключит пользовательские шрифты, используемые темами. Если ваша система"
+" имеет проблемы с дисплеем шрифта, вы можете отключить его, чтобы "
+"переключиться на совместимый по умолчанию шрифт."
+
+msgid "Remember Window Size & Positions?"
+msgstr "Помните размеры окон и их расположение?"
+
+msgid ""
+"This will remember the windows positions and size so they keep the same size"
+" and position when you restart the launcher."
+msgstr ""
+"Это запомнит положение и размер окон, чтобы они сохраняли тот же размер и "
+"положение при перезапуске пусковой установки."
+
+msgid "Use Native File Picker?"
+msgstr "Используйте Native File Picker."
+
+msgid ""
+"This will use your operating systems native file picker when selecting "
+"files."
+msgstr ""
+"Это будет использовать встроенный сборщик файлов ваших операционных систем "
+"при выборе файлов."
+
+msgid "Use Recycle Bin/Trash?"
+msgstr "Используйте корзину / мусор?"
+
+msgid ""
+"This will use your operating systems recycle bin/trash where possible when "
+"deleting files/instances/servers instead of just deleting them entirely, "
+"allowing you to recover files if you make a mistake or want to get them "
+"back."
+msgstr ""
+"Это позволит использовать ваши операционные системы, где это возможно, при "
+"удалении файлов / ситуаций / серверов, а не просто удалять их полностью, что"
+" позволит вам восстановить файлы, если вы допустили ошибку или хотите "
+"получить их обратно."
+
+msgid "Enable ARM Support?"
+msgstr "Включить поддержку ARM?"
+
+msgid ""
+"Support for ARM devices is still experimental. If you experience issues on "
+"an ARM based device, please turn this off."
+msgstr ""
+"Поддержка ARM-устройств по-прежнему является экспериментальной. Если у вас "
+"возникли проблемы с устройством на основе ARM, пожалуйста, выключите это."
+
+msgid ""
+"The Downloads Folder Path you set is incorrect.<br/><br/>Please verify it "
+"points to a folder and try again."
+msgstr ""
+"Путь папки загрузки, который вы установили, неверен.<br/><br/> Пожалуйста, "
+"убедитесь, что он указывает на папку и попробуйте еще раз."
+
+msgid ""
+"You're running a 32 bit Java and therefore cannot use more than 1GB of Ram. "
+"Please see http://atl.pw/32bit for help."
+msgstr ""
+"Вы используете 32-разрядный Java и не можете использовать более 1 ГБ RAM. "
+"Обратитесь за помощью к http://atl.pw/32bit."
+
+msgid "Window Size"
+msgstr "Размер окна"
+
+msgid ""
+"The size that the Minecraft window should open as, Width x Height, in "
+"pixels."
+msgstr ""
+"Размер окна Minecraft должен открываться как Width x Height в пикселях."
+
+msgid ""
+"This setting allows you to specify where your Java Path is. Where possible "
+"the launcher will use a version of Java provided by Minecraft to launch the "
+"instance, but in cases where one isn't available, this path will be used."
+msgstr ""
+"Этот параметр позволяет указать, где находится ваш Java Path. Там, где это "
+"возможно, пусковая установка будет использовать версию Java, предоставленную"
+" Minecraft для запуска экземпляра, но в тех случаях, когда он недоступен, "
+"этот путь будет использоваться."
+
+msgid "Select Java Path To Autofill"
+msgstr "Выберите путь Java для автозаполнения"
+
+msgid "Java Install Location"
+msgstr "Java установит местоположение"
+
+msgid ""
+"This setting allows you to specify a common location that you install all "
+"your Java installs to. This helps find your installed Java installs easier "
+"if you install them all within 1 folder."
+msgstr ""
+"Этот параметр позволяет вам указать общее местоположение, на которое вы "
+"устанавливаете все свои установки Java. Это помогает легче найти "
+"установленные Java-установки, если установить их все в 1 папке."
+
+msgid "Start Minecraft Maximised"
+msgstr "Скачать Minecraft Maximized"
+
+msgid ""
+"Enabling this will start Minecraft maximised so that it takes up the full "
+"size of your screen."
+msgstr "Включение этого позволит Minecraft максимизировать размер экрана."
+
+msgid "Ignore Java Checks On Launch"
+msgstr "Игнорировать проверки Java На старте"
+
+msgid ""
+"This enables ignoring errors when launching a pack that you don't have a "
+"compatible Java version for."
+msgstr ""
+"Это позволяет игнорировать ошибки при запуске пакета, для которого у вас нет"
+" совместимой версии Java."
+
+msgid ""
+"The Java Install Location Path you set is incorrect.<br/><br/>Please verify "
+"it points to a folder and try again."
+msgstr ""
+"Назначенный вами путь установки Java неверен.<br/><br/> Пожалуйста, "
+"убедитесь, что он указывает на папку и попробуйте еще раз."
+
+msgid "Java path change pending"
+msgstr "Изменение пути Java ожидается"
+
+msgid "Checking java path"
+msgstr "Проверить путь Java"
+
+msgid "Java params change pending"
+msgstr "Java Params меняется"
+
+msgid "Checking java params"
+msgstr "Проверка java params"
+
+msgid "Java install location change pending"
+msgstr "Изменение местоположения Java в ожидании"
+
+msgid "Checking java install location path"
+msgstr "Проверка траектории установки Java"
+
+msgid "Enable Logging"
+msgstr "Включить Logging"
+
+msgid ""
+"The Launcher sends back anonymous usage and error logs to our servers in "
+"order to make the Launcher and Packs better. If you don't want this to "
+"happen then simply disable this option."
+msgstr ""
+"Launcher отправляет анонимные журналы использования и ошибок на наши "
+"серверы, чтобы сделать Launcher и Packs лучше. Если вы не хотите, чтобы это "
+"произошло, просто отключите этот вариант."
+
+msgid "Logging"
+msgstr "лесозаготовка"
+
+msgid "Default Mod Platform"
+msgstr "Платформа Default Mod"
+
+msgid ""
+"The default mod platform to use when adding mods to instances, as well as "
+"the platform to use when updating/reinstalling mods on multiple platforms."
+msgstr ""
+"Платформа по умолчанию для использования при добавлении модов в экземпляры, "
+"а также платформа для использования при обновлении / переустановке модов на "
+"нескольких платформах."
+
+msgid "Default Export Format"
+msgstr "Формат экспортного дефолта"
+
+msgid ""
+"The default format to export instances to. Can also be changed at time of "
+"export."
+msgstr ""
+"Формат по умолчанию для экспорта экземпляров. Также могут быть изменены при "
+"экспорте."
+
+msgid "Add Mod Restrictions"
+msgstr "Добавить ограничения моды"
+
+msgid ""
+"What restrictions should be in place when adding mods from a mod platform."
+msgstr ""
+"Какие ограничения должны быть введены при добавлении модов с платформы "
+"модов?"
+
+msgid "Only show mods for current Minecraft version"
+msgstr "Показать только мод для текущей версии Minecraft"
+
+msgid "Show mods for the current major Minecraft version (eg: 1.16.x)"
+msgstr "Показать мод для текущей основной версии Minecraft (например: 1.16.x)"
+
+msgid "Show mods for all Minecraft versions"
+msgstr "Показать мод для всех версий Minecraft"
+
+msgid "Enable Added Mods By Default?"
+msgstr "Включить добавленные моды по умолчанию?"
+
+msgid "When adding mods manually, should they be enabled automatically?"
+msgstr "При добавлении модов вручную, должны ли они включаться автоматически?"
+
+msgid "Show Fabric Mods When Sinytra Installed?"
+msgstr "Показать модификатор ткани при установке Sinytra?"
+
+msgid "When Sinytra Connector is installed, should Fabric mods be shown?"
+msgstr ""
+"Когда установлен Sinytra Connector, должны ли быть показаны модификаторы?"
+
+msgid "Allow CurseForge Alpha/Beta Files?"
+msgstr "Позволить CurseForge Alpha/Beta файлы?"
+
+msgid ""
+"This will enable using Alpha/Beta files from CurseForge by default when "
+"installing modpacks as well as updating to Alpha/Beta versions from stable "
+"release versions."
+msgstr ""
+"Это позволит использовать файлы Alpha/Beta от CurseForge по умолчанию при "
+"установке пакетов модов, а также при обновлении до версий Alpha/Beta из "
+"версий стабильного выпуска."
+
+msgid "Don't Check Mods On {0}?"
+msgstr "Не проверяйте мод {0}?"
+
+msgid ""
+"When installing packs or adding mods manually to instances, we check for the"
+" file on {0} to show more information about the mod as well as make updating"
+" easier. Disabling this will mean you won't be able to update manually added"
+" mods from within the launcher."
+msgstr ""
+"При установке пакетов или добавлении модов вручную в экземпляры мы проверяем"
+" файл на {0}, чтобы показать больше информации о моде, а также упростить "
+"обновление. Отключение этого будет означать, что вы не сможете обновлять "
+"вручную добавленные моды из пусковой установки."
+
+msgid "Scan Mods On Launch?"
+msgstr "Режимы сканирования на старте?"
+
+msgid ""
+"This will scan the mods in instances before launching to ensure they do not "
+"contain malware or have been modified since installing."
+msgstr ""
+"Это будет сканировать моды перед запуском, чтобы убедиться, что они не "
+"содержат вредоносных программ или были изменены с момента установки."
+
+msgid "Concurrent Connections"
+msgstr "Конкурентные соединения"
+
+msgid ""
+"This determines how many connections will be made when downloading files."
+msgstr "Это определяет, сколько соединений будет сделано при загрузке файлов."
+
+msgid "Connection Timeout"
+msgstr "Время подключения"
+
+msgid "This determines how long connections will wait before timing out."
+msgstr ""
+"Это определяет, как долго соединения будут ждать, прежде чем тайм-аут."
+
+msgid "Modrinth Api Key"
+msgstr "Модринт Api Key"
+
+msgid ""
+"Api key to use when making requests to Modrinth. This is unecessary to set "
+"unless you want to access private data."
+msgstr ""
+"Ключ Api для использования при запросах в Modrinth. Это необязательно "
+"устанавливать, если вы не хотите получить доступ к личным данным."
+
+msgid "Enable Proxy"
+msgstr "Включить Proxy"
+
+msgid "If you use a proxy to connect to the internet you can enable it here."
+msgstr ""
+"Если вы используете прокси для подключения к Интернету, вы можете включить "
+"его здесь."
+
+msgid "Proxy Host"
+msgstr "Прокси-хостинг"
+
+msgid "This is the IP/hostname used to connect to the proxy."
+msgstr "Это IP/hostname, используемый для подключения к прокси."
+
+msgid "Proxy Port"
+msgstr "Прокси-порт"
+
+msgid "This is the port used to connect to the proxy."
+msgstr "Это порт, используемый для подключения к прокси."
+
+msgid "Proxy Type"
+msgstr "Тип прокси"
+
+msgid ""
+"This is the type of connection the proxy uses. Either HTTP, SOCKS or DIRECT."
+msgstr ""
+"Это тип соединения, который использует прокси. HTTP, SOCKS или DIRECT."
+
+msgid "Cannot connect to proxy. Please check the settings and try again."
+msgstr ""
+"Не может подключиться к прокси. Пожалуйста, проверьте настройки и попробуйте"
+" еще раз."
+
+msgid "Network"
+msgstr "Сеть"
+
+msgid "Debug Mode"
+msgstr "Режим отладки"
+
+msgid ""
+"Use this to relaunch ATLauncher in debug mode. This can be used to get more "
+"debug logs in order to help diagnose issues with ATLauncher."
+msgstr ""
+"Используйте это, чтобы перезапустить ATLauncher в режиме отладки. Это может "
+"быть использовано для получения большего количества журналов отладки, чтобы "
+"помочь диагностировать проблемы с ATLauncher."
+
+msgid "Download Clearer"
+msgstr "Скачать Clearer"
+
+msgid ""
+"This tool clears out all the downloads done by the launcher. This will not "
+"affect any instances, but means new pack installs may take longer as it "
+"needs to redownload mods."
+msgstr ""
+"Этот инструмент очищает все загрузки, сделанные пусковой установкой. Это не "
+"повлияет на какие-либо случаи, но означает, что установка новых пакетов "
+"может занять больше времени, так как это необходимо для повторной загрузки "
+"модов."
+
+msgid "Success"
+msgstr "Готово"
+
+msgid "Successfully cleared the downloads."
+msgstr "Успешно очистили загрузку."
+
+msgid "Libraries Deleter"
+msgstr "Библиотеки удаляют"
+
+msgid ""
+"This tool clears out all the libraries used by Minecraft. Instances may need"
+" to be reinstalled if launching them once doesn't download all libraries."
+msgstr ""
+"Этот инструмент очищает все библиотеки, используемые Minecraft. Случаи могут"
+" быть переустановлены, если запуск их один раз не загружает все библиотеки."
+
+msgid "Successfully deleted libraries."
+msgstr "Успешно удаляются библиотеки."
+
+msgid "Log Clearer"
+msgstr "Log Clearer"
+
+msgid ""
+"This tool clears out all logs created by the launcher (not included those "
+"made by instances) to free up space and old junk."
+msgstr ""
+"Этот инструмент очищает все журналы, созданные пусковой установкой (не "
+"включая те, которые сделаны экземплярами), чтобы освободить место и старый "
+"мусор."
+
+msgid "Successfully cleared the logs."
+msgstr "Успешно расчистили бревна."
+
+msgid "Network Checker"
+msgstr "Проверка сети"
+
+msgid ""
+"This tool does various tests on your network and determines any issues that "
+"may pop up with connecting to our file servers and to other servers."
+msgstr ""
+"Этот инструмент выполняет различные тесты в вашей сети и определяет любые "
+"проблемы, которые могут возникнуть при подключении к нашим файловым серверам"
+" и другим серверам."
+
+msgid ""
+"Please note that the data from this tool is sent to ATLauncher so we can "
+"diagnose possible issues in your setup. This test may take up to 10 minutes "
+"or longer to complete and you will be unable to do anything while it's "
+"running. Please also keep in mind that this test will use some of your "
+"bandwidth, it will use approximately 100MB.<br/><br/>Do you wish to "
+"continue?"
+msgstr ""
+"Please note that the data from this tool is sent to ATLauncher so we can "
+"diagnose possible issues in your setup. This test may take up to 10 minutes "
+"or longer to complete and you will be unable to do anything while it's "
+"running. Please also keep in mind that this test will use some of your "
+"bandwidth, it will use approximately 100MB.<br/><br/>Do you wish to "
+"continue?"
+
+msgid "Network Checker Running. Please Wait!"
+msgstr "Сетевая проверка запущена. Пожалуйста, подождите!"
+
+msgid ""
+"The network checker tool has completed and the data sent off to "
+"ATLauncher.<br/><br/>Thanks for your input to help understand and fix "
+"network related issues."
+msgstr ""
+"Инструмент проверки сети завершен, и данные отправлены в "
+"ATLauncher.<br/><br/> Спасибо за ваш вклад, чтобы помочь понять и исправить "
+"проблемы, связанные с сетью."
+
+msgid "Skin Updater"
+msgstr "Обновитель кожи"
+
+msgid "This tool will update all your accounts skins on the launcher."
+msgstr ""
+"Этот инструмент обновит все скины ваших учетных записей на пусковой "
+"установке."
+
+msgid "Updating Skins. Please Wait!"
+msgstr "Обновление Skins. Пожалуйста, подождите!"
+
+msgid "Successfully updated skins."
+msgstr "Успешно обновляемая кожа."
+
+msgid "Toggle Console"
+msgstr "Консоль Toggle"
+
+msgid "Kill Open Dialogs"
+msgstr "Убить открытый диалог"
+
+msgid "Open Launcher Folder"
+msgstr "Открытая папка Launcher"
+
+msgid "Quit"
+msgstr "Бросить"
+
+msgid ""
+"Are you sure you want to kill the Minecraft process?<br/>Doing so can cause "
+"corruption of your saves"
+msgstr ""
+"Are you sure you want to kill the Minecraft process?<br/>Doing so can cause "
+"corruption of your saves"
+
+msgid "Running 32 Bit Java on 64 Bit Windows"
+msgstr "Запуск 32-битной Java в 64-битной Windows"
+
+msgid ""
+"We have detected that you're running 64 bit Windows but not 64 bit "
+"Java.<br/><br/>This will cause severe issues playing all packs if not "
+"fixed.<br/><br/>Do you want to close the launcher and learn how to fix this "
+"issue now?"
+msgstr ""
+"We have detected that you're running 64 bit Windows but not 64 bit "
+"Java.<br/><br/>This will cause severe issues playing all packs if not "
+"fixed.<br/><br/>Do you want to close the launcher and learn how to fix this "
+"issue now?"
+
+msgid "Downloading Launcher Update"
+msgstr "Скачать Launcher Update"
+
+msgid "Downloading Updates"
+msgstr "Скачать обновления"
+
+msgid "Updating Launcher. Please Wait"
+msgstr "Обновление Launcher. Пожалуйста, подождите."
+
+msgid ""
+"An update to the launcher is available. Please update via your package "
+"manager or manually by visiting https://atlauncher.com/downloads to get the "
+"latest features and bug fixes."
+msgstr ""
+"Доступно обновление для пусковой установки. Пожалуйста, обновите через "
+"менеджер пакетов или вручную, посетив https://atlauncher.com/downloads, "
+"чтобы получить последние функции и исправления ошибок."
+
+msgid "Visit Downloads Page"
+msgstr "Посетите страницу Downloads"
+
+msgid ""
+"Update failed. Please click Ok to close the launcher and open up the "
+"downloads page.<br/><br/>Download the update and replace the old exe/jar "
+"file."
+msgstr ""
+"Обновление провалилось. Пожалуйста, нажмите Ok, чтобы закрыть пусковую "
+"установку и открыть страницу загрузки.<br/><br/> Загрузите обновление и "
+"замените старый файл exe/jar."
+
+msgid "Account Added"
+msgstr "Аккаунт добавлен"
+
+msgid "Account added successfully. Switch to it now?"
+msgstr "Аккаунт добавлен. Переключиться на него?"
+
+msgid "Error Getting Versions"
+msgstr "Ошибка получения версий"
+
+msgid "Disabled as the loader you selected only supports servers"
+msgstr "Выбранный вами загрузчик поддерживает только серверы"
+
+msgid "Downloading Server Pack From {0}"
+msgstr "Скачать пакет сервера из {0}"
+
+msgid ""
+"We were unable to download this modpack.<br/>This is likely due to the "
+"author of the modpack disabling third party clients from downloading "
+"it.<br/><br/>You'll be prompted shortly to download the modpack manually "
+"through your browser to your downloads folder.<br/>Once you've downloaded "
+"the file that was opened in your browser to your downloads folder, we can "
+"continue with installing the modpack.<br/><br/>This process is unfortunate, "
+"but we don't have any choice in this matter and has to be done this way."
+msgstr ""
+"We were unable to download this modpack.<br/>This is likely due to the "
+"author of the modpack disabling third party clients from downloading "
+"it.<br/><br/>You'll be prompted shortly to download the modpack manually "
+"through your browser to your downloads folder.<br/>Once you've downloaded "
+"the file that was opened in your browser to your downloads folder, we can "
+"continue with installing the modpack.<br/><br/>This process is unfortunate, "
+"but we don't have any choice in this matter and has to be done this way."
+
+msgid "Extracting Server Pack"
+msgstr "Извлечение пакета сервера"
+
+msgid "Generating Pack Version From {0}"
+msgstr "Создание пакетной версии {0}"
+
+msgid "Mods Not Available"
+msgstr "Моды не доступны"
+
+msgid ""
+"We were unable to download some of the mods from this pack.<br/>This is "
+"likely due to the author of that mod disabling third party clients from "
+"downloading it.<br/><br/>You'll be prompted shortly to start downloading "
+"these mods manually through your browser to your downloads folder.<br/>Once "
+"you've downloaded the file that was opened in your browser to your downloads"
+" folder, you can continue through all the mods that have disabled this "
+"toggle.<br/><br/>This process is unfortunate, but we don't have any choice "
+"in this matter and has to be done this way."
+msgstr ""
+"We were unable to download some of the mods from this pack.<br/>This is "
+"likely due to the author of that mod disabling third party clients from "
+"downloading it.<br/><br/>You'll be prompted shortly to start downloading "
+"these mods manually through your browser to your downloads folder.<br/>Once "
+"you've downloaded the file that was opened in your browser to your downloads"
+" folder, you can continue through all the mods that have disabled this "
+"toggle.<br/><br/>This process is unfortunate, but we don't have any choice "
+"in this matter and has to be done this way."
+
+msgid "Downloading Manifest From {0}"
+msgstr "Downloading Manifest From {0}"
+
+msgid "Extracting Manifest"
+msgstr "Извлечение манифеста"
+
+msgid "{0} Mods Not Available"
+msgstr "{0} Mods Not Available"
+
+msgid ""
+"Some of the mods for this pack are not available to download.<br/><br/>At "
+"this time you can only install this pack via FTB launcher."
+msgstr ""
+"Некоторые из модов для этого пакета недоступны для загрузки.<br/><br/> В "
+"настоящее время вы можете установить этот пакет только через FTB-пусковую "
+"установку."
+
+msgid "Downloading modpack.zip"
+msgstr "Скачать modpack.zip"
+
+msgid "Downloading Minecraft Definition"
+msgstr "Скачать игру Minecraft Definition"
+
+msgid "Downloading Loader"
+msgstr "Скачать Loader"
+
+msgid "Downloading Logging Client"
+msgstr "Скачать Logging Client"
+
+msgid "Installing Loader (May Take Some Time)"
+msgstr "Загрузка (может занять некоторое время)"
+
+msgid "Downloading Mods"
+msgstr "Скачать Mods"
+
+msgid "Downloading Browser Mods"
+msgstr "Скачать Browser Mods"
+
+msgid "Installing Mods"
+msgstr "Установка модов"
+
+msgid "Copying Overrides"
+msgstr "Копирование Overrides"
+
+msgid "Calculating Files To Download"
+msgstr "Расчет файлов для загрузки"
+
+msgid "Creating Config Directories"
+msgstr "Создание Config Directories"
+
+msgid "Downloading Configs"
+msgstr "Скачать Configs"
+
+msgid "Copying minecraft folder"
+msgstr "Копирование папки Minecraft"
+
+msgid "Copying modpack.zip files"
+msgstr "Копирование файлов modpack.zip"
+
+msgid "Extracting Configs"
+msgstr "Извлечение конфигураций"
+
+msgid "Downloading Image"
+msgstr "Скачать Image"
+
+msgid "Copying Image"
+msgstr "Копирование изображения"
+
+msgid "Checking Mods On {0}"
+msgstr "Проверка модов на {0}"
+
+msgid "Edit"
+msgstr "Изменить"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Next"
+msgstr "Далее"
+
+msgid "OK"
+msgstr "ОК"
+
+msgid "Memory"
+msgstr "Память"
+
+msgid "Java"
+msgstr "Java"
+
+msgid "Refresh Access Token For {0}"
+msgstr "Обновление токена для {0}"
