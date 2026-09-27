@@ -60,7 +60,6 @@ import com.atlauncher.gui.panels.packbrowser.ModrinthPacksPanel;
 import com.atlauncher.gui.panels.packbrowser.PackBrowserPlatformPanel;
 import com.atlauncher.gui.panels.packbrowser.PacksBrowserTabTitlePanel;
 import com.atlauncher.gui.panels.packbrowser.TechnicPacksPanel;
-import com.atlauncher.gui.panels.packbrowser.UnifiedPacksPanel;
 import com.atlauncher.managers.ConfigManager;
 import com.atlauncher.managers.DialogManager;
 import com.atlauncher.managers.MinecraftManager;
@@ -97,7 +96,6 @@ public final class PacksBrowserTab extends JPanel
     private final JLabel platformMessageJLabel = new JLabel();
 
     private final JTabbedPane platformTabbedPane = new JTabbedPane();
-    private final PackBrowserPlatformPanel unifiedPacksPanel = new UnifiedPacksPanel();
     private final PackBrowserPlatformPanel atlauncherPacksPanel = new ATLauncherPacksPanel();
     private final PackBrowserPlatformPanel curseForgePacksPanel = new CurseForgePacksPanel();
     private final PackBrowserPlatformPanel ftbPacksPanel = new FTBPacksPanel();
@@ -275,8 +273,10 @@ public final class PacksBrowserTab extends JPanel
 
         int index = 0;
 
-        platformTabbedPane.add(unifiedPacksPanel);
-        platformTabbedPane.setTabComponentAt(index++, new PacksBrowserTabTitlePanel("Search"));
+        // The ATLauncher search API rejects requests from this fork. Start with
+        // Modrinth, whose public API supports searching and installing packs.
+        platformTabbedPane.add(modrinthPacksPanel);
+        platformTabbedPane.setTabComponentAt(index++, new PacksBrowserTabTitlePanel("Modrinth"));
 
         platformTabbedPane.add(atlauncherPacksPanel);
         platformTabbedPane.setTabComponentAt(index++, new PacksBrowserTabTitlePanel("ATLauncher"));
@@ -289,11 +289,6 @@ public final class PacksBrowserTab extends JPanel
         if (ConfigManager.getConfigItem("platforms.ftb.modpacksEnabled", true)) {
             platformTabbedPane.add(ftbPacksPanel);
             platformTabbedPane.setTabComponentAt(index++, new PacksBrowserTabTitlePanel("FTB"));
-        }
-
-        if (ConfigManager.getConfigItem("platforms.modrinth.modpacksEnabled", true)) {
-            platformTabbedPane.add(modrinthPacksPanel);
-            platformTabbedPane.setTabComponentAt(index++, new PacksBrowserTabTitlePanel("Modrinth"));
         }
 
         if (ConfigManager.getConfigItem("platforms.technic.modpacksEnabled", true)) {

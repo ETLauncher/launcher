@@ -134,6 +134,7 @@ import com.atlauncher.network.Analytics;
 import com.atlauncher.network.DownloadPool;
 import com.atlauncher.network.ErrorReporting;
 import com.atlauncher.network.GraphqlClient;
+import com.atlauncher.utils.PublicLoaderApi;
 import com.atlauncher.network.NetworkClient;
 import com.atlauncher.network.analytics.AnalyticsEvent;
 import com.atlauncher.utils.ArchiveUtils;
@@ -663,38 +664,13 @@ public class InstanceInstaller extends SwingWorker<Boolean, Void> implements Net
                     forgeVersionString = ForgeLoader.getLatestVersion(curseForgeManifest.minecraft.version);
                 }
 
-                GetForgeLoaderVersionQuery.Data response = GraphqlClient
-                        .callAndWait(new GetForgeLoaderVersionQuery(forgeVersionString));
-
-                if (response == null || response.forgeVersion() == null) {
-                    throw new Exception("Failed to find loader version for " + forgeVersionString);
-                }
+                LoaderVersion response = PublicLoaderApi.forgeVersion(packVersion.minecraft, forgeVersionString);
 
                 Map<String, Object> loaderMeta = new HashMap<>();
                 loaderMeta.put("minecraft", curseForgeManifest.minecraft.version);
 
-                loaderMeta.put("version", response.forgeVersion().version());
-                loaderMeta.put("rawVersion", response.forgeVersion().rawVersion());
-                if (response.forgeVersion().installerSize() != null
-                        && response.forgeVersion().installerSha1Hash() != null) {
-                    loaderMeta.put("installerSize", response.forgeVersion().installerSize().longValue());
-                    loaderMeta.put("installerSha1", response.forgeVersion().installerSha1Hash());
-                }
-                if (response.forgeVersion().universalSize() != null
-                        && response.forgeVersion().universalSha1Hash() != null) {
-                    loaderMeta.put("universalSize", response.forgeVersion().universalSize().longValue());
-                    loaderMeta.put("universalSha1", response.forgeVersion().universalSha1Hash());
-                }
-                if (response.forgeVersion().clientSize() != null
-                        && response.forgeVersion().clientSha1Hash() != null) {
-                    loaderMeta.put("clientSize", response.forgeVersion().clientSize().longValue());
-                    loaderMeta.put("clientSha1", response.forgeVersion().clientSha1Hash());
-                }
-                if (response.forgeVersion().serverSize() != null
-                        && response.forgeVersion().serverSha1Hash() != null) {
-                    loaderMeta.put("serverSize", response.forgeVersion().serverSize().longValue());
-                    loaderMeta.put("serverSha1", response.forgeVersion().serverSha1Hash());
-                }
+                loaderMeta.put("version", response.version);
+                loaderMeta.put("rawVersion", response.rawVersion);
 
                 packVersion.loader.metadata = loaderMeta;
 
@@ -730,18 +706,13 @@ public class InstanceInstaller extends SwingWorker<Boolean, Void> implements Net
             } else if (loaderVersion.id.startsWith("neoforge-")) {
                 String neoForgeVersionString = loaderVersion.id.replace("neoforge-", "");
 
-                GetNeoForgeLoaderVersionQuery.Data response = GraphqlClient
-                        .callAndWait(new GetNeoForgeLoaderVersionQuery(neoForgeVersionString));
-
-                if (response == null || response.neoForgeVersion() == null) {
-                    throw new Exception("Failed to find loader version for " + neoForgeVersionString);
-                }
+                LoaderVersion response = PublicLoaderApi.neoForgeVersion(packVersion.minecraft, neoForgeVersionString);
 
                 Map<String, Object> loaderMeta = new HashMap<>();
                 loaderMeta.put("minecraft", packVersion.minecraft);
 
-                loaderMeta.put("version", response.neoForgeVersion().version());
-                loaderMeta.put("rawVersion", response.neoForgeVersion().rawVersion());
+                loaderMeta.put("version", response.version);
+                loaderMeta.put("rawVersion", response.rawVersion);
 
                 packVersion.loader.metadata = loaderMeta;
                 packVersion.loader.className = "com.atlauncher.data.minecraft.loaders.neoforge.NeoForgeLoader";
@@ -1101,38 +1072,13 @@ public class InstanceInstaller extends SwingWorker<Boolean, Void> implements Net
         if (modloaderTarget.name.equalsIgnoreCase("forge")) {
             String forgeVersionString = modloaderTarget.version;
 
-            GetForgeLoaderVersionQuery.Data response = GraphqlClient
-                    .callAndWait(new GetForgeLoaderVersionQuery(forgeVersionString));
-
-            if (response == null || response.forgeVersion() == null) {
-                throw new Exception("Failed to find loader version for " + forgeVersionString);
-            }
+            LoaderVersion response = PublicLoaderApi.forgeVersion(packVersion.minecraft, forgeVersionString);
 
             Map<String, Object> loaderMeta = new HashMap<>();
             loaderMeta.put("minecraft", packVersion.minecraft);
 
-            loaderMeta.put("version", response.forgeVersion().version());
-            loaderMeta.put("rawVersion", response.forgeVersion().rawVersion());
-            if (response.forgeVersion().installerSize() != null
-                    && response.forgeVersion().installerSha1Hash() != null) {
-                loaderMeta.put("installerSize", response.forgeVersion().installerSize().longValue());
-                loaderMeta.put("installerSha1", response.forgeVersion().installerSha1Hash());
-            }
-            if (response.forgeVersion().universalSize() != null
-                    && response.forgeVersion().universalSha1Hash() != null) {
-                loaderMeta.put("universalSize", response.forgeVersion().universalSize().longValue());
-                loaderMeta.put("universalSha1", response.forgeVersion().universalSha1Hash());
-            }
-            if (response.forgeVersion().clientSize() != null
-                    && response.forgeVersion().clientSha1Hash() != null) {
-                loaderMeta.put("clientSize", response.forgeVersion().clientSize().longValue());
-                loaderMeta.put("clientSha1", response.forgeVersion().clientSha1Hash());
-            }
-            if (response.forgeVersion().serverSize() != null
-                    && response.forgeVersion().serverSha1Hash() != null) {
-                loaderMeta.put("serverSize", response.forgeVersion().serverSize().longValue());
-                loaderMeta.put("serverSha1", response.forgeVersion().serverSha1Hash());
-            }
+            loaderMeta.put("version", response.version);
+            loaderMeta.put("rawVersion", response.rawVersion);
 
             packVersion.loader.metadata = loaderMeta;
 
@@ -1146,17 +1092,12 @@ public class InstanceInstaller extends SwingWorker<Boolean, Void> implements Net
         } else if (modloaderTarget.name.equalsIgnoreCase("neoforge")) {
             String neoForgeVersionString = modloaderTarget.version;
 
-            GetNeoForgeLoaderVersionQuery.Data response = GraphqlClient
-                    .callAndWait(new GetNeoForgeLoaderVersionQuery(neoForgeVersionString));
-
-            if (response == null || response.neoForgeVersion() == null) {
-                throw new Exception("Failed to find loader version for " + neoForgeVersionString);
-            }
+            LoaderVersion response = PublicLoaderApi.neoForgeVersion(packVersion.minecraft, neoForgeVersionString);
 
             Map<String, Object> loaderMeta = new HashMap<>();
             loaderMeta.put("minecraft", packVersion.minecraft);
-            loaderMeta.put("version", response.neoForgeVersion().version());
-            loaderMeta.put("rawVersion", response.neoForgeVersion().rawVersion());
+            loaderMeta.put("version", response.version);
+            loaderMeta.put("rawVersion", response.rawVersion);
 
             packVersion.loader.metadata = loaderMeta;
             packVersion.loader.className = "com.atlauncher.data.minecraft.loaders.neoforge.NeoForgeLoader";
@@ -1533,38 +1474,13 @@ public class InstanceInstaller extends SwingWorker<Boolean, Void> implements Net
                     String forgeLibraryName = forgeLibrary.get().name;
                     String forgeVersionString = forgeLibraryName.substring(forgeLibraryName.lastIndexOf(":") + 1);
 
-                    GetForgeLoaderVersionQuery.Data response = GraphqlClient
-                            .callAndWait(new GetForgeLoaderVersionQuery(forgeVersionString));
-
-                    if (response == null || response.forgeVersion() == null) {
-                        throw new Exception("Failed to find loader version for " + forgeVersionString);
-                    }
+                    LoaderVersion response = PublicLoaderApi.forgeVersion(packVersion.minecraft, forgeVersionString);
 
                     Map<String, Object> loaderMeta = new HashMap<>();
                     loaderMeta.put("minecraft", packVersion.minecraft);
 
-                    loaderMeta.put("version", response.forgeVersion().version());
-                    loaderMeta.put("rawVersion", response.forgeVersion().rawVersion());
-                    if (response.forgeVersion().installerSize() != null
-                            && response.forgeVersion().installerSha1Hash() != null) {
-                        loaderMeta.put("installerSize", response.forgeVersion().installerSize().longValue());
-                        loaderMeta.put("installerSha1", response.forgeVersion().installerSha1Hash());
-                    }
-                    if (response.forgeVersion().universalSize() != null
-                            && response.forgeVersion().universalSha1Hash() != null) {
-                        loaderMeta.put("universalSize", response.forgeVersion().universalSize().longValue());
-                        loaderMeta.put("universalSha1", response.forgeVersion().universalSha1Hash());
-                    }
-                    if (response.forgeVersion().clientSize() != null
-                            && response.forgeVersion().clientSha1Hash() != null) {
-                        loaderMeta.put("clientSize", response.forgeVersion().clientSize().longValue());
-                        loaderMeta.put("clientSha1", response.forgeVersion().clientSha1Hash());
-                    }
-                    if (response.forgeVersion().serverSize() != null
-                            && response.forgeVersion().serverSha1Hash() != null) {
-                        loaderMeta.put("serverSize", response.forgeVersion().serverSize().longValue());
-                        loaderMeta.put("serverSha1", response.forgeVersion().serverSha1Hash());
-                    }
+                    loaderMeta.put("version", response.version);
+                    loaderMeta.put("rawVersion", response.rawVersion);
 
                     packVersion.loader.metadata = loaderMeta;
 
@@ -1593,17 +1509,12 @@ public class InstanceInstaller extends SwingWorker<Boolean, Void> implements Net
                 } else if (isNeoForge) {
                     String neoForgeVersionString = versionJson.id.substring(versionJson.id.lastIndexOf("-") + 1);
 
-                    GetNeoForgeLoaderVersionQuery.Data neoForgeVersionResponse = GraphqlClient
-                            .callAndWait(new GetNeoForgeLoaderVersionQuery(neoForgeVersionString));
-
-                    if (neoForgeVersionResponse == null || neoForgeVersionResponse.neoForgeVersion() == null) {
-                        throw new Exception("Failed to find loader version for " + neoForgeVersionString);
-                    }
+                    LoaderVersion neoForgeVersionResponse = PublicLoaderApi.neoForgeVersion(packVersion.minecraft, neoForgeVersionString);
 
                     Map<String, Object> loaderMeta = new HashMap<>();
                     loaderMeta.put("minecraft", packVersion.minecraft);
-                    loaderMeta.put("version", neoForgeVersionResponse.neoForgeVersion().version());
-                    loaderMeta.put("rawVersion", neoForgeVersionResponse.neoForgeVersion().rawVersion());
+                    loaderMeta.put("version", neoForgeVersionResponse.version);
+                    loaderMeta.put("rawVersion", neoForgeVersionResponse.rawVersion);
                     packVersion.loader.metadata = loaderMeta;
                     packVersion.loader.className = "com.atlauncher.data.minecraft.loaders.neoforge.NeoForgeLoader";
                 }
@@ -1665,56 +1576,26 @@ public class InstanceInstaller extends SwingWorker<Boolean, Void> implements Net
             } else if (modrinthManifest.dependencies.containsKey("neoforge")) {
                 String neoForgeVersionString = modrinthManifest.dependencies.get("neoforge");
 
-                GetNeoForgeLoaderVersionQuery.Data response = GraphqlClient
-                        .callAndWait(new GetNeoForgeLoaderVersionQuery(neoForgeVersionString));
-
-                if (response == null || response.neoForgeVersion() == null) {
-                    throw new Exception("Failed to find loader version for " + neoForgeVersionString);
-                }
+                LoaderVersion response = PublicLoaderApi.neoForgeVersion(packVersion.minecraft, neoForgeVersionString);
 
                 Map<String, Object> loaderMeta = new HashMap<>();
                 loaderMeta.put("minecraft", packVersion.minecraft);
 
-                loaderMeta.put("version", response.neoForgeVersion().version());
-                loaderMeta.put("rawVersion", response.neoForgeVersion().rawVersion());
+                loaderMeta.put("version", response.version);
+                loaderMeta.put("rawVersion", response.rawVersion);
 
                 packVersion.loader.metadata = loaderMeta;
                 packVersion.loader.className = "com.atlauncher.data.minecraft.loaders.neoforge.NeoForgeLoader";
             } else if (modrinthManifest.dependencies.containsKey("forge")) {
                 String forgeVersionString = modrinthManifest.dependencies.get("forge");
 
-                GetForgeLoaderVersionQuery.Data response = GraphqlClient
-                        .callAndWait(new GetForgeLoaderVersionQuery(forgeVersionString));
-
-                if (response == null || response.forgeVersion() == null) {
-                    throw new Exception("Failed to find loader version for " + forgeVersionString);
-                }
+                LoaderVersion response = PublicLoaderApi.forgeVersion(packVersion.minecraft, forgeVersionString);
 
                 Map<String, Object> loaderMeta = new HashMap<>();
                 loaderMeta.put("minecraft", packVersion.minecraft);
 
-                loaderMeta.put("version", response.forgeVersion().version());
-                loaderMeta.put("rawVersion", response.forgeVersion().rawVersion());
-                if (response.forgeVersion().installerSize() != null
-                        && response.forgeVersion().installerSha1Hash() != null) {
-                    loaderMeta.put("installerSize", response.forgeVersion().installerSize().longValue());
-                    loaderMeta.put("installerSha1", response.forgeVersion().installerSha1Hash());
-                }
-                if (response.forgeVersion().universalSize() != null
-                        && response.forgeVersion().universalSha1Hash() != null) {
-                    loaderMeta.put("universalSize", response.forgeVersion().universalSize().longValue());
-                    loaderMeta.put("universalSha1", response.forgeVersion().universalSha1Hash());
-                }
-                if (response.forgeVersion().clientSize() != null
-                        && response.forgeVersion().clientSha1Hash() != null) {
-                    loaderMeta.put("clientSize", response.forgeVersion().clientSize().longValue());
-                    loaderMeta.put("clientSha1", response.forgeVersion().clientSha1Hash());
-                }
-                if (response.forgeVersion().serverSize() != null
-                        && response.forgeVersion().serverSha1Hash() != null) {
-                    loaderMeta.put("serverSize", response.forgeVersion().serverSize().longValue());
-                    loaderMeta.put("serverSha1", response.forgeVersion().serverSha1Hash());
-                }
+                loaderMeta.put("version", response.version);
+                loaderMeta.put("rawVersion", response.rawVersion);
 
                 packVersion.loader.metadata = loaderMeta;
 
@@ -1773,56 +1654,26 @@ public class InstanceInstaller extends SwingWorker<Boolean, Void> implements Net
         if (neoForgedComponent != null) {
             String neoForgeVersionString = neoForgedComponent.version;
 
-            GetNeoForgeLoaderVersionQuery.Data response = GraphqlClient
-                    .callAndWait(new GetNeoForgeLoaderVersionQuery(neoForgeVersionString));
-
-            if (response == null || response.neoForgeVersion() == null) {
-                throw new Exception("Failed to find loader version for " + neoForgeVersionString);
-            }
+            LoaderVersion response = PublicLoaderApi.neoForgeVersion(packVersion.minecraft, neoForgeVersionString);
 
             Map<String, Object> loaderMeta = new HashMap<>();
             loaderMeta.put("minecraft", minecraftVersion);
 
-            loaderMeta.put("version", response.neoForgeVersion().version());
-            loaderMeta.put("rawVersion", response.neoForgeVersion().rawVersion());
+            loaderMeta.put("version", response.version);
+            loaderMeta.put("rawVersion", response.rawVersion);
 
             packVersion.loader.metadata = loaderMeta;
             packVersion.loader.className = "com.atlauncher.data.minecraft.loaders.neoforge.NeoForgeLoader";
         } else if (forgeComponent != null) {
             String forgeVersionString = forgeComponent.version;
 
-            GetForgeLoaderVersionQuery.Data response = GraphqlClient
-                    .callAndWait(new GetForgeLoaderVersionQuery(forgeVersionString));
-
-            if (response == null || response.forgeVersion() == null) {
-                throw new Exception("Failed to find loader version for " + forgeVersionString);
-            }
+            LoaderVersion response = PublicLoaderApi.forgeVersion(packVersion.minecraft, forgeVersionString);
 
             Map<String, Object> loaderMeta = new HashMap<>();
             loaderMeta.put("minecraft", minecraftVersion);
 
-            loaderMeta.put("version", response.forgeVersion().version());
-            loaderMeta.put("rawVersion", response.forgeVersion().rawVersion());
-            if (response.forgeVersion().installerSize() != null
-                    && response.forgeVersion().installerSha1Hash() != null) {
-                loaderMeta.put("installerSize", response.forgeVersion().installerSize().longValue());
-                loaderMeta.put("installerSha1", response.forgeVersion().installerSha1Hash());
-            }
-            if (response.forgeVersion().universalSize() != null
-                    && response.forgeVersion().universalSha1Hash() != null) {
-                loaderMeta.put("universalSize", response.forgeVersion().universalSize().longValue());
-                loaderMeta.put("universalSha1", response.forgeVersion().universalSha1Hash());
-            }
-            if (response.forgeVersion().clientSize() != null
-                    && response.forgeVersion().clientSha1Hash() != null) {
-                loaderMeta.put("clientSize", response.forgeVersion().clientSize().longValue());
-                loaderMeta.put("clientSha1", response.forgeVersion().clientSha1Hash());
-            }
-            if (response.forgeVersion().serverSize() != null
-                    && response.forgeVersion().serverSha1Hash() != null) {
-                loaderMeta.put("serverSize", response.forgeVersion().serverSize().longValue());
-                loaderMeta.put("serverSha1", response.forgeVersion().serverSha1Hash());
-            }
+            loaderMeta.put("version", response.version);
+            loaderMeta.put("rawVersion", response.rawVersion);
 
             packVersion.loader.metadata = loaderMeta;
 
@@ -1875,38 +1726,13 @@ public class InstanceInstaller extends SwingWorker<Boolean, Void> implements Net
         if (loaderVersion != null && loaderVersion.isForge()) {
             packVersion.loader = new com.atlauncher.data.json.Loader();
 
-            GetForgeLoaderVersionQuery.Data response = GraphqlClient
-                    .callAndWait(new GetForgeLoaderVersionQuery(loaderVersion.version));
-
-            if (response == null || response.forgeVersion() == null) {
-                throw new Exception("Failed to find loader version for " + loaderVersion.version);
-            }
+            LoaderVersion response = PublicLoaderApi.forgeVersion(packVersion.minecraft, loaderVersion.version);
 
             Map<String, Object> loaderMeta = new HashMap<>();
             loaderMeta.put("minecraft", version.minecraftVersion.id);
 
-            loaderMeta.put("version", response.forgeVersion().version());
-            loaderMeta.put("rawVersion", response.forgeVersion().rawVersion());
-            if (response.forgeVersion().installerSize() != null
-                    && response.forgeVersion().installerSha1Hash() != null) {
-                loaderMeta.put("installerSize", response.forgeVersion().installerSize().longValue());
-                loaderMeta.put("installerSha1", response.forgeVersion().installerSha1Hash());
-            }
-            if (response.forgeVersion().universalSize() != null
-                    && response.forgeVersion().universalSha1Hash() != null) {
-                loaderMeta.put("universalSize", response.forgeVersion().universalSize().longValue());
-                loaderMeta.put("universalSha1", response.forgeVersion().universalSha1Hash());
-            }
-            if (response.forgeVersion().clientSize() != null
-                    && response.forgeVersion().clientSha1Hash() != null) {
-                loaderMeta.put("clientSize", response.forgeVersion().clientSize().longValue());
-                loaderMeta.put("clientSha1", response.forgeVersion().clientSha1Hash());
-            }
-            if (response.forgeVersion().serverSize() != null
-                    && response.forgeVersion().serverSha1Hash() != null) {
-                loaderMeta.put("serverSize", response.forgeVersion().serverSize().longValue());
-                loaderMeta.put("serverSha1", response.forgeVersion().serverSha1Hash());
-            }
+            loaderMeta.put("version", response.version);
+            loaderMeta.put("rawVersion", response.rawVersion);
 
             packVersion.loader.metadata = loaderMeta;
 
@@ -1935,63 +1761,28 @@ public class InstanceInstaller extends SwingWorker<Boolean, Void> implements Net
             packVersion.loader = new com.atlauncher.data.json.Loader();
             Map<String, Object> loaderMeta = new HashMap<>();
             loaderMeta.put("minecraft", version.minecraftVersion.id);
-            loaderMeta.put("loader", loaderVersion.version);
+            loaderMeta.put("version", loaderVersion.version);
+            loaderMeta.put("rawVersion", loaderVersion.rawVersion);
             packVersion.loader.metadata = loaderMeta;
             packVersion.loader.className = "com.atlauncher.data.minecraft.loaders.neoforge.NeoForgeLoader";
         } else if (loaderVersion != null && loaderVersion.isPaper()) {
             String paperBuildString = loaderVersion.version;
 
-            int paperBuild;
-
-            try {
-                paperBuild = Integer.parseInt(paperBuildString);
-            } catch (NumberFormatException ignored) {
-                throw new Exception("Failed to find loader version for " + paperBuildString);
+            Map<String, Object> loaderMeta = PublicLoaderApi.paperBuild(version.minecraftVersion.id, paperBuildString);
+            if (loaderMeta == null) {
+                throw new Exception("Failed to find Paper build " + paperBuildString);
             }
-
-            GetPaperLoaderVersionQuery.Data response = GraphqlClient
-                    .callAndWait(new GetPaperLoaderVersionQuery(paperBuild, version.minecraftVersion.id));
-
-            if (response == null || response.paperVersion() == null) {
-                throw new Exception("Failed to find loader version for " + paperBuildString);
-            }
-
             packVersion.loader = new com.atlauncher.data.json.Loader();
-            Map<String, Object> loaderMeta = new HashMap<>();
-            loaderMeta.put("minecraft", version.minecraftVersion.id);
-            loaderMeta.put("build", response.paperVersion().build());
-            loaderMeta.put("filename", response.paperVersion().filename());
-            loaderMeta.put("sha256", response.paperVersion().sha256());
-            loaderMeta.put("downloadUrl", response.paperVersion().downloadUrl());
-
             packVersion.loader.metadata = loaderMeta;
             packVersion.loader.className = "com.atlauncher.data.minecraft.loaders.paper.PaperLoader";
         } else if (loaderVersion != null && loaderVersion.isPurpur()) {
             String purpurBuildString = loaderVersion.version;
 
-            int purpurBuild;
-
-            try {
-                purpurBuild = Integer.parseInt(purpurBuildString);
-            } catch (NumberFormatException ignored) {
-                throw new Exception("Failed to find loader version for " + purpurBuildString);
+            Map<String, Object> loaderMeta = PublicLoaderApi.purpurBuild(version.minecraftVersion.id, purpurBuildString);
+            if (loaderMeta == null) {
+                throw new Exception("Failed to find Purpur build " + purpurBuildString);
             }
-
-            GetPurpurLoaderVersionQuery.Data response = GraphqlClient
-                    .callAndWait(new GetPurpurLoaderVersionQuery(purpurBuild, version.minecraftVersion.id));
-
-            if (response == null || response.purpurVersion() == null) {
-                throw new Exception("Failed to find loader version for " + purpurBuildString);
-            }
-
             packVersion.loader = new com.atlauncher.data.json.Loader();
-            Map<String, Object> loaderMeta = new HashMap<>();
-            loaderMeta.put("minecraft", version.minecraftVersion.id);
-            loaderMeta.put("build", response.purpurVersion().build());
-            loaderMeta.put("filename", response.purpurVersion().filename());
-            loaderMeta.put("md5", response.purpurVersion().md5());
-            loaderMeta.put("downloadUrl", response.purpurVersion().downloadUrl());
-
             packVersion.loader.metadata = loaderMeta;
             packVersion.loader.className = "com.atlauncher.data.minecraft.loaders.purpur.PurpurLoader";
         } else if (loaderVersion != null && loaderVersion.isQuilt()) {

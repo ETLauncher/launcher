@@ -1168,18 +1168,11 @@ public class Instance extends MinecraftVersion implements ModManagement {
     }
 
     public void addPlay(String version) {
-        GraphqlClient
-            .mutateAndWait(
-                new AddPackActionMutation(AddPackActionInput.builder().packId(Integer.toString(
-                        this.getPack().id))
-                    .version(version).action(PackLogAction.PLAY).build()));
+        // Upstream analytics does not accept requests from ETLauncher.
     }
 
     public void addTimePlayed(int time, String version) {
-        GraphqlClient
-            .mutateAndWait(
-                new AddPackTimePlayedMutation(AddPackTimePlayedInput.builder().packId(Integer.toString(
-                    this.getPack().id)).version(version).time(time).build()));
+        // Upstream analytics does not accept requests from ETLauncher.
     }
 
     public DisableableMod getDisableableModByCurseModId(int curseModId) {

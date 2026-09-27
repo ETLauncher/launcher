@@ -55,7 +55,7 @@ public class Constants {
     // Launcher config
     public static final LauncherVersion VERSION;
     public static final String LAUNCHER_NAME = "ETLauncher";
-    public static final String LAUNCHER_WEBSITE = "https://atlauncher.com";
+    public static final String LAUNCHER_WEBSITE = "https://etlgit.github.io";
     public static final String DEFAULT_THEME_CLASS = "com.atlauncher.themes.Dark";
     public static final String GA_TRACKING_ID = "UA-88820616-7";
     public static final String CROWDIN_URL = "https://crowdin.com/project/atlauncher";

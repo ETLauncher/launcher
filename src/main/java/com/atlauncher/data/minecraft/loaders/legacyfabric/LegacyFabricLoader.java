@@ -44,6 +44,7 @@ import com.atlauncher.data.minecraft.Arguments;
 import com.atlauncher.data.minecraft.Library;
 import com.atlauncher.data.minecraft.loaders.Loader;
 import com.atlauncher.data.minecraft.loaders.LoaderVersion;
+import com.atlauncher.data.minecraft.loaders.LoaderType;
 import com.atlauncher.graphql.GetLatestLegacyFabricLoaderVersionQuery;
 import com.atlauncher.graphql.GetLegacyFabricLoaderVersionQuery;
 import com.atlauncher.graphql.GetLegacyFabricLoaderVersionQuery.LegacyFabricLoaderVersion;
@@ -52,6 +53,7 @@ import com.atlauncher.managers.ConfigManager;
 import com.atlauncher.managers.LogManager;
 import com.atlauncher.network.GraphqlClient;
 import com.atlauncher.utils.Utils;
+import com.atlauncher.utils.PublicLoaderApi;
 import com.atlauncher.workers.InstanceInstaller;
 
 public class LegacyFabricLoader implements Loader {
@@ -84,48 +86,14 @@ public class LegacyFabricLoader implements Loader {
     }
 
     private LegacyFabricMetaProfile getLoader(String version) {
-        GetLegacyFabricLoaderVersionQuery.Data response = GraphqlClient
-                .callAndWait(GetLegacyFabricLoaderVersionQuery.builder().legacyFabricVersion(version)
-                        .minecraftVersion(this.minecraft).includeClientJson(
-                                !instanceInstaller.isServer)
-                        .includeServerJson(instanceInstaller.isServer).build());
-
-        if (response == null) {
-            return null;
-        }
-
-        LegacyFabricLoaderVersion legacyFabricLoaderVersion = response.legacyFabricLoaderVersion();
-
-        if (legacyFabricLoaderVersion == null) {
-            return null;
-        }
-
-        if (instanceInstaller.isServer) {
-            if (legacyFabricLoaderVersion.serverJson() == null) {
-                return null;
-            }
-
-            return Gsons.DEFAULT.fromJson(legacyFabricLoaderVersion.serverJson(),
-                    LegacyFabricMetaProfile.class);
-        }
-
-        if (legacyFabricLoaderVersion.clientJson() == null) {
-            return null;
-        }
-
-        return Gsons.DEFAULT.fromJson(legacyFabricLoaderVersion.clientJson(),
-                LegacyFabricMetaProfile.class);
+        com.google.gson.JsonObject profile = PublicLoaderApi.profile(LoaderType.LEGACY_FABRIC, this.minecraft,
+                version, instanceInstaller.isServer);
+        return profile == null ? null : Gsons.DEFAULT.fromJson(profile, LegacyFabricMetaProfile.class);
     }
 
     public String getLatestVersion() {
-        GetLatestLegacyFabricLoaderVersionQuery.Data response = GraphqlClient
-                .callAndWait(new GetLatestLegacyFabricLoaderVersionQuery());
-
-        if (response == null || response.legacyFabricLoaderVersions().isEmpty()) {
-            return null;
-        }
-
-        return response.legacyFabricLoaderVersions().get(0).version();
+        List<LoaderVersion> versions = PublicLoaderApi.versions(LoaderType.LEGACY_FABRIC, this.minecraft);
+        return versions.isEmpty() ? null : versions.get(0).version;
     }
 
     @Override
@@ -279,25 +247,10 @@ public class LegacyFabricLoader implements Loader {
     }
 
     public static List<LoaderVersion> getChoosableVersions(String minecraft) {
-        try {
-            List<String> disabledVersions = ConfigManager.getConfigItem(
-                    "loaders.legacyfabric.disabledVersions",
-                    new ArrayList<>());
-
-            GetLegacyFabricLoaderVersionsForMinecraftVersionQuery.Data response = GraphqlClient
-                    .callAndWait(new GetLegacyFabricLoaderVersionsForMinecraftVersionQuery(minecraft));
-
-            if (response == null || response.loaderVersions().legacyfabric().isEmpty()) {
-                return null;
-            }
-
-            return response.loaderVersions().legacyfabric().stream()
-                    .filter(fv -> !disabledVersions.contains(fv.version()))
-                    .map(version -> new LoaderVersion(version.version(), false, "LegacyFabric"))
-                    .collect(Collectors.toList());
-        } catch (Exception e) {
-            return new ArrayList<>();
-        }
+        List<String> disabled = ConfigManager.getConfigItem("loaders.legacyfabric.disabledVersions",
+                new ArrayList<>());
+        return PublicLoaderApi.versions(LoaderType.LEGACY_FABRIC, minecraft).stream()
+                .filter(version -> !disabled.contains(version.version)).collect(Collectors.toList());
     }
 
     @Override

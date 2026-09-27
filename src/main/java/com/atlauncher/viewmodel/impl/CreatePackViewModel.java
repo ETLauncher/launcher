@@ -63,6 +63,7 @@ import com.atlauncher.managers.LogManager;
 import com.atlauncher.managers.MinecraftManager;
 import com.atlauncher.network.GraphqlClient;
 import com.atlauncher.utils.Pair;
+import com.atlauncher.utils.PublicLoaderApi;
 import com.atlauncher.utils.Utils;
 import com.atlauncher.viewmodel.base.ICreatePackViewModel;
 import com.gitlab.doomsdayrs.lib.rxswing.schedulers.SwingSchedulers;
@@ -999,121 +1000,30 @@ public class CreatePackViewModel implements SettingsListener, ICreatePackViewMod
     private List<LoaderVersion> loadLoaderVersions(LoaderType selectedLoader,
             @Nonnull String selectedMinecraftVersion) {
         try {
-            ApolloQueryCall<GetLoaderVersionsForMinecraftVersionQuery.Data> call = GraphqlClient.apolloClient.query(
-                    new GetLoaderVersionsForMinecraftVersionQuery(
-                            selectedMinecraftVersion))
-                    .toBuilder().httpCachePolicy(
-                            new HttpCachePolicy.Policy(
-                                    HttpCachePolicy.FetchStrategy.CACHE_FIRST, 5, TimeUnit.MINUTES, false))
-                    .build();
-
-            Response<GetLoaderVersionsForMinecraftVersionQuery.Data> response = Rx3Apollo.from(call).blockingFirst();
-
-            final ArrayList<LoaderVersion> loaderVersionsList = new ArrayList<>();
-            final GetLoaderVersionsForMinecraftVersionQuery.Data data = response.getData();
-
-            if (data != null)
-                switch (selectedLoader) {
-                    case FABRIC:
-                        loaderVersionsList.addAll(data.loaderVersions().fabric().stream()
-                                .filter(fv -> !disabledFabricVersions.contains(fv.version()))
-                                .map(version -> new LoaderVersion(version.version(), false, "Fabric"))
-                                .collect(Collectors.toList()));
-                        break;
-
-                    case FORGE:
-                        loaderVersionsList.addAll(data.loaderVersions().forge().stream()
-                                .filter(fv -> !disabledForgeVersions.contains(fv.version()))
-                                .map(version -> {
-                                    final LoaderVersion lv = new LoaderVersion(
-                                            version.version(), version.rawVersion(), version.recommended(), "Forge");
-                                    if (version.installerSha1Hash() != null && version.installerSize() != null) {
-                                        lv.downloadables.put("installer", new Pair<>(
-                                                version.installerSha1Hash(), version.installerSize().longValue()));
-                                    }
-                                    if (version.universalSha1Hash() != null && version.universalSize() != null) {
-                                        lv.downloadables.put("universal", new Pair<>(
-                                                version.universalSha1Hash(), version.universalSize().longValue()));
-                                    }
-                                    if (version.clientSha1Hash() != null && version.clientSize() != null) {
-                                        lv.downloadables.put("client", new Pair<>(
-                                                version.clientSha1Hash(), version.clientSize().longValue()));
-                                    }
-                                    if (version.serverSha1Hash() != null && version.serverSize() != null) {
-                                        lv.downloadables.put("server", new Pair<>(
-                                                version.serverSha1Hash(), version.serverSize().longValue()));
-                                    }
-                                    return lv;
-                                }).collect(Collectors.toList()));
-                        break;
-
-                    case LEGACY_FABRIC:
-                        loaderVersionsList.addAll(data.loaderVersions().legacyfabric()
-                                .stream()
-                                .filter(fv -> !disabledLegacyFabricVersions.contains(fv.version()))
-                                .map(version -> new LoaderVersion(
-                                        version.version(),
-                                        false,
-                                        "LegacyFabric"))
-                                .collect(Collectors.toList()));
-                        break;
-
-                    case NEOFORGE:
-                        loaderVersionsList.addAll(data.loaderVersions().neoforge()
-                                .stream()
-                                .filter(fv -> !disabledNeoForgeVersions.contains(fv.version()))
-                                .map(version -> {
-                                    LoaderVersion lv = new LoaderVersion(
-                                            version.version(),
-                                            false,
-                                            "NeoForge");
-                                    lv.rawVersion = version.rawVersion();
-                                    return lv;
-                                })
-                                .collect(Collectors.toList()));
-                        break;
-
-                    case PAPER:
-                        loaderVersionsList.addAll(data.loaderVersions().paper()
-                                .stream()
-                                .filter(fv -> !disabledPaperVersions.contains(Integer.toString(fv.build())))
-                                .map(version -> new LoaderVersion(
-                                        Integer.toString(version.build()),
-                                        false,
-                                        "Paper"))
-                                .collect(Collectors.toList()));
-                        break;
-
-                    case PURPUR:
-                        loaderVersionsList.addAll(data.loaderVersions().purpur()
-                                .stream()
-                                .filter(fv -> !disabledPurpurVersions.contains(Integer.toString(fv.build())))
-                                .map(version -> new LoaderVersion(
-                                        Integer.toString(version.build()),
-                                        false,
-                                        "Purpur"))
-                                .collect(Collectors.toList()));
-                        break;
-
-                    case QUILT:
-                        loaderVersionsList.addAll(data.loaderVersions().quilt().stream()
-                                .filter(fv -> !disabledQuiltVersions.contains(fv.version()))
-                                .map(version -> new LoaderVersion(version.version(), false, "Quilt"))
-                                .collect(Collectors.toList()));
-                        break;
-                }
-            if (loaderVersionsList.isEmpty()) {
+            List<LoaderVersion> versions = PublicLoaderApi.versions(selectedLoader, selectedMinecraftVersion);
+            List<String> disabled;
+            switch (selectedLoader) {
+                case FABRIC: disabled = disabledFabricVersions; break;
+                case FORGE: disabled = disabledForgeVersions; break;
+                case LEGACY_FABRIC: disabled = disabledLegacyFabricVersions; break;
+                case NEOFORGE: disabled = disabledNeoForgeVersions; break;
+                case PAPER: disabled = disabledPaperVersions; break;
+                case PURPUR: disabled = disabledPurpurVersions; break;
+                case QUILT: disabled = disabledQuiltVersions; break;
+                default: disabled = singletonList("");
+            }
+            versions.removeIf(v -> disabled.contains(v.version));
+            if (versions.isEmpty()) {
                 setLoaderGroupEnabled(false);
                 return singletonList(noLoaderVersions);
             }
-            return loaderVersionsList;
+            return versions;
         } catch (RuntimeException e) {
-            LogManager.logStackTrace("Error fetching loading versions", e);
+            LogManager.logStackTrace("Error fetching loader versions", e);
             setLoaderGroupEnabled(false);
             return singletonList(errorLoadingVersions);
         }
     }
-
     private void setLoaderGroupEnabled(Boolean enabled) {
         setLoaderGroupEnabled(enabled, enabled);
     }

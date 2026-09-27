@@ -38,11 +38,13 @@ import com.atlauncher.data.minecraft.Arguments;
 import com.atlauncher.data.minecraft.Library;
 import com.atlauncher.data.minecraft.loaders.Loader;
 import com.atlauncher.data.minecraft.loaders.LoaderVersion;
+import com.atlauncher.data.minecraft.loaders.LoaderType;
 import com.atlauncher.graphql.GetForgeLoaderVersionsForMinecraftVersionQuery;
 import com.atlauncher.managers.ConfigManager;
 import com.atlauncher.managers.LogManager;
 import com.atlauncher.network.Download;
 import com.atlauncher.network.GraphqlClient;
+import com.atlauncher.utils.PublicLoaderApi;
 import com.atlauncher.network.NetworkClient;
 import com.atlauncher.utils.FileUtils;
 import com.atlauncher.utils.Pair;
@@ -103,7 +105,7 @@ public class ForgeLoader implements Loader {
 
         this.installerPath = FileSystem.LOADERS
                 .resolve("forge-" + this.minecraft + "-" + this.version + "-installer.jar");
-        this.installerUrl = Constants.DOWNLOAD_SERVER + "/maven/net/minecraftforge/forge/" + this.minecraft + "-"
+        this.installerUrl = Constants.FORGE_MAVEN + "/" + this.minecraft + "-"
                 + this.version + "/forge-" + this.minecraft + "-" + this.version + "-installer.jar";
 
         if (metadata.containsKey("installerSize")) {
@@ -160,6 +162,12 @@ public class ForgeLoader implements Loader {
 
     @Override
     public void downloadAndExtractInstaller() throws Exception {
+        if (installerSha1 == null) {
+            String checksum = Download.build().setUrl(this.installerUrl + ".sha1").asString();
+            if (checksum != null && checksum.trim().matches("(?i)[0-9a-f]{40}")) {
+                installerSha1 = checksum.trim();
+            }
+        }
         OkHttpClient httpClient = Network.createProgressClient(instanceInstaller);
 
         Download download = Download.build().setUrl(this.installerUrl).downloadTo(installerPath)
@@ -308,50 +316,10 @@ public class ForgeLoader implements Loader {
     }
 
     public static List<LoaderVersion> getChoosableVersions(String minecraft) {
-        GetForgeLoaderVersionsForMinecraftVersionQuery.Data response = GraphqlClient
-                .callAndWait(new GetForgeLoaderVersionsForMinecraftVersionQuery(minecraft));
-
-        if (response == null) {
-            return new ArrayList<>();
-        }
-
-        List<String> disabledVersions = ConfigManager.getConfigItem("loaders.forge.disabledVersions",
+        List<String> disabled = ConfigManager.getConfigItem("loaders.forge.disabledVersions",
                 new ArrayList<>());
-
-        return response.loaderVersions().forge().stream().filter(fv -> !disabledVersions.contains(
-                fv.version()))
-                .map(version -> {
-                    LoaderVersion lv = new LoaderVersion(version.version(), version.rawVersion(),
-                            version.recommended(),
-                            "Forge");
-
-                    if (version.installerSha1Hash() != null && version.installerSize() != null) {
-                        lv.downloadables.put("installer",
-                                new Pair<>(version.installerSha1Hash(), version.installerSize()
-                                        .longValue()));
-                    }
-
-                    if (version.universalSha1Hash() != null && version.universalSize() != null) {
-                        lv.downloadables.put("universal",
-                                new Pair<>(version.universalSha1Hash(), version.universalSize()
-                                        .longValue()));
-                    }
-
-                    if (version.clientSha1Hash() != null && version.clientSize() != null) {
-                        lv.downloadables.put("client",
-                                new Pair<>(version.clientSha1Hash(), version.clientSize()
-                                        .longValue()));
-                    }
-
-                    if (version.serverSha1Hash() != null && version.serverSize() != null) {
-                        lv.downloadables.put("server",
-                                new Pair<>(version.serverSha1Hash(), version.serverSize()
-                                        .longValue()));
-                    }
-
-                    return lv;
-                })
-                .collect(Collectors.toList());
+        return PublicLoaderApi.versions(LoaderType.FORGE, minecraft).stream()
+                .filter(version -> !disabled.contains(version.version)).collect(Collectors.toList());
     }
 
     @Override

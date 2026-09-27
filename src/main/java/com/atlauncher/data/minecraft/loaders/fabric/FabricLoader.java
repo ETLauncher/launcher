@@ -43,6 +43,7 @@ import com.atlauncher.data.minecraft.Arguments;
 import com.atlauncher.data.minecraft.Library;
 import com.atlauncher.data.minecraft.loaders.Loader;
 import com.atlauncher.data.minecraft.loaders.LoaderVersion;
+import com.atlauncher.data.minecraft.loaders.LoaderType;
 import com.atlauncher.graphql.GetFabricLoaderVersionQuery;
 import com.atlauncher.graphql.GetFabricLoaderVersionsForMinecraftVersionQuery;
 import com.atlauncher.graphql.GetLatestFabricLoaderVersionQuery;
@@ -50,6 +51,7 @@ import com.atlauncher.managers.ConfigManager;
 import com.atlauncher.managers.LogManager;
 import com.atlauncher.network.GraphqlClient;
 import com.atlauncher.utils.Utils;
+import com.atlauncher.utils.PublicLoaderApi;
 import com.atlauncher.workers.InstanceInstaller;
 
 public class FabricLoader implements Loader {
@@ -80,33 +82,14 @@ public class FabricLoader implements Loader {
     }
 
     private FabricMetaProfile getLoader(String version) {
-        GetFabricLoaderVersionQuery.Data response = GraphqlClient
-                .callAndWait(GetFabricLoaderVersionQuery.builder().fabricVersion(version)
-                        .minecraftVersion(this.minecraft).includeClientJson(
-                                !instanceInstaller.isServer)
-                        .includeServerJson(instanceInstaller.isServer).build());
-
-        if (response == null || response.fabricLoaderVersion() == null) {
-            return null;
-        }
-
-        if (instanceInstaller.isServer) {
-            return Gsons.DEFAULT.fromJson(response.fabricLoaderVersion().serverJson(), FabricMetaProfile.class);
-        }
-
-        return Gsons.DEFAULT.fromJson(response.fabricLoaderVersion().clientJson(), FabricMetaProfile.class);
+        com.google.gson.JsonObject profile = PublicLoaderApi.profile(LoaderType.FABRIC, this.minecraft,
+                version, instanceInstaller.isServer);
+        return profile == null ? null : Gsons.DEFAULT.fromJson(profile, FabricMetaProfile.class);
     }
 
     public String getLatestVersion() {
-        GetLatestFabricLoaderVersionQuery.Data response = GraphqlClient
-                .callAndWait(new GetLatestFabricLoaderVersionQuery());
-
-        if (response == null || response.fabricLoaderVersions() == null
-                || response.fabricLoaderVersions().isEmpty()) {
-            return null;
-        }
-
-        return response.fabricLoaderVersions().get(0).version();
+        List<LoaderVersion> versions = PublicLoaderApi.versions(LoaderType.FABRIC, this.minecraft);
+        return versions.isEmpty() ? null : versions.get(0).version;
     }
 
     @Override
@@ -247,26 +230,10 @@ public class FabricLoader implements Loader {
     }
 
     public static List<LoaderVersion> getChoosableVersions(String minecraft) {
-        try {
-            List<String> disabledVersions = ConfigManager.getConfigItem("loaders.fabric.disabledVersions",
-                    new ArrayList<>());
-
-            GetFabricLoaderVersionsForMinecraftVersionQuery.Data response = GraphqlClient
-                    .callAndWait(new GetFabricLoaderVersionsForMinecraftVersionQuery(minecraft));
-
-            if (response == null || response.loaderVersions() == null
-                    || response.loaderVersions().fabric() == null
-                    || response.loaderVersions().fabric().isEmpty()) {
-                return null;
-            }
-
-            return response.loaderVersions().fabric().stream()
-                    .filter(fv -> !disabledVersions.contains(fv.version()))
-                    .map(version -> new LoaderVersion(version.version(), false, "Fabric"))
-                    .collect(Collectors.toList());
-        } catch (Exception e) {
-            return new ArrayList<>();
-        }
+        List<String> disabled = ConfigManager.getConfigItem("loaders.fabric.disabledVersions",
+                new ArrayList<>());
+        return PublicLoaderApi.versions(LoaderType.FABRIC, minecraft).stream()
+                .filter(version -> !disabled.contains(version.version)).collect(Collectors.toList());
     }
 
     @Override

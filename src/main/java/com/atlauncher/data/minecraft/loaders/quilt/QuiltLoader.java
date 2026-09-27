@@ -36,6 +36,7 @@ import com.atlauncher.data.minecraft.Arguments;
 import com.atlauncher.data.minecraft.Library;
 import com.atlauncher.data.minecraft.loaders.Loader;
 import com.atlauncher.data.minecraft.loaders.LoaderVersion;
+import com.atlauncher.data.minecraft.loaders.LoaderType;
 import com.atlauncher.graphql.GetLatestQuiltLoaderVersionQuery;
 import com.atlauncher.graphql.GetQuiltLoaderVersionQuery;
 import com.atlauncher.graphql.GetQuiltLoaderVersionsForMinecraftVersionQuery;
@@ -43,6 +44,7 @@ import com.atlauncher.managers.ConfigManager;
 import com.atlauncher.managers.LogManager;
 import com.atlauncher.network.GraphqlClient;
 import com.atlauncher.utils.Utils;
+import com.atlauncher.utils.PublicLoaderApi;
 import com.atlauncher.workers.InstanceInstaller;
 
 public class QuiltLoader implements Loader {
@@ -72,35 +74,14 @@ public class QuiltLoader implements Loader {
     }
 
     private QuiltMetaProfile getLoader(String version) {
-        GetQuiltLoaderVersionQuery.Data response = GraphqlClient
-                .callAndWait(GetQuiltLoaderVersionQuery.builder().quiltVersion(version)
-                        .minecraftVersion(this.minecraft).includeClientJson(
-                                !instanceInstaller.isServer)
-                        .includeServerJson(instanceInstaller.isServer).build());
-
-        if (response == null || response.quiltLoaderVersion() == null) {
-            return null;
-        }
-
-        if (instanceInstaller.isServer) {
-            return Gsons.DEFAULT.fromJson(response.quiltLoaderVersion().serverJson(),
-                    QuiltMetaProfile.class);
-        }
-
-        return Gsons.DEFAULT.fromJson(response.quiltLoaderVersion().clientJson(),
-                QuiltMetaProfile.class);
+        com.google.gson.JsonObject profile = PublicLoaderApi.profile(LoaderType.QUILT, this.minecraft,
+                version, instanceInstaller.isServer);
+        return profile == null ? null : Gsons.DEFAULT.fromJson(profile, QuiltMetaProfile.class);
     }
 
     public String getLatestVersion() {
-        GetLatestQuiltLoaderVersionQuery.Data response = GraphqlClient
-                .callAndWait(new GetLatestQuiltLoaderVersionQuery());
-
-        if (response == null || response.quiltLoaderVersions() == null
-                || response.quiltLoaderVersions().isEmpty()) {
-            return null;
-        }
-
-        return response.quiltLoaderVersions().get(0).version();
+        List<LoaderVersion> versions = PublicLoaderApi.versions(LoaderType.QUILT, this.minecraft);
+        return versions.isEmpty() ? null : versions.get(0).version;
     }
 
     @Override
@@ -193,26 +174,10 @@ public class QuiltLoader implements Loader {
     }
 
     public static List<LoaderVersion> getChoosableVersions(String minecraft) {
-        try {
-            List<String> disabledVersions = ConfigManager.getConfigItem("loaders.quilt.disabledVersions",
-                    new ArrayList<>());
-
-            GetQuiltLoaderVersionsForMinecraftVersionQuery.Data response = GraphqlClient
-                    .callAndWait(new GetQuiltLoaderVersionsForMinecraftVersionQuery(minecraft));
-
-            if (response == null || response.loaderVersions() == null
-                    || response.loaderVersions().quilt() == null
-                    || response.loaderVersions().quilt().isEmpty()) {
-                return null;
-            }
-
-            return response.loaderVersions().quilt().stream()
-                    .filter(fv -> !disabledVersions.contains(fv.version()))
-                    .map(version -> new LoaderVersion(version.version(), false, "Quilt"))
-                    .collect(Collectors.toList());
-        } catch (Exception e) {
-            return new ArrayList<>();
-        }
+        List<String> disabled = ConfigManager.getConfigItem("loaders.quilt.disabledVersions",
+                new ArrayList<>());
+        return PublicLoaderApi.versions(LoaderType.QUILT, minecraft).stream()
+                .filter(version -> !disabled.contains(version.version)).collect(Collectors.toList());
     }
 
     @Override

@@ -37,11 +37,13 @@ import com.atlauncher.data.minecraft.Arguments;
 import com.atlauncher.data.minecraft.Library;
 import com.atlauncher.data.minecraft.loaders.Loader;
 import com.atlauncher.data.minecraft.loaders.LoaderVersion;
+import com.atlauncher.data.minecraft.loaders.LoaderType;
 import com.atlauncher.graphql.GetNeoForgeLoaderVersionsForMinecraftVersionQuery;
 import com.atlauncher.managers.ConfigManager;
 import com.atlauncher.managers.LogManager;
 import com.atlauncher.network.Download;
 import com.atlauncher.network.GraphqlClient;
+import com.atlauncher.utils.PublicLoaderApi;
 import com.atlauncher.utils.FileUtils;
 import com.atlauncher.workers.InstanceInstaller;
 import com.google.gson.JsonIOException;
@@ -264,26 +266,10 @@ public class NeoForgeLoader implements Loader {
     }
 
     public static List<LoaderVersion> getChoosableVersions(String minecraft) {
-        GetNeoForgeLoaderVersionsForMinecraftVersionQuery.Data response = GraphqlClient
-                .callAndWait(new GetNeoForgeLoaderVersionsForMinecraftVersionQuery(minecraft));
-
-        if (response == null) {
-            return new ArrayList<>();
-        }
-
-        List<String> disabledVersions = ConfigManager.getConfigItem("loaders.neoforge.disabledVersions",
+        List<String> disabled = ConfigManager.getConfigItem("loaders.neoforge.disabledVersions",
                 new ArrayList<>());
-
-        return response.loaderVersions().neoforge().stream().filter(fv -> !disabledVersions.contains(
-                fv.version()))
-                .map(version -> {
-                    LoaderVersion lv = new LoaderVersion(version.version(), version.rawVersion(),
-                            version.recommended(),
-                            "NeoForge");
-
-                    return lv;
-                })
-                .collect(Collectors.toList());
+        return PublicLoaderApi.versions(LoaderType.NEOFORGE, minecraft).stream()
+                .filter(version -> !disabled.contains(version.version)).collect(Collectors.toList());
     }
 
     @Override

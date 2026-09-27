@@ -31,11 +31,13 @@ import com.atlauncher.data.minecraft.Arguments;
 import com.atlauncher.data.minecraft.Library;
 import com.atlauncher.data.minecraft.loaders.Loader;
 import com.atlauncher.data.minecraft.loaders.LoaderVersion;
+import com.atlauncher.data.minecraft.loaders.LoaderType;
 import com.atlauncher.graphql.GetPurpurLoaderVersionsForMinecraftVersionQuery;
 import com.atlauncher.managers.ConfigManager;
 import com.atlauncher.managers.LogManager;
 import com.atlauncher.network.Download;
 import com.atlauncher.network.GraphqlClient;
+import com.atlauncher.utils.PublicLoaderApi;
 import com.atlauncher.workers.InstanceInstaller;
 
 import okhttp3.OkHttpClient;
@@ -131,20 +133,10 @@ public class PurpurLoader implements Loader {
     }
 
     public static List<LoaderVersion> getChoosableVersions(String minecraft) {
-        GetPurpurLoaderVersionsForMinecraftVersionQuery.Data response = GraphqlClient
-                .callAndWait(new GetPurpurLoaderVersionsForMinecraftVersionQuery(minecraft));
-
-        if (response == null) {
-            return new ArrayList<>();
-        }
-
-        List<String> disabledVersions = ConfigManager.getConfigItem("loaders.purpur.disabledVersions",
+        List<String> disabled = ConfigManager.getConfigItem("loaders.purpur.disabledVersions",
                 new ArrayList<>());
-
-        return response.loaderVersions().purpur().stream()
-                .filter(fv -> !disabledVersions.contains(Integer.toString(fv.build())))
-                .map(version -> new LoaderVersion(Integer.toString(version.build()), false, "Purpur"))
-                .collect(Collectors.toList());
+        return PublicLoaderApi.versions(LoaderType.PURPUR, minecraft).stream()
+                .filter(version -> !disabled.contains(version.version)).collect(Collectors.toList());
     }
 
     @Override

@@ -106,20 +106,6 @@ public class Launcher {
 
         NewsManager.loadNews(); // Load the news
 
-        if (App.settings.enableAnalytics && ConfigManager.getConfigItem("useGraphqlLauncherLaunch", false)) {
-            App.TASKPOOL.execute(() -> GraphqlClient.mutate(new AddLauncherLaunchMutation(
-                AddLauncherLaunchInput.builder().version(Constants.VERSION.toStringForLogging())
-                    .hash(Constants.VERSION.getSha1Revision().toString())
-                    .installMethod(OS.getInstallMethod())
-                    .javaVersion(LauncherJavaVersionInput.builder().raw(Java.getLauncherJavaVersion())
-                        .majorVersion(Integer.toString(Java.getLauncherJavaVersionNumber()))
-                        .bitness(Java.is64Bit() ? 64 : 32)
-                        .usingJreDir(OS.isWindows() && OS.usingExe()
-                            && Files.exists(FileSystem.BASE_DIR.resolve("jre")))
-                        .build())
-                    .build())));
-        }
-
         MinecraftManager.loadMinecraftVersions(); // Load info about the different Minecraft versions
         MinecraftManager.loadJavaRuntimes(); // Load info about the different java runtimes
         LWJGLManager.loadLWJGLVersions(); // Load info about the different LWJGL versions

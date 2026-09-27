@@ -31,11 +31,13 @@ import com.atlauncher.data.minecraft.Arguments;
 import com.atlauncher.data.minecraft.Library;
 import com.atlauncher.data.minecraft.loaders.Loader;
 import com.atlauncher.data.minecraft.loaders.LoaderVersion;
+import com.atlauncher.data.minecraft.loaders.LoaderType;
 import com.atlauncher.graphql.GetPaperLoaderVersionsForMinecraftVersionQuery;
 import com.atlauncher.managers.ConfigManager;
 import com.atlauncher.managers.LogManager;
 import com.atlauncher.network.Download;
 import com.atlauncher.network.GraphqlClient;
+import com.atlauncher.utils.PublicLoaderApi;
 import com.atlauncher.workers.InstanceInstaller;
 
 import okhttp3.OkHttpClient;
@@ -131,20 +133,10 @@ public class PaperLoader implements Loader {
     }
 
     public static List<LoaderVersion> getChoosableVersions(String minecraft) {
-        GetPaperLoaderVersionsForMinecraftVersionQuery.Data response = GraphqlClient
-                .callAndWait(new GetPaperLoaderVersionsForMinecraftVersionQuery(minecraft));
-
-        if (response == null) {
-            return new ArrayList<>();
-        }
-
-        List<String> disabledVersions = ConfigManager.getConfigItem("loaders.paper.disabledVersions",
+        List<String> disabled = ConfigManager.getConfigItem("loaders.paper.disabledVersions",
                 new ArrayList<>());
-
-        return response.loaderVersions().paper().stream()
-                .filter(fv -> !disabledVersions.contains(Integer.toString(fv.build())))
-                .map(version -> new LoaderVersion(Integer.toString(version.build()), version.promoted(), "Paper"))
-                .collect(Collectors.toList());
+        return PublicLoaderApi.versions(LoaderType.PAPER, minecraft).stream()
+                .filter(version -> !disabled.contains(version.version)).collect(Collectors.toList());
     }
 
     @Override

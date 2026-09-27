@@ -303,23 +303,14 @@ public class Pack {
     }
 
     public void addInstall(String version) {
-        GraphqlClient
-            .mutateAndWait(
-                new AddPackActionMutation(AddPackActionInput.builder().packId(Integer.toString(
-                    id)).version(version).action(PackLogAction.INSTALL).build()));
+        // Upstream analytics does not accept requests from ETLauncher.
     }
 
     public void addServerInstall(String version) {
-        GraphqlClient
-            .mutateAndWait(
-                new AddPackActionMutation(AddPackActionInput.builder().packId(Integer.toString(
-                    id)).version(version).action(PackLogAction.SERVER).build()));
+        // Upstream analytics does not accept requests from ETLauncher.
     }
 
     public void addUpdate(String version) {
-        GraphqlClient
-            .mutateAndWait(
-                new AddPackActionMutation(AddPackActionInput.builder().packId(Integer.toString(
-                    id)).version(version).action(PackLogAction.UPDATE).build()));
+        // Upstream analytics does not accept requests from ETLauncher.
     }
 }
