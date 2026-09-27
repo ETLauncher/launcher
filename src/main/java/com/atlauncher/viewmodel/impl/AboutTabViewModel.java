@@ -17,20 +17,22 @@
  */
 package com.atlauncher.viewmodel.impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 
+import com.atlauncher.App;
 import com.atlauncher.constants.Constants;
 import com.atlauncher.data.Contributor;
-import com.atlauncher.graphql.GetLauncherContributorsQuery;
-import com.atlauncher.network.GraphqlClient;
+import com.atlauncher.network.NetworkClient;
 import com.atlauncher.utils.Java;
 import com.atlauncher.utils.OS;
 import com.atlauncher.viewmodel.base.IAboutTabViewModel;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.gitlab.doomsdayrs.lib.rxswing.schedulers.SwingSchedulers;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -42,24 +44,22 @@ public class AboutTabViewModel implements IAboutTabViewModel {
     private String info = null;
 
     public AboutTabViewModel() {
-        // Load up contributors as soon as the view model is created.
-        // This will always take longer then rendering the UI.
-        GraphqlClient.call(
-            new GetLauncherContributorsQuery(),
-            1,
-            TimeUnit.DAYS,
-            this::onContributorsResponse
-        );
+        App.TASKPOOL.execute(this::loadContributors);
     }
 
-    private void onContributorsResponse(GetLauncherContributorsQuery.Data response) {
-        contributorsSubject.onNext(
-            response.about()
-                .contributors()
-                .stream()
-                .map(contributor -> new Contributor(contributor.name(), contributor.url(), contributor.avatarUrl()))
-                .collect(Collectors.toList())
-        );
+    private void loadContributors() {
+        JsonArray response = NetworkClient.get(
+            "https://api.github.com/repos/ETLauncher/launcher/contributors?per_page=100", JsonArray.class);
+        if (response == null) return;
+
+        List<Contributor> contributors = new ArrayList<>();
+        for (JsonElement entry : response) {
+            JsonObject contributor = entry.getAsJsonObject();
+            contributors.add(new Contributor(contributor.get("login").getAsString(),
+                contributor.get("html_url").getAsString(),
+                contributor.get("avatar_url").getAsString()));
+        }
+        contributorsSubject.onNext(contributors);
     }
 
     @Nonnull
