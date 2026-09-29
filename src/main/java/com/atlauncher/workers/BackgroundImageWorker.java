@@ -20,6 +20,8 @@ package com.atlauncher.workers;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.concurrent.ExecutionException;
@@ -31,7 +33,9 @@ import javax.swing.SwingWorker;
 
 import com.atlauncher.FileSystem;
 import com.atlauncher.network.Download;
-import com.atlauncher.network.DownloadException;
+import com.google.common.hash.Hashing;
+
+import okhttp3.HttpUrl;
 
 public class BackgroundImageWorker extends SwingWorker<ImageIcon, Object> {
     private final JLabel label;
@@ -48,19 +52,28 @@ public class BackgroundImageWorker extends SwingWorker<ImageIcon, Object> {
 
     @Override
     protected ImageIcon doInBackground() throws Exception {
-        Path path = FileSystem.REMOTE_IMAGE_CACHE.resolve(this.url.replaceAll("[^A-Za-z0-9]", ""));
+        if (this.url == null || this.url.isBlank() || HttpUrl.parse(this.url) == null) {
+            return null;
+        }
+
+        Path path = FileSystem.REMOTE_IMAGE_CACHE.resolve(
+                Hashing.sha256().hashString(this.url, StandardCharsets.UTF_8).toString());
+
+        if (Files.isDirectory(path)) {
+            return null;
+        }
 
         Download download = Download.build().setUrl(this.url).ignoreFailures().downloadTo(path);
 
-        if (!Files.exists(path)) {
+        if (!Files.isRegularFile(path)) {
             try {
                 download.downloadFile();
-            } catch (DownloadException ignored) {
+            } catch (IOException ignored) {
                 // ignored
             }
         }
 
-        if (Files.exists(path)) {
+        if (Files.isRegularFile(path)) {
             try (BufferedInputStream inputStream = new BufferedInputStream(Files.newInputStream(path))) {
                 BufferedImage sourceImage = ImageIO.read(inputStream);
                 if (sourceImage != null) {
@@ -69,9 +82,9 @@ public class BackgroundImageWorker extends SwingWorker<ImageIcon, Object> {
 
                     // Compute scales to maintain the aspect ratio
                     if (sourceImage.getWidth() > sourceImage.getHeight()) {
-                        newHeight = (sourceImage.getHeight() * width) / sourceImage.getWidth();
+                        newHeight = Math.max(1, (sourceImage.getHeight() * width) / sourceImage.getWidth());
                     } else {
-                        newWidth = (sourceImage.getWidth() * height) / sourceImage.getHeight();
+                        newWidth = Math.max(1, (sourceImage.getWidth() * height) / sourceImage.getHeight());
                     }
 
                     BufferedImage scaledImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
@@ -81,6 +94,8 @@ public class BackgroundImageWorker extends SwingWorker<ImageIcon, Object> {
                     sourceImage.flush(); // Immediately discard large source image buffer
                     return new ImageIcon(scaledImage);
                 }
+            } catch (IOException ignored) {
+                // A missing or corrupt cached image should leave the placeholder visible.
             }
         }
 

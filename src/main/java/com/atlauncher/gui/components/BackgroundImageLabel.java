@@ -17,8 +17,6 @@
  */
 package com.atlauncher.gui.components;
 
-import java.util.Optional;
-
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
@@ -31,7 +29,7 @@ public final class BackgroundImageLabel extends JLabel {
         setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
         setVisible(false);
 
-        if (Optional.ofNullable(url).isPresent()) {
+        if (url != null && !url.isBlank()) {
             new BackgroundImageWorker(this, url, width, height).execute();
         } else {
             setVisible(true);
